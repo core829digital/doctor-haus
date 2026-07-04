@@ -1,0 +1,72 @@
+{
+  "meta": {
+    "title": "Apple Cabin — Scheda Tecnica | Doctor Haus",
+    "description": "Scopri tutte le specifiche tecniche della Apple Cabin: dimensioni, materiali, isolamento, personalizzazioni e garanzia."
+  },
+  "hero": {
+    "title": "Apple Cabin",
+    "subtitle": "Design, sostenibilità e libertà in 12,5 m²."
+  },
+  "specifiche": {
+    "title": "Scheda tecnica",
+    "layout": {
+      "title": "Layout interno",
+      "items": [
+        { "label": "Capacità abitativa", "value": "1-2 persone" },
+        { "label": "Zona notte", "value": "Letto matrimoniale" },
+        { "label": "Bagno", "value": "Con doccia, WC e lavabo" },
+        { "label": "Cucina", "value": "Angolo cottura a vista" },
+        { "label": "Area relax", "value": "Scrivania vicino alla vetrata" }
+      ]
+    },
+    "dimensioni": {
+      "title": "Dimensioni",
+      "items": [
+        { "label": "Lunghezza", "value": "5.800 mm" },
+        { "label": "Larghezza", "value": "2.150 mm" },
+        { "label": "Altezza", "value": "2.400 mm" },
+        { "label": "Superficie", "value": "12,5 m²" },
+        { "label": "Peso", "value": "~3.500 kg" }
+      ]
+    },
+    "materiali": {
+      "title": "Materiali",
+      "items": [
+        { "label": "Struttura", "value": "Acciaio zincato + legno lamellare" },
+        { "label": "Rivestimento esterno", "value": "Doghe in legno naturale (2 finiture: chiaro / rovere scuro)" },
+        { "label": "Vetrate", "value": "Vetrocamera scorrevole con profili alluminio a taglio termico" },
+        { "label": "Isolamento pareti", "value": "Lana di roccia 50/75/100 mm o EPS" },
+        { "label": "Pavimentazione", "value": "PVC antiusura o SPC antiscivolo (5 varianti colore)" }
+      ]
+    },
+    "impianti": {
+      "title": "Impianti",
+      "items": [
+        { "label": "Elettrico", "value": "Completo con quadro elettrico e predisposizione fotovoltaico" },
+        { "label": "Idraulico", "value": "Impianto completo con bagno integrato o separato" },
+        { "label": "Climatizzazione", "value": "Pompa di calore + VMC" }
+      ]
+    }
+  },
+  "personalizzazioni": {
+    "title": "Personalizzazioni disponibili",
+    "items": [
+      "Bagno integrato, unico o con zona doccia separata (3 configurazioni)",
+      "Rivestimento pareti in fibra di bambù (9 varianti colore/texture)",
+      "Pannello isolante metallico (12 varianti: legno, mattone, pietra, marmo)",
+      "Finiture pavimento: PVC (5 colori) o SPC a incastro (5 colori)",
+      "Infissi: PVC rinforzato, lega alluminio o alluminio a taglio termico",
+      "Doghe esterne: legno chiaro naturale o rovere scuro",
+      "Predisposizione per impianto fotovoltaico",
+      "Pacchetto domotico base o avanzato"
+    ]
+  },
+  "galleria": {
+    "title": "Galleria"
+  },
+  "cta": {
+    "title": "Richiedi informazioni su Apple Cabin",
+    "description": "Compila il form e riceverai un preventivo personalizzato entro 24 ore.",
+    "button": "Richiedi preventivo"
+  }
+}

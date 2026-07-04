@@ -1,0 +1,48 @@
+{
+  "site": {
+    "title": "Doctor Haus — Apple Cabin",
+    "description": "Apple Cabin: mini casa modulare prefabbricata dal design arrotondato, vetrate a tutta altezza e materiali sostenibili."
+  },
+  "nav": {
+    "home": "Home",
+    "chiSiamo": "Chi Siamo",
+    "comeFunziona": "Come Funziona",
+    "prodotto": "Apple Cabin",
+    "contatti": "Contatti",
+    "configuratore": "Configuratore",
+    "altreSoluzioni": "Altre soluzioni",
+    "accedi": "Accedi",
+    "richiediPreventivo": "Richiedi preventivo"
+  },
+  "footer": {
+    "description": "Design e innovazione per abitazioni modulari sostenibili.",
+    "privacyPolicy": "Privacy Policy",
+    "cookiePolicy": "Cookie Policy",
+    "gdpr": "GDPR",
+    "termini": "Termini di Utilizzo",
+    "noteLegali": "Note Legali",
+    "garanzia": "Garanzia e Recesso",
+    "accessibilita": "Accessibilità",
+    "cookiePreferences": "Preferenze Cookie",
+    "trattamentoDati": "Trattamento Dati",
+    "accedi": "Accedi",
+    "tuttiDiritti": "© {year} Doctor Haus. Tutti i diritti riservati."
+  },
+  "language": {
+    "switchTo": "Switch to English",
+    "it": "IT",
+    "en": "EN"
+  },
+  "common": {
+    "scopriDiPiu": "Scopri di più",
+    "accedi": "Accedi",
+    "richiediPreventivo": "Richiedi preventivo",
+    "contattaci": "Contattaci",
+    "invia": "Invia",
+    "caricamento": "Caricamento...",
+    "leggiTutto": "Leggi tutto",
+    "chiudi": "Chiudi",
+    "tornaHome": "Torna alla home",
+    "paginaNonTrovata": "Pagina non trovata. La pagina che cerchi potrebbe essere stata spostata o non esiste più."
+  }
+}

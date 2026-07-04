@@ -1,0 +1,127 @@
+{
+  "hero": {
+    "headline": "Your home, wherever you want it.",
+    "subheadline": "Apple Cabin is a prefabricated modular mini house with rounded design, full-height glass windows, built with sustainable materials and ready to be placed in your green space.",
+    "cta": "Discover Apple Cabin",
+    "ctaSecondary": "Get a quote"
+  },
+  "problemi": {
+    "title": "Building a home today is still too complicated.",
+    "description": "Endless permits, ballooning costs, never-ending construction sites, and environmental impact — the dream of owning a home feels further away than ever.",
+    "items": [
+      {
+        "title": "Long, uncertain timelines",
+        "description": "Traditional construction takes an average of 2-3 years including permits and build time."
+      },
+      {
+        "title": "Unpredictable costs",
+        "description": "Between site surprises and material price hikes, the initial budget is often just an illusion."
+      },
+      {
+        "title": "Environmental impact",
+        "description": "Concrete is responsible for 8% of global CO₂ emissions."
+      },
+      {
+        "title": "Complete rigidity",
+        "description": "Once built, that house stays there forever. You can't move it, adapt it, or rethink it."
+      }
+    ]
+  },
+  "soluzione": {
+    "title": "There's a smarter way.",
+    "description": "Apple Cabin solves every problem of traditional construction with a modular, sustainable and transparent approach.",
+    "items": [
+      {
+        "title": "Delivery in 6-8 weeks",
+        "description": "From order to turnkey delivery. Certain timelines, no surprises."
+      },
+      {
+        "title": "Fixed and transparent price",
+        "description": "What you see is what you pay. No hidden costs, no surprises."
+      },
+      {
+        "title": "Sustainable materials",
+        "description": "Certified wood, rock wool or EPS insulation, thermal break sliding windows. Sustainability is in the details."
+      },
+      {
+        "title": "Modular and transportable",
+        "description": "Apple Cabin is assembled wherever you want and, if you change your mind, it moves with you."
+      }
+    ]
+  },
+  "prodotto": {
+    "title": "Apple Cabin. Designed down to the smallest detail.",
+    "description": "Every element of Apple Cabin has been designed to offer maximum living comfort in minimal space. White monoblock structure with rounded edges, full-height glass facade, warm and functional interiors.",
+    "cta": "Explore the technical specs",
+    "specs": [
+      { "label": "Surface area", "value": "12.5 m²" },
+      { "label": "Production time", "value": "6-8 weeks" },
+      { "label": "Structure warranty", "value": "10 years" },
+      { "label": "Certification", "value": "ISO 14001" }
+    ]
+  },
+  "ambientazioni": {
+    "title": "Where can an Apple Cabin live?",
+    "description": "Private garden, agricultural land, resort area, independent office space. Wherever there's a corner of nature, Apple Cabin fits without altering the landscape."
+  },
+  "processo": {
+    "title": "From project to delivery.",
+    "description": "A clear and transparent journey in 4 steps.",
+    "steps": [
+      { "title": "Consultation", "description": "Tell us about your project. We help you choose the right configuration for your needs." },
+      { "title": "Design", "description": "Our architects customize every detail, from layout to interiors and finishes." },
+      { "title": "Production", "description": "Your Apple Cabin is expertly built in our factory using certified materials." },
+      { "title": "Installation", "description": "Transport, assembly and turnkey delivery. In 6-8 weeks your home is ready." }
+    ],
+    "cta": "Discover how it works in detail"
+  },
+  "sostenibilita": {
+    "title": "Built to last, designed for the planet.",
+    "description": "We only use selected materials for their low environmental impact and energy performance.",
+    "items": [
+      { "title": "Thermal insulation", "description": "Rock wool 50/75/100 mm or EPS panels for natural comfort all year round." },
+      { "title": "Energy efficiency", "description": "Thermal break aluminum sliding windows and airtight structure to reduce consumption." },
+      { "title": "Recyclable materials", "description": "Over 85% of materials are recyclable at end of life." },
+      { "title": "Dry production", "description": "No concrete in the production phase: dry assembly with minimal impact." }
+    ]
+  },
+  "fiducia": {
+    "title": "Numbers that speak.",
+    "items": [
+      { "value": "12.5", "unit": "m²", "label": "Average living area" },
+      { "value": "6-8", "unit": "weeks", "label": "Average delivery time" },
+      { "value": "10", "unit": "years", "label": "Structure warranty" },
+      { "value": "85+", "unit": "%", "label": "Recyclable materials" }
+    ]
+  },
+  "faq": {
+    "title": "Frequently asked questions.",
+    "items": [
+      {
+        "q": "Do I need permits to install an Apple Cabin?",
+        "a": "It depends on the intended use and the municipality. In many cases, as it's a prefabricated structure on a base slab, it falls under free construction or simplified reporting. Our team guides you through every bureaucratic step."
+      },
+      {
+        "q": "How long does it take from order to delivery?",
+        "a": "The complete process takes 6-8 weeks: from initial consultation to factory production to transport and installation."
+      },
+      {
+        "q": "Can the Apple Cabin be customized?",
+        "a": "Absolutely. You can choose finishes, interior layouts, glass types, and aesthetic customizations. Every Apple Cabin is unique."
+      },
+      {
+        "q": "Is financing available?",
+        "a": "Yes, we work with financial partners to offer customized financing solutions. Contact us for a detailed quote."
+      },
+      {
+        "q": "Is Apple Cabin suitable for year-round residential use?",
+        "a": "Yes, Apple Cabin is designed to be habitable all year round thanks to high-level thermal and acoustic insulation."
+      }
+    ]
+  },
+  "ctaFinale": {
+    "title": "Ready to live in an Apple Cabin?",
+    "description": "Tell us about your project. We'll respond within 24 hours with a personalized quote.",
+    "cta": "Request your quote"
+  }
+}

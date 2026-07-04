@@ -1,0 +1,72 @@
+{
+  "meta": {
+    "title": "Apple Cabin — Technical Specs | Doctor Haus",
+    "description": "Discover all technical specifications of Apple Cabin: dimensions, materials, insulation, customizations and warranty."
+  },
+  "hero": {
+    "title": "Apple Cabin",
+    "subtitle": "Design, sustainability and freedom in 12.5 m²."
+  },
+  "specifiche": {
+    "title": "Technical specifications",
+    "layout": {
+      "title": "Interior layout",
+      "items": [
+        { "label": "Capacity", "value": "1-2 persons" },
+        { "label": "Sleeping area", "value": "Double bed" },
+        { "label": "Bathroom", "value": "With shower, WC and sink" },
+        { "label": "Kitchen", "value": "Open-plan kitchenette" },
+        { "label": "Relax area", "value": "Desk by the window" }
+      ]
+    },
+    "dimensioni": {
+      "title": "Dimensions",
+      "items": [
+        { "label": "Length", "value": "5,800 mm" },
+        { "label": "Width", "value": "2,150 mm" },
+        { "label": "Height", "value": "2,400 mm" },
+        { "label": "Surface area", "value": "12.5 m²" },
+        { "label": "Weight", "value": "~3,500 kg" }
+      ]
+    },
+    "materiali": {
+      "title": "Materials",
+      "items": [
+        { "label": "Structure", "value": "Galvanized steel + glulam timber" },
+        { "label": "External cladding", "value": "Natural wood slats (2 finishes: light / dark oak)" },
+        { "label": "Glazing", "value": "Sliding double glazing with thermal break aluminum profiles" },
+        { "label": "Wall insulation", "value": "Rock wool 50/75/100 mm or EPS" },
+        { "label": "Flooring", "value": "PVC wear-resistant or SPC slip-resistant (5 color variants)" }
+      ]
+    },
+    "impianti": {
+      "title": "Systems",
+      "items": [
+        { "label": "Electrical", "value": "Complete with panel and solar-ready" },
+        { "label": "Plumbing", "value": "Complete system with integrated or separate bathroom" },
+        { "label": "Climate control", "value": "Heat pump + mechanical ventilation" }
+      ]
+    }
+  },
+  "personalizzazioni": {
+    "title": "Available customizations",
+    "items": [
+      "Integrated, single or separate shower bathroom (3 configurations)",
+      "Bamboo fiber wall cladding (9 color/texture variants)",
+      "Insulated metal panel (12 variants: wood, brick, stone, marble)",
+      "Floor finishes: PVC (5 colors) or SPC click-lock (5 colors)",
+      "Windows: reinforced PVC, aluminum alloy or thermal break aluminum",
+      "External slats: light natural wood or dark oak",
+      "Solar panel pre-installation",
+      "Basic or advanced smart home package"
+    ]
+  },
+  "galleria": {
+    "title": "Gallery"
+  },
+  "cta": {
+    "title": "Request information about Apple Cabin",
+    "description": "Fill out the form and receive a personalized quote within 24 hours.",
+    "button": "Get a quote"
+  }
+}

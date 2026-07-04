@@ -1,0 +1,48 @@
+{
+  "site": {
+    "title": "Doctor Haus — Apple Cabin",
+    "description": "Apple Cabin: prefabricated modular mini house with rounded design, full-height windows and sustainable materials."
+  },
+  "nav": {
+    "home": "Home",
+    "chiSiamo": "About Us",
+    "comeFunziona": "How It Works",
+    "prodotto": "Apple Cabin",
+    "contatti": "Contact",
+    "configuratore": "Configurator",
+    "altreSoluzioni": "Other solutions",
+    "accedi": "Login",
+    "richiediPreventivo": "Get a quote"
+  },
+  "footer": {
+    "description": "Design and innovation for sustainable modular living.",
+    "privacyPolicy": "Privacy Policy",
+    "cookiePolicy": "Cookie Policy",
+    "gdpr": "GDPR",
+    "termini": "Terms of Use",
+    "noteLegali": "Legal Notes",
+    "garanzia": "Warranty & Returns",
+    "accessibilita": "Accessibility",
+    "cookiePreferences": "Cookie Preferences",
+    "trattamentoDati": "Data Processing",
+    "accedi": "Login",
+    "tuttiDiritti": "© {year} Doctor Haus. All rights reserved."
+  },
+  "language": {
+    "switchTo": "Passa all'italiano",
+    "it": "IT",
+    "en": "EN"
+  },
+  "common": {
+    "scopriDiPiu": "Learn more",
+    "accedi": "Login",
+    "richiediPreventivo": "Get a quote",
+    "contattaci": "Contact us",
+    "invia": "Send",
+    "caricamento": "Loading...",
+    "leggiTutto": "Read all",
+    "chiudi": "Close",
+    "tornaHome": "Back to home",
+    "paginaNonTrovata": "Page not found. The page you are looking for may have been moved or no longer exists."
+  }
+}

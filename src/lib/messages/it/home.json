@@ -1,0 +1,127 @@
+{
+  "hero": {
+    "headline": "La tua casa, ovunque tu voglia metterla.",
+    "subheadline": "Apple Cabin è una mini casa modulare prefabbricata dal design arrotondato, interamente vetrata, costruita con materiali sostenibili e pronta per essere collocata nel tuo spazio verde.",
+    "cta": "Scopri Apple Cabin",
+    "ctaSecondary": "Richiedi preventivo"
+  },
+  "problemi": {
+    "title": "Costruire una casa oggi è ancora troppo complicato.",
+    "description": "Tra permessi interminabili, costi che lievitano, cantieri infiniti e impatto ambientale, il sogno di una casa propria sembra sempre più lontano.",
+    "items": [
+      {
+        "title": "Tempi lunghi e incerti",
+        "description": "Una costruzione tradizionale richiede in media 2-3 anni tra permessi e realizzazione."
+      },
+      {
+        "title": "Costi imprevedibili",
+        "description": "Tra imprevisti di cantiere e aumento dei materiali, il budget iniziale è spesso solo un'illusione."
+      },
+      {
+        "title": "Impatto ambientale",
+        "description": "Il cemento è responsabile dell'8% delle emissioni globali di CO₂."
+      },
+      {
+        "title": "Rigidità totale",
+        "description": "Una volta costruita, quella casa resta lì per sempre. Non puoi spostarla, adattarla, ripensarla."
+      }
+    ]
+  },
+  "soluzione": {
+    "title": "Esiste un modo più intelligente.",
+    "description": "La Apple Cabin risolve ogni problema della costruzione tradizionale con un approccio modulare, sostenibile e trasparente.",
+    "items": [
+      {
+        "title": "Consegna in 6-8 settimane",
+        "description": "Dall'ordine alla consegna chiavi in mano. Tempi certi, senza sorprese."
+      },
+      {
+        "title": "Prezzo chiuso e trasparente",
+        "description": "Quello che vedi è quello che paghi. Nessun costo nascosto, nessun imprevisto."
+      },
+      {
+        "title": "Materiali sostenibili",
+        "description": "Legno certificato, isolamento in lana di roccia o EPS, vetrate scorrevoli a taglio termico. La sostenibilità è nei dettagli."
+      },
+      {
+        "title": "Modulare e trasportabile",
+        "description": "La Apple Cabin si monta dove vuoi e, se cambi idea, si sposta con te."
+      }
+    ]
+  },
+  "prodotto": {
+    "title": "Apple Cabin. Pensata fin nei minimi dettagli.",
+    "description": "Ogni elemento della Apple Cabin è stato progettato per offrire il massimo comfort abitativo nel minimo spazio. Struttura monoblocco bianco dai bordi arrotondati, facciata vetrata a tutta altezza, interni caldi e funzionali.",
+    "cta": "Esplora la scheda tecnica",
+    "specs": [
+      { "label": "Superficie", "value": "12,5 m²" },
+      { "label": "Produzione", "value": "6-8 settimane" },
+      { "label": "Garanzia struttura", "value": "10 anni" },
+      { "label": "Certificazione", "value": "ISO 14001" }
+    ]
+  },
+  "ambientazioni": {
+    "title": "Dove può vivere una Apple Cabin.",
+    "description": "Giardino privato, terreno agricolo, area resort, spazio ufficio indipendente. Ovunque ci sia un angolo di natura, la Apple Cabin si inserisce senza alterare il paesaggio."
+  },
+  "processo": {
+    "title": "Dal progetto alla consegna.",
+    "description": "Un percorso chiaro e trasparente in 4 passi.",
+    "steps": [
+      { "title": "Consulenza", "description": "Parlaci del tuo progetto. Ti aiutiamo a scegliere la configurazione giusta per le tue esigenze." },
+      { "title": "Progetto", "description": "I nostri architetti personalizzano ogni dettaglio, dal layout agli interni fino alle finiture." },
+      { "title": "Produzione", "description": "La tua Apple Cabin viene costruita a regola d'arte nel nostro stabilimento con materiali certificati." },
+      { "title": "Installazione", "description": "Trasporto, montaggio e consegna chiavi in mano. In 6-8 settimane la tua casa è pronta." }
+    ],
+    "cta": "Scopri come funziona nel dettaglio"
+  },
+  "sostenibilita": {
+    "title": "Costruita per durare, pensata per il pianeta.",
+    "description": "Utilizziamo solo materiali selezionati per il loro basso impatto ambientale e le loro prestazioni energetiche.",
+    "items": [
+      { "title": "Isolamento termico", "description": "Pannelli in lana di roccia 50/75/100 mm o EPS per un comfort naturale tutto l'anno." },
+      { "title": "Efficienza energetica", "description": "Vetrate scorrevoli con profili alluminio a taglio termico e struttura a tenuta d'aria." },
+      { "title": "Materiali riciclabili", "description": "Oltre l'85% dei materiali è riciclabile a fine vita." },
+      { "title": "Produzione a secco", "description": "Niente cemento in fase di produzione: assemblaggio a secco a bassissimo impatto." }
+    ]
+  },
+  "fiducia": {
+    "title": "Numeri che parlano.",
+    "items": [
+      { "value": "12,5", "unit": "m²", "label": "Superficie media abitabile" },
+      { "value": "6-8", "unit": "settimane", "label": "Tempo di consegna medio" },
+      { "value": "10", "unit": "anni", "label": "Garanzia sulla struttura" },
+      { "value": "85+", "unit": "%", "label": "Materiali riciclabili" }
+    ]
+  },
+  "faq": {
+    "title": "Domande frequenti.",
+    "items": [
+      {
+        "q": "Servono permessi per installare una Apple Cabin?",
+        "a": "Dipende dalla destinazione d'uso e dal comune di installazione. In molti casi, essendo una struttura prefabbricata su platea, rientra nell'edilizia libera o in SCIA. Il nostro team ti segue in ogni passo burocratico."
+      },
+      {
+        "q": "Quanto tempo ci vuole dall'ordine alla consegna?",
+        "a": "Il processo completo richiede 6-8 settimane: dalla consulenza iniziale alla produzione in fabbrica fino al trasporto e installazione."
+      },
+      {
+        "q": "Si può personalizzare la Apple Cabin?",
+        "a": "Assolutamente sì. Puoi scegliere finiture, layout interni, tipologia di vetrate e personalizzazioni estetiche. Ogni Apple Cabin è unica."
+      },
+      {
+        "q": "È possibile finanziare l'acquisto?",
+        "a": "Sì, lavoriamo con partner finanziari per offrire soluzioni di finanziamento personalizzate. Contattaci per un preventivo dettagliato."
+      },
+      {
+        "q": "La Apple Cabin è adatta per uso residenziale tutto l'anno?",
+        "a": "Sì, la Apple Cabin è progettata per essere abitabile tutto l'anno grazie a isolamento termico e acustico di altissimo livello."
+      }
+    ]
+  },
+  "ctaFinale": {
+    "title": "Pronto a vivere in una Apple Cabin?",
+    "description": "Raccontaci il tuo progetto. Ti rispondiamo entro 24 ore con un preventivo personalizzato.",
+    "cta": "Richiedi il tuo preventivo"
+  }
+}

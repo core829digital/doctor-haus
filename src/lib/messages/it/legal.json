@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "title": "Note Legali | Doctor Haus",
+    "description": "Documenti legali, privacy policy, cookie policy e condizioni di utilizzo di Doctor Haus."
+  },
+  "tabs": {
+    "privacy": "Privacy Policy",
+    "cookie": "Cookie Policy",
+    "gdpr": "GDPR",
+    "trattamento": "Trattamento Dati",
+    "termini": "Termini di Utilizzo",
+    "noteLegali": "Note Legali",
+    "garanzia": "Garanzia e Recesso",
+    "accessibilita": "Accessibilità"
+  },
+  "ultimoAggiornamento": "Ultimo aggiornamento: [DATA]",
+  "placeholder": "[DA COMPILARE CON AVVOCATO O COMMERCIALISTA DEL CLIENTE]",
+  "indice": "Indice",
+  "privacyPolicy": {
+    "title": "Privacy Policy",
+    "sections": [
+      { "title": "Titolare del trattamento", "content": "Titolare del trattamento dei dati è Doctor Haus, con sede legale in [INSERIRE SEDE LEGALE], P.IVA [INSERIRE P.IVA]. Per esercitare i tuoi diritti puoi scrivere a [INSERIRE EMAIL]." },
+      { "title": "Dati raccolti", "content": "Raccogliamo i dati personali che ci fornisci volontariamente tramite il form contatti (nome, email, telefono, messaggio) e dati tecnici di navigazione (cookie tecnici e analytics)." },
+      { "title": "Finalità del trattamento", "content": "I tuoi dati vengono trattati per: rispondere alle tue richieste di informazioni e preventivi; finalità amministrative e contabili; adempimento di obblighi di legge; invio di comunicazioni marketing previo tuo consenso esplicito." },
+      { "title": "Base giuridica", "content": "Il trattamento si basa sul tuo consenso (art. 6 par. 1 lett. a GDPR), sull'esecuzione di misure precontrattuali (art. 6 par. 1 lett. b GDPR) e sugli obblighi legali (art. 6 par. 1 lett. c GDPR)." },
+      { "title": "Conservazione dei dati", "content": "I dati vengono conservati per il tempo necessario alle finalità indicate e comunque non oltre 10 anni dalla raccolta per finalità amministrative, salvo diverso obbligo di legge." },
+      { "title": "Diritti dell'interessato", "content": "Hai diritto di: accedere ai tuoi dati, rettificarli, cancellarli, limitarne il trattamento, opporti al trattamento, richiedere la portabilità, revocare il consenso in qualsiasi momento." },
+      { "title": "Comunicazione dei dati", "content": "I tuoi dati potranno essere comunicati a soggetti terzi (consulenti, autorità) solo per adempimento di obblighi di legge o per la corretta esecuzione del rapporto contrattuale." },
+      { "title": "Trasferimento dati", "content": "I dati non vengono trasferiti al di fuori dello Spazio Economico Europeo. Qualora ciò fosse necessario, verranno adottate le garanzie adeguate previste dal GDPR." }
+    ]
+  },
+  "cookiePolicy": {
+    "title": "Cookie Policy",
+    "sections": [
+      { "title": "Cosa sono i cookie", "content": "I cookie sono piccoli file di testo che i siti visitati inviano al tuo browser, dove vengono memorizzati per essere ritrasmessi durante le visite successive." },
+      { "title": "Cookie tecnici", "content": "Utilizziamo cookie tecnici necessari al funzionamento del sito. Non richiedono il tuo consenso preventivo." },
+      { "title": "Cookie analytics", "content": "Utilizziamo strumenti di analytics per comprendere come i visitatori interagiscono con il sito. Puoi disabilitarli nelle preferenze cookie." },
+      { "title": "Cookie di terze parti", "content": "Il sito potrebbe incorporare contenuti di terze parti (Google Maps, video) che possono impostare propri cookie. Consulta le policy dei rispettivi fornitori." },
+      { "title": "Gestione dei cookie", "content": "Puoi gestire le tue preferenze cookie in qualsiasi momento tramite il nostro Centro Preferenze Cookie o modificando le impostazioni del tuo browser." }
+    ]
+  }
+}
