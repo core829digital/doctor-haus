@@ -14,6 +14,7 @@ import type * as configurationDrafts from "../configurationDrafts.js";
 import type * as crons from "../crons.js";
 import type * as customerAuth from "../customerAuth.js";
 import type * as internal_ from "../internal.js";
+import type * as notifications from "../notifications.js";
 import type * as optionCategories from "../optionCategories.js";
 import type * as optionChoices from "../optionChoices.js";
 import type * as productLayouts from "../productLayouts.js";
@@ -35,6 +36,7 @@ declare const fullApi: ApiFromModules<{
   crons: typeof crons;
   customerAuth: typeof customerAuth;
   internal: typeof internal_;
+  notifications: typeof notifications;
   optionCategories: typeof optionCategories;
   optionChoices: typeof optionChoices;
   productLayouts: typeof productLayouts;

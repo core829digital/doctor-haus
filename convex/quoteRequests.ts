@@ -45,6 +45,13 @@ export const create = mutation({
       preferredLanguage: args.preferredLanguage,
     });
 
+    await ctx.scheduler.runAfter(0, internal.notifications.internalCreate, {
+      type: "new_lead",
+      title: `Nuovo lead: ${args.customerName}`,
+      description: `Richiesta preventivo${args.customerMessage ? ` — ${args.customerMessage.substring(0, 100)}` : ""}`,
+      link: `/admin/leads/${quoteId}`,
+    });
+
     return quoteId;
   },
 });

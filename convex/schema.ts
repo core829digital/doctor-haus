@@ -196,4 +196,13 @@ export default defineSchema({
     review: v.optional(v.string()),
     createdAt: v.number(),
   }).index("by_status", ["status", "createdAt"]),
+
+  notifications: defineTable({
+    type: v.string(),
+    title: v.string(),
+    description: v.optional(v.string()),
+    link: v.optional(v.string()),
+    read: v.boolean(),
+    createdAt: v.number(),
+  }).index("by_read", ["read", "createdAt"]),
 });

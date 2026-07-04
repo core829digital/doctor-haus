@@ -1,5 +1,6 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
+import { internal } from "./_generated/api";
 
 export const trackEvent = mutation({
   args: {
@@ -18,6 +19,36 @@ export const trackEvent = mutation({
       metadata: args.metadata,
       timestamp: Date.now(),
     });
+
+    if (args.type === "contact_form_submit") {
+      let customerName = "Anonimo";
+      try {
+        if (args.metadata) {
+          const meta = JSON.parse(args.metadata);
+          customerName = meta.name || "Anonimo";
+        }
+      } catch {}
+      await ctx.scheduler.runAfter(0, internal.notifications.internalCreate, {
+        type: "contact_form",
+        title: `Nuova richiesta contatto: ${customerName}`,
+        link: "/admin/leads",
+      });
+    }
+
+    if (args.type === "registration") {
+      let name = "Anonimo";
+      try {
+        if (args.metadata) {
+          const meta = JSON.parse(args.metadata);
+          name = meta.name || "Anonimo";
+        }
+      } catch {}
+      await ctx.scheduler.runAfter(0, internal.notifications.internalCreate, {
+        type: "new_user",
+        title: `Nuovo utente registrato: ${name}`,
+        link: "/admin/users",
+      });
+    }
   },
 });
 

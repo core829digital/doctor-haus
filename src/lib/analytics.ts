@@ -142,8 +142,8 @@ export function trackConfiguratorAction(action: string, productName?: string) {
   });
 }
 
-export function trackRegistration(locale?: string) {
-  track("registration", "registrati", locale);
+export function trackRegistration(locale?: string, name?: string) {
+  track("registration", "registrati", locale, name ? { name } : undefined);
 }
 
 export function trackLogin(type: "admin" | "customer", locale?: string) {

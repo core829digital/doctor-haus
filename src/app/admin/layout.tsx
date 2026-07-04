@@ -7,6 +7,7 @@ import Link from "next/link";
 import {
   LayoutDashboard, Users, Image, DollarSign, FileText, Mail, Settings, LogOut, Menu, X, Bell, ChevronDown, UserCheck,
 } from "lucide-react";
+import NotificationDropdown from "@/components/admin/NotificationDropdown";
 import { useAdminAuth } from "@/lib/admin/auth";
 
 const NAV_ITEMS = [
@@ -17,6 +18,7 @@ const NAV_ITEMS = [
   { href: "/admin/finances", label: "Finanze", icon: DollarSign },
   { href: "/admin/reports", label: "Report", icon: FileText },
   { href: "/admin/emails", label: "Email", icon: Mail },
+  { href: "/admin/notifications", label: "Notifiche", icon: Bell },
   { href: "/admin/automation", label: "Automazione", icon: Settings },
 ];
 
@@ -108,10 +110,7 @@ function AdminLayoutInner({ children }: { children: ReactNode }) {
             </button>
 
             <div className="flex items-center gap-4 ml-auto">
-              <button className="relative text-white/30 hover:text-white transition-colors">
-                <Bell size={18} />
-                <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-green-500" />
-              </button>
+              <NotificationDropdown />
               <button
                 onClick={async () => { await logout(); router.push("/admin/login"); }}
                 className="flex items-center gap-2 text-sm text-white/30 hover:text-red-400 transition-colors"
