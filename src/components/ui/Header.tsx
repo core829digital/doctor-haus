@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
-import { Link, usePathname } from "@/i18n/navigation";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { Menu, X, Globe, ChevronDown } from "lucide-react";
 import { useAnalytics } from "@/lib/use-analytics";
 
@@ -21,6 +21,7 @@ export default function Header() {
   const t = useTranslations("nav");
   const locale = useLocale();
   const pathname = usePathname();
+  const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
@@ -28,7 +29,7 @@ export default function Header() {
   const { trackClick } = useAnalytics();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 30);
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -53,33 +54,39 @@ export default function Header() {
     return pathname.startsWith(href);
   };
 
+  const switchLang = (l: string) => {
+    setLangOpen(false);
+    trackClick("lang-switch", l);
+    router.replace(pathname, { locale: l as "it" | "en" });
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "mt-2 mx-2 lg:mx-4 rounded-xl bg-green-500/10 backdrop-blur-2xl shadow-[0_8px_32px_rgba(107,143,78,0.15)] border border-green-500/15"
+          ? "mt-1.5 mx-2 lg:mx-3 rounded-xl bg-green-500/10 backdrop-blur-2xl shadow-[0_8px_32px_rgba(107,143,78,0.15)] border border-green-500/15"
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto transition-all duration-500 max-w-7xl">
+      <div className="mx-auto transition-all duration-500 max-w-5xl">
         <div className={`flex items-center justify-between transition-all duration-500 ${
-          scrolled ? "h-11 px-4" : "h-16 px-6 lg:px-8"
+          scrolled ? "h-10 px-3" : "h-14 px-4 lg:px-5"
         }`}>
           <Link href="/" className="flex items-center gap-2 group shrink-0">
             <span className={`font-display font-semibold tracking-tight text-text transition-all duration-500 ${
-              scrolled ? "text-sm" : "text-lg"
+              scrolled ? "text-sm" : "text-base"
             }`}>
               Doctor Haus
             </span>
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-4">
+          <nav className="hidden lg:flex items-center gap-2">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => trackClick("nav", item.href)}
-                className={`relative text-xs tracking-wide transition-colors duration-300 ${
+                className={`relative text-[11px] tracking-wide transition-colors duration-300 whitespace-nowrap px-1.5 ${
                   isActive(item.href)
                     ? "text-text"
                     : "text-text-muted hover:text-text"
@@ -96,28 +103,26 @@ export default function Header() {
             <Link
               href="/accedi"
               onClick={() => trackClick("accedi", "header")}
-              className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1.5 text-xs font-medium text-text transition-all duration-300 hover:bg-white/20 hover:scale-[1.02]"
+              className="inline-flex items-center gap-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-3 py-1 text-[11px] font-medium text-text transition-all duration-300 hover:bg-white/20 hover:scale-[1.02] whitespace-nowrap"
             >
               {t("accedi")}
             </Link>
             <div ref={langRef} className="relative">
               <button
                 onClick={() => setLangOpen(!langOpen)}
-                className="flex items-center gap-1 text-xs font-medium text-text-muted hover:text-text transition-colors duration-300 px-2.5 py-1 rounded-full border border-line hover:border-text-muted"
+                className="flex items-center gap-1 text-[11px] font-medium text-text-muted hover:text-text transition-colors duration-300 px-2 py-1 rounded-full border border-line hover:border-text-muted"
               >
-                <Globe size={12} />
+                <Globe size={10} />
                 {locale.toUpperCase()}
-                <ChevronDown size={10} className={`transition-transform ${langOpen ? "rotate-180" : ""}`} />
+                <ChevronDown size={9} className={`transition-transform ${langOpen ? "rotate-180" : ""}`} />
               </button>
               {langOpen && (
                 <div className="absolute right-0 top-full mt-1.5 w-24 bg-[#1A1A1A] border border-white/10 rounded-lg shadow-xl z-50 overflow-hidden">
-                  {["it", "en"].map((l) => (
-                    <Link
+                  {(["it", "en"] as const).map((l) => (
+                    <button
                       key={l}
-                      href={pathname}
-                      locale={l as "it" | "en"}
-                      onClick={() => { setLangOpen(false); trackClick("lang-switch", l); }}
-                      className={`flex items-center gap-2 px-3 py-2 text-xs transition-colors ${
+                      onClick={() => switchLang(l)}
+                      className={`w-full flex items-center gap-2 px-3 py-2 text-xs transition-colors ${
                         locale === l
                           ? "text-green-400 bg-green-500/10"
                           : "text-white/60 hover:text-white hover:bg-white/5"
@@ -125,7 +130,7 @@ export default function Header() {
                     >
                       <span className={`w-1.5 h-1.5 rounded-full ${locale === l ? "bg-green-400" : "bg-white/10"}`} />
                       {l === "it" ? "Italiano" : "English"}
-                    </Link>
+                    </button>
                   ))}
                 </div>
               )}
@@ -133,7 +138,7 @@ export default function Header() {
             <Link
               href="/configuratore"
               onClick={() => trackClick("richiedi-preventivo", "header")}
-              className="inline-flex items-center gap-2 rounded-full bg-orange-500 px-4 py-1.5 text-xs font-medium text-white transition-all duration-300 hover:bg-orange-600 hover:scale-[1.02]"
+              className="inline-flex items-center gap-1.5 rounded-full bg-orange-500 px-3 py-1 text-[11px] font-medium text-white transition-all duration-300 hover:bg-orange-600 hover:scale-[1.02] whitespace-nowrap"
             >
               {t("richiediPreventivo")}
             </Link>
@@ -144,7 +149,7 @@ export default function Header() {
             className="lg:hidden relative z-50 p-1.5 text-text"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
           >
-            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
@@ -190,20 +195,18 @@ export default function Header() {
                 {t("accedi")}
               </Link>
               <div className="flex gap-1">
-                {["it", "en"].map((l) => (
-                  <Link
+                {(["it", "en"] as const).map((l) => (
+                  <button
                     key={l}
-                    href={pathname}
-                    locale={l as "it" | "en"}
+                    onClick={() => { setMobileOpen(false); switchLang(l); }}
                     className={`text-sm font-medium px-3 py-2 rounded-full border transition-colors ${
                       locale === l
                         ? "text-green-400 border-green-500/30 bg-green-500/10"
                         : "text-text-muted border-line hover:text-text"
                     }`}
-                    onClick={() => setMobileOpen(false)}
                   >
                     {l.toUpperCase()}
-                  </Link>
+                  </button>
                 ))}
               </div>
               <Link
