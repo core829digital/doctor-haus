@@ -5,13 +5,14 @@ import { useRouter, usePathname } from "next/navigation";
 import { ConvexProvider, ConvexReactClient } from "convex/react";
 import Link from "next/link";
 import {
-  LayoutDashboard, Users, Image, DollarSign, FileText, Mail, Settings, LogOut, Menu, X, Bell, ChevronDown,
+  LayoutDashboard, Users, Image, DollarSign, FileText, Mail, Settings, LogOut, Menu, X, Bell, ChevronDown, UserCheck,
 } from "lucide-react";
 import { useAdminAuth } from "@/lib/admin/auth";
 
 const NAV_ITEMS = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/leads", label: "Lead", icon: Users },
+  { href: "/admin/users", label: "Utenti", icon: UserCheck },
   { href: "/admin/media", label: "Media", icon: Image },
   { href: "/admin/finances", label: "Finanze", icon: DollarSign },
   { href: "/admin/reports", label: "Report", icon: FileText },

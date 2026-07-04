@@ -188,3 +188,19 @@ export const checkEmailExists = query({
     return !!user;
   },
 });
+
+export const listAll = query({
+  args: { limit: v.optional(v.number()) },
+  handler: async (ctx, args) => {
+    const limit = args.limit ?? 100;
+    const users = await ctx.db.query("customerUsers").collect();
+    const sorted = users.sort((a, b) => b.createdAt - a.createdAt).slice(0, limit);
+    return sorted.map((u) => ({
+      _id: u._id,
+      email: u.email,
+      name: u.name,
+      createdAt: u.createdAt,
+      lastLoginAt: u.lastLoginAt ?? null,
+    }));
+  },
+});
