@@ -9,9 +9,6 @@ import {
 } from "lucide-react";
 import { useAdminAuth } from "@/lib/admin/auth";
 
-const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL || "";
-const convex = new ConvexReactClient(convexUrl);
-
 const NAV_ITEMS = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/leads", label: "Lead", icon: Users },
@@ -135,6 +132,12 @@ function AdminLayoutInner({ children }: { children: ReactNode }) {
 }
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
+  const [convex] = useState(() => {
+    const url = process.env.NEXT_PUBLIC_CONVEX_URL;
+    if (!url) return null;
+    return new ConvexReactClient(url);
+  });
+  if (!convex) return <>{children}</>;
   return (
     <ConvexProvider client={convex}>
       <AdminLayoutInner>{children}</AdminLayoutInner>
