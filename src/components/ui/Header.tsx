@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Globe, ChevronDown } from "lucide-react";
 import { useAnalytics } from "@/lib/use-analytics";
 
 const navItems = [
@@ -23,6 +23,8 @@ export default function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
+  const langRef = useRef<HTMLDivElement>(null);
   const { trackClick } = useAnalytics();
 
   useEffect(() => {
@@ -33,14 +35,23 @@ export default function Header() {
 
   useEffect(() => {
     setMobileOpen(false);
+    setLangOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (langRef.current && !langRef.current.contains(e.target as Node)) {
+        setLangOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
     return pathname.startsWith(href);
   };
-
-  const switchLocale = locale === "it" ? "en" : "it";
 
   return (
     <header
@@ -89,13 +100,36 @@ export default function Header() {
             >
               {t("accedi")}
             </Link>
-            <Link
-              href={`/${switchLocale}`}
-              onClick={() => trackClick("lang-switch", switchLocale)}
-              className="text-xs font-medium text-text-muted hover:text-text transition-colors duration-300 px-2.5 py-1 rounded-full border border-line hover:border-text-muted"
-            >
-              {switchLocale.toUpperCase()}
-            </Link>
+            <div ref={langRef} className="relative">
+              <button
+                onClick={() => setLangOpen(!langOpen)}
+                className="flex items-center gap-1 text-xs font-medium text-text-muted hover:text-text transition-colors duration-300 px-2.5 py-1 rounded-full border border-line hover:border-text-muted"
+              >
+                <Globe size={12} />
+                {locale.toUpperCase()}
+                <ChevronDown size={10} className={`transition-transform ${langOpen ? "rotate-180" : ""}`} />
+              </button>
+              {langOpen && (
+                <div className="absolute right-0 top-full mt-1.5 w-24 bg-[#1A1A1A] border border-white/10 rounded-lg shadow-xl z-50 overflow-hidden">
+                  {["it", "en"].map((l) => (
+                    <Link
+                      key={l}
+                      href={pathname}
+                      locale={l as "it" | "en"}
+                      onClick={() => { setLangOpen(false); trackClick("lang-switch", l); }}
+                      className={`flex items-center gap-2 px-3 py-2 text-xs transition-colors ${
+                        locale === l
+                          ? "text-green-400 bg-green-500/10"
+                          : "text-white/60 hover:text-white hover:bg-white/5"
+                      }`}
+                    >
+                      <span className={`w-1.5 h-1.5 rounded-full ${locale === l ? "bg-green-400" : "bg-white/10"}`} />
+                      {l === "it" ? "Italiano" : "English"}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
             <Link
               href="/configuratore"
               onClick={() => trackClick("richiedi-preventivo", "header")}
@@ -155,13 +189,23 @@ export default function Header() {
               >
                 {t("accedi")}
               </Link>
-              <Link
-                href={`/${switchLocale}`}
-                className="text-sm font-medium text-text-muted hover:text-text transition-colors px-3 py-2 rounded-full border border-line"
-                onClick={() => setMobileOpen(false)}
-              >
-                {switchLocale.toUpperCase()}
-              </Link>
+              <div className="flex gap-1">
+                {["it", "en"].map((l) => (
+                  <Link
+                    key={l}
+                    href={pathname}
+                    locale={l as "it" | "en"}
+                    className={`text-sm font-medium px-3 py-2 rounded-full border transition-colors ${
+                      locale === l
+                        ? "text-green-400 border-green-500/30 bg-green-500/10"
+                        : "text-text-muted border-line hover:text-text"
+                    }`}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {l.toUpperCase()}
+                  </Link>
+                ))}
+              </div>
               <Link
                 href="/configuratore"
                 className="rounded-full bg-orange-500 px-5 py-2.5 text-sm font-medium text-white"
