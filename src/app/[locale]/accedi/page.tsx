@@ -47,6 +47,8 @@ export default function LoginPage() {
         const { fetchMutation } = await import("convex/nextjs");
         const loginResult = await fetchMutation(api2.customerAuth.loginWithoutPassword, { email: email.trim() });
         setStoredSession(loginResult.token, loginResult.user);
+        const { trackLogin } = await import("@/lib/analytics");
+        trackLogin("customer", document.documentElement.lang || "it");
         localeRouter.push("/dashboard");
       }
     } catch {
@@ -62,13 +64,18 @@ export default function LoginPage() {
     try {
       const { api } = await import("convex/_generated/api");
       const { fetchMutation } = await import("convex/nextjs");
+      const localeFrom = document.documentElement.lang || "it";
       if (userType === "admin") {
         const result = await fetchMutation(api.adminAuth.login, { email: email.trim(), password });
         localStorage.setItem("admin_session_token", result.token);
+        const { trackLogin } = await import("@/lib/analytics");
+        trackLogin("admin", localeFrom);
         nativeRouter.push("/admin");
       } else {
         const result = await fetchMutation(api.customerAuth.login, { email: email.trim(), password });
         setStoredSession(result.token, result.user);
+        const { trackLogin } = await import("@/lib/analytics");
+        trackLogin("customer", localeFrom);
         localeRouter.push("/dashboard");
       }
     } catch (err) {

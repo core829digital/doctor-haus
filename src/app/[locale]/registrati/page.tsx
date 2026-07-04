@@ -40,6 +40,8 @@ export default function RegisterPage() {
         preferredLanguage: "it",
       });
       setStoredSession(result.token, result.user);
+      const { trackRegistration } = await import("@/lib/analytics");
+      trackRegistration(document.documentElement.lang || "it");
       router.push("/dashboard");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Errore durante la registrazione");

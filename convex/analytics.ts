@@ -230,3 +230,130 @@ export const getDailyPageviews = query({
       .map(([date, count]) => ({ date, count }));
   },
 });
+
+export const getRegistrationCount = query({
+  args: {
+    startDate: v.optional(v.number()),
+    endDate: v.optional(v.number()),
+  },
+  handler: async (ctx, args) => {
+    const start = args.startDate ?? Date.now() - 30 * 24 * 60 * 60 * 1000;
+    const end = args.endDate ?? Date.now();
+    const users = await ctx.db.query("customerUsers").collect();
+    return users.filter((u) => u.createdAt >= start && u.createdAt <= end).length;
+  },
+});
+
+export const getRecentActivity = query({
+  args: {
+    limit: v.optional(v.number()),
+  },
+  handler: async (ctx, args) => {
+    const limit = args.limit ?? 20;
+    const events = await ctx.db.query("analyticsEvents").collect();
+    const sorted = events.sort((a, b) => b.timestamp - a.timestamp).slice(0, limit);
+    return sorted.map((e) => ({
+      _id: e._id,
+      type: e.type,
+      page: e.page ?? null,
+      locale: e.locale ?? null,
+      timestamp: e.timestamp,
+      metadata: e.metadata ?? null,
+    }));
+  },
+});
+
+export const getDeviceBreakdown = query({
+  args: {
+    startDate: v.optional(v.number()),
+    endDate: v.optional(v.number()),
+  },
+  handler: async (ctx, args) => {
+    const start = args.startDate ?? Date.now() - 30 * 24 * 60 * 60 * 1000;
+    const end = args.endDate ?? Date.now();
+    const events = await ctx.db.query("analyticsEvents").collect();
+    const filtered = events.filter((e) => e.timestamp >= start && e.timestamp <= end && e.metadata);
+
+    const breakdown: Record<string, number> = { desktop: 0, mobile: 0, tablet: 0, unknown: 0 };
+    for (const e of filtered) {
+      try {
+        const meta = JSON.parse(e.metadata!);
+        const dt = meta.deviceType || "unknown";
+        breakdown[dt] = (breakdown[dt] || 0) + 1;
+      } catch {
+        breakdown.unknown++;
+      }
+    }
+    return Object.entries(breakdown)
+      .filter(([, count]) => count > 0)
+      .map(([device, count]) => ({ device, count }));
+  },
+});
+
+export const getConversionFunnel = query({
+  args: {
+    startDate: v.optional(v.number()),
+    endDate: v.optional(v.number()),
+  },
+  handler: async (ctx, args) => {
+    const start = args.startDate ?? Date.now() - 30 * 24 * 60 * 60 * 1000;
+    const end = args.endDate ?? Date.now();
+
+    const events = await ctx.db.query("analyticsEvents").collect();
+    const filtered = events.filter((e) => e.timestamp >= start && e.timestamp <= end);
+
+    const uniqueHomepageSessions = new Set(
+      filtered.filter((e) => e.type === "pageview" && (e.page === "homepage" || e.page === "")).map((e) => e.sessionId)
+    ).size;
+
+    const uniqueConfiguratorSessions = new Set(
+      filtered.filter((e) => e.type === "pageview" && e.page === "configuratore").map((e) => e.sessionId)
+    ).size;
+
+    const quoteRequests = await ctx.db.query("quoteRequests").collect();
+    const periodQuotes = quoteRequests.filter((q) => q.createdAt >= start && q.createdAt <= end);
+
+    const registrations = await ctx.db.query("customerUsers").collect();
+    const periodRegistrations = registrations.filter((u) => u.createdAt >= start && u.createdAt <= end);
+
+    const formSubmits = filtered.filter((e) => e.type === "form_submit").length;
+
+    return {
+      steps: [
+        { label: "Visite totali", count: uniqueHomepageSessions },
+        { label: "Configuratore avviato", count: uniqueConfiguratorSessions },
+        { label: "Registrazioni", count: periodRegistrations.length },
+        { label: "Form inviati (contatti)", count: formSubmits },
+        { label: "Richieste preventivo", count: periodQuotes.length },
+      ],
+    };
+  },
+});
+
+export const getContactFormSubmissions = query({
+  args: {
+    limit: v.optional(v.number()),
+  },
+  handler: async (ctx, args) => {
+    const limit = args.limit ?? 20;
+    const events = await ctx.db.query("analyticsEvents").collect();
+    const formEvents = events
+      .filter((e) => e.type === "contact_form_submit")
+      .sort((a, b) => b.timestamp - a.timestamp)
+      .slice(0, limit);
+    return formEvents.map((e) => ({
+      _id: e._id,
+      page: e.page ?? null,
+      locale: e.locale ?? null,
+      metadata: e.metadata ?? null,
+      timestamp: e.timestamp,
+    }));
+  },
+});
+
+export const getTotalRegistrations = query({
+  handler: async (ctx) => {
+    const users = await ctx.db.query("customerUsers").collect();
+    return users.length;
+  },
+});

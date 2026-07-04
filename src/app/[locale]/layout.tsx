@@ -5,6 +5,7 @@ import { routing } from "@/i18n/routing";
 import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
 import ConvexClientProvider from "@/providers/ConvexClientProvider";
+import AnalyticsTracker from "@/components/AnalyticsTracker";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -74,6 +75,7 @@ export default async function LocaleLayout({
   return (
     <NextIntlClientProvider messages={messages}>
       <ConvexClientProvider>
+        <AnalyticsTracker locale={locale} />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

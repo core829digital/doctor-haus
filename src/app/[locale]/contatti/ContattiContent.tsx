@@ -81,8 +81,27 @@ export default function ContattiContent({ locale }: { locale: string }) {
     e.preventDefault();
     if (!validate()) return;
     setStatus("sending");
-    await new Promise((r) => setTimeout(r, 1500));
-    setStatus("success");
+    try {
+      const { trackFormSubmit } = await import("@/lib/analytics");
+      trackFormSubmit("contatti", locale);
+      const { api } = await import("convex/_generated/api");
+      const { fetchMutation } = await import("convex/nextjs");
+      await fetchMutation(api.analytics.trackEvent, {
+        type: "contact_form_submit",
+        page: "contatti",
+        locale,
+        sessionId: crypto.randomUUID?.() ?? Math.random().toString(36),
+        metadata: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          message: form.message.substring(0, 500),
+        }),
+      });
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
   };
 
   const infoItems = [
