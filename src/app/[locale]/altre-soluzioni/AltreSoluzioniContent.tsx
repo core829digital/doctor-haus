@@ -675,23 +675,23 @@ export default function AltreSoluzioniContent({ locale }: { locale: string }) {
                     />
                   ))}
                 </div>
-                {(product as any).layout && (
+                {"layout" in product && product.layout && (
                   <div className="mt-4 pt-4 border-t border-line">
                     <span className="text-xs font-mono text-green-500 tracking-wider uppercase">
                       {locale === "it" ? "Layout" : "Layout"}
                     </span>
                     <p className="mt-1.5 text-sm text-text-muted leading-relaxed">
-                      {(product as any).layout}
+                      {product.layout}
                     </p>
                   </div>
                 )}
-                {(product as any).note && (
+                {"note" in product && product.note && (
                   <div className="mt-4 pt-4 border-t border-line">
                     <p className="text-sm text-text-muted leading-relaxed">
                       <span className="font-medium text-text">
                         {locale === "it" ? "Nota:" : "Note:"}
                       </span>{" "}
-                      {(product as any).note}
+                      {product.note}
                     </p>
                   </div>
                 )}

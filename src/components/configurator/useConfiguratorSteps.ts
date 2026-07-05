@@ -91,7 +91,7 @@ export function useConfiguratorSteps(productFamily: string | null) {
 
     // Dynamic option category steps
     if (optionCategories) {
-      const applicable = optionCategories.filter((cat: any) =>
+      const applicable = optionCategories.filter((cat) =>
         cat.applicableToFamilies.includes(productFamily)
       );
 

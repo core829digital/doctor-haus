@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import sharp from "sharp";
-import { writeFile, mkdir } from "fs/promises";
+import { writeFile, mkdir, unlink } from "fs/promises";
 import path from "path";
 import crypto from "crypto";
 import { verifyAdminToken } from "@/lib/admin/api-auth";
@@ -14,6 +14,8 @@ export async function POST(req: NextRequest) {
     }
 
     const file = formData.get("file") as File | null;
+    const productId = formData.get("productId") as string | null;
+    const alt = formData.get("alt") as string | null;
 
     if (!file) {
       return NextResponse.json({ error: "Nessun file fornito" }, { status: 400 });
@@ -24,6 +26,8 @@ export async function POST(req: NextRequest) {
     }
 
     const buffer = Buffer.from(await file.arrayBuffer());
+
+    const metadata = await sharp(buffer).metadata();
 
     const webpBuffer = await sharp(buffer)
       .webp({ quality: 80, effort: 4 })
@@ -40,9 +44,53 @@ export async function POST(req: NextRequest) {
 
     const url = `/uploads/${filename}`;
 
-    return NextResponse.json({ url, filename, size: webpBuffer.length });
+    // Save metadata to Convex
+    const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL;
+    if (convexUrl) {
+      const adminUserId = await resolveAdminUserId(convexUrl, adminToken);
+      if (adminUserId) {
+        await fetch(`${convexUrl}/api/mutation`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            path: "media:internalCreate",
+            args: {
+              filename,
+              originalName: file.name,
+              mimeType: file.type,
+              size: webpBuffer.length,
+              width: metadata.width ?? undefined,
+              height: metadata.height ?? undefined,
+              alt: alt ?? undefined,
+              productId: productId ?? undefined,
+              uploadedBy: adminUserId,
+            },
+          }),
+        });
+      }
+    }
+
+    return NextResponse.json({ url, filename, size: webpBuffer.length, width: metadata.width, height: metadata.height });
   } catch (err) {
     console.error("Upload error:", err);
     return NextResponse.json({ error: "Errore durante il caricamento" }, { status: 500 });
+  }
+}
+
+async function resolveAdminUserId(convexUrl: string, token: string): Promise<string | null> {
+  try {
+    const res = await fetch(`${convexUrl}/api/query`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        path: "adminAuth:getCurrentUser",
+        args: { token },
+      }),
+    });
+    if (!res.ok) return null;
+    const user = await res.json();
+    return user?._id ?? null;
+  } catch {
+    return null;
   }
 }

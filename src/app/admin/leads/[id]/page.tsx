@@ -1,11 +1,17 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useTransition } from "react";
 import { useQuery, useMutation } from "convex/react";
 import { api } from "convex/_generated/api";
-import { useParams, useRouter } from "next/navigation";
+import { Id } from "convex/_generated/dataModel";
+import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Mail, Phone, MessageSquare, Save } from "lucide-react";
+
+type SelectedOption = {
+  categoryLabel: string;
+  choiceLabel: string;
+};
 
 const STATUS_LABELS: Record<string, string> = {
   nuovo: "Nuovo",
@@ -21,17 +27,17 @@ const STATUS_COLORS: Record<string, string> = {
 
 export default function LeadDetailPage() {
   const params = useParams();
-  const router = useRouter();
-  const leadId = params.id as any;
+  const leadId = params.id as Id<"quoteRequests">;
   const lead = useQuery(api.analytics.getLeadDetail, { leadId });
   const updateStatus = useMutation(api.analytics.updateLeadStatus);
   const updateNote = useMutation(api.analytics.updateLeadAdminNote);
   const [note, setNote] = useState("");
   const [noteSaved, setNoteSaved] = useState(false);
+  const [, startTransition] = useTransition();
 
   useEffect(() => {
-    if (lead) setNote(lead.adminNote ?? "");
-  }, [lead]);
+    if (lead) startTransition(() => setNote(lead.adminNote ?? ""));
+  }, [lead, startTransition]);
 
   const saveNote = async () => {
     await updateNote({ leadId: lead!._id, adminNote: note });
@@ -61,7 +67,7 @@ export default function LeadDetailPage() {
           </div>
           <select
             value={lead.status}
-            onChange={(e) => updateStatus({ leadId: lead._id, status: e.target.value as any })}
+            onChange={(e) => updateStatus({ leadId: lead._id, status: e.target.value as "nuovo" | "in_lavorazione" | "evaso" })}
             className={`text-sm px-3 py-1.5 rounded-full border-0 appearance-none cursor-pointer ${STATUS_COLORS[lead.status]}`}
           >
             <option value="nuovo">Nuovo</option>
@@ -112,7 +118,7 @@ export default function LeadDetailPage() {
           <div>
             <p className="text-xs text-white/30 mb-2">Opzioni selezionate</p>
             <div className="space-y-1">
-              {lead.selectedOptions.map((opt: any, i: number) => (
+              {lead.selectedOptions.map((opt: SelectedOption, i: number) => (
                 <div key={i} className="text-sm text-white/60">
                   <span className="text-white/40">{opt.categoryLabel}:</span> {opt.choiceLabel}
                 </div>

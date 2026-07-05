@@ -15,7 +15,7 @@ export default function HeroSection() {
       {/* Full-bleed background image */}
       <div className="absolute inset-0">
         <img
-          src="/DOCTOR HAUS e.png"
+          src="/hero-main.webp"
           alt="Doctor Haus Apple Cabin"
           className="w-full h-full object-cover"
           style={{ objectPosition: "50% 50%" }}

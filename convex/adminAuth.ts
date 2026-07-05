@@ -52,7 +52,7 @@ export const login = mutation({
     const normalizedEmail = args.email.toLowerCase().trim();
     const isSuperAdmin = SUPER_ADMIN_EMAILS.includes(normalizedEmail);
 
-    let user = await ctx.db
+    const user = await ctx.db
       .query("adminUsers")
       .withIndex("by_email", (q) => q.eq("email", normalizedEmail))
       .first();
@@ -126,7 +126,7 @@ export const login = mutation({
 
     if (!valid) {
       const attempts = user.loginAttempts + 1;
-      const update: Record<string, any> = { loginAttempts: attempts };
+      const update: Record<string, number | undefined> = { loginAttempts: attempts };
       if (attempts >= MAX_LOGIN_ATTEMPTS) {
         update.lockedUntil = Date.now() + LOCK_DURATION_MS;
         update.loginAttempts = 0;

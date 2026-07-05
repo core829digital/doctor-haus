@@ -14,10 +14,11 @@ export default function AdminReports() {
   const [generating, setGenerating] = useState(false);
   const [reportType, setReportType] = useState("leads");
   const [periodDays, setPeriodDays] = useState(30);
+  const [now] = useState(() => Date.now());
   const leads = useQuery(api.analytics.getLeads, { status: undefined, limit: 500 });
   const statsArgs = useMemo(
-    () => ({ startDate: Date.now() - periodDays * 24 * 60 * 60 * 1000, endDate: Date.now() }),
-    [periodDays],
+    () => ({ startDate: now - periodDays * 24 * 60 * 60 * 1000, endDate: now }),
+    [now, periodDays],
   );
   const stats = useQuery(api.analytics.getStats, statsArgs);
   const dailyViews = useQuery(api.analytics.getDailyPageviews, { days: periodDays });

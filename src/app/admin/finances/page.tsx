@@ -91,7 +91,18 @@ export default function AdminFinances() {
   );
 }
 
-function aggregateByPeriod(leads: any[], period: Period) {
+type LeadSummary = {
+  _id: string;
+  customerName: string;
+  customerEmail: string;
+  customerPhone: string;
+  customerMessage?: string;
+  status: "nuovo" | "in_lavorazione" | "evaso";
+  createdAt: number;
+  preferredLanguage: string;
+};
+
+function aggregateByPeriod(leads: LeadSummary[], period: Period) {
   if (leads.length === 0) return [];
 
   const groups: Record<string, number> = {};

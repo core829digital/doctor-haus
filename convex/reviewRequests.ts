@@ -98,12 +98,13 @@ export const markReviewSent = internalMutation({
 });
 
 // ── Actions ──────────────────────────────────────
-// String-based function refs avoid circular dep via _generated/api
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type InternalCtx = { runQuery(name: string, args: Record<string, unknown>): Promise<any>; runMutation(name: string, args: Record<string, unknown>): Promise<any> };
 
 export const checkAndSendReviewRequests = internalAction({
   args: {},
   handler: async (ctx) => {
-    const c = ctx as any;
+    const c = ctx as unknown as InternalCtx;
     const { created } = await c.runMutation("reviewRequests:createPendingReviewsIfNeeded", {});
     if (created === 0) return { processed: 0 };
     const reviews = await c.runQuery("reviewRequests:getPendingReviews", {});
@@ -119,11 +120,11 @@ export const checkAndSendReviewRequests = internalAction({
 export const sendReviewRequestAct = internalAction({
   args: { reviewId: v.id("reviewRequests") },
   handler: async (ctx, args) => {
-    return await sendReviewRequestCore(ctx as any, args.reviewId);
+    return await sendReviewRequestCore(ctx as unknown as InternalCtx, args.reviewId);
   },
 });
 
-async function sendReviewRequestCore(ctx: any, reviewId: string) {
+async function sendReviewRequestCore(ctx: InternalCtx, reviewId: string) {
   const review = await ctx.runQuery("reviewRequests:getPendingReviewById", { reviewId });
   if (!review || review.status !== "pending") return { sent: false, reason: "not_pending" };
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useTransition } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
@@ -34,10 +34,14 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const [, startTransition] = useTransition();
+
   useEffect(() => {
-    setMobileOpen(false);
-    setLangOpen(false);
-  }, [pathname]);
+    startTransition(() => {
+      setMobileOpen(false);
+      setLangOpen(false);
+    });
+  }, [pathname, startTransition]);
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {

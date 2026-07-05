@@ -144,7 +144,7 @@ export default function AdminEmails() {
             </div>
           ) : (
             <div className="flex items-center justify-center h-[400px] text-white/20 text-sm">
-              Seleziona un lead per scrivere un'email
+              Seleziona un lead per scrivere un&apos;email
             </div>
           )}
         </div>

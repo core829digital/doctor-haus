@@ -30,7 +30,7 @@ export default function AdminAutomation() {
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-sm font-medium text-white">Richiesta recensioni automatica</h2>
-            <p className="text-xs text-white/40 mt-1">Invia automaticamente una richiesta di recensione ai clienti dopo 7 giorni dall'evasione</p>
+            <p className="text-xs text-white/40 mt-1">Invia automaticamente una richiesta di recensione ai clienti dopo 7 giorni dall&apos;evasione</p>
           </div>
           <button
             onClick={() => setEnabled(!enabled)}

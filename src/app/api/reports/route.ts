@@ -1,7 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import type { UserOptions } from "jspdf-autotable";
 import { verifyAdminToken } from "@/lib/admin/api-auth";
+
+type ReportLead = {
+  customerName: string;
+  customerEmail: string;
+  customerPhone: string;
+  createdAt: number;
+  status: "nuovo" | "in_lavorazione" | "evaso";
+};
 
 export async function POST(req: NextRequest) {
   try {
@@ -62,7 +71,7 @@ export async function POST(req: NextRequest) {
       doc.text("Lead", 20, y);
       y += 8;
 
-      const tableData = data.leads.slice(0, 50).map((l: any) => [
+      const tableData = data.leads.slice(0, 50).map((l: ReportLead) => [
         l.customerName,
         l.customerEmail,
         l.customerPhone,
@@ -70,25 +79,25 @@ export async function POST(req: NextRequest) {
         l.status === "nuovo" ? "Nuovo" : l.status === "in_lavorazione" ? "In lavorazione" : "Evaso",
       ]);
 
-      (doc as any).autoTable({
+      (doc as unknown as { autoTable: (options: UserOptions) => void }).autoTable({
         startY: y,
         head: [["Nome", "Email", "Telefono", "Data", "Stato"]],
         body: tableData,
         theme: "plain",
-        styles: { fontSize: 8, textColor: [28, 28, 26] },
+        styles: { fontSize: 8, textColor: [28, 28, 26] as [number, number, number] },
         headStyles: {
           fontSize: 8,
-          textColor: [92, 91, 86],
+          textColor: [92, 91, 86] as [number, number, number],
           fontStyle: "bold",
-          fillColor: [241, 245, 238],
+          fillColor: [241, 245, 238] as [number, number, number],
         },
-        alternateRowStyles: { fillColor: [249, 250, 247] },
+        alternateRowStyles: { fillColor: [249, 250, 247] as [number, number, number] },
         margin: { left: 20, right: 20 },
       });
     }
 
     // ── Footer ──
-    const pageCount: number = (doc.internal as any).pages.length - 1;
+    const pageCount: number = doc.internal.pages.length - 1;
     for (let i = 1; i <= pageCount; i++) {
       doc.setPage(i);
       doc.setFontSize(8);

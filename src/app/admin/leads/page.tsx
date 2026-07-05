@@ -90,7 +90,7 @@ export default function AdminLeads() {
                     <td className="px-5 py-4">
                       <select
                         value={lead.status}
-                        onChange={(e) => updateStatus({ leadId: lead._id, status: e.target.value as any })}
+                        onChange={(e) => updateStatus({ leadId: lead._id, status: e.target.value as "nuovo" | "in_lavorazione" | "evaso" })}
                         className={`text-xs px-2 py-1 rounded-full border-0 appearance-none cursor-pointer ${STATUS_COLORS[lead.status]} bg-opacity-100`}
                       >
                         <option value="nuovo">Nuovo</option>

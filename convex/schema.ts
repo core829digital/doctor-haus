@@ -107,7 +107,8 @@ export default defineSchema({
     name: v.string(),
     createdAt: v.number(),
     lastLoginAt: v.optional(v.number()),
-  }).index("by_email", ["email"]),
+  }).index("by_email", ["email"])
+    .index("by_createdAt", ["createdAt"]),
 
   customerSessions: defineTable({
     userId: v.id("customerUsers"),
@@ -147,7 +148,8 @@ export default defineSchema({
     timestamp: v.number(),
   }).index("by_type", ["type", "timestamp"])
     .index("by_session", ["sessionId", "timestamp"])
-    .index("by_page", ["page", "timestamp"]),
+    .index("by_page", ["page", "timestamp"])
+    .index("by_timestamp", ["timestamp"]),
 
   mediaFiles: defineTable({
     filename: v.string(),
@@ -160,7 +162,8 @@ export default defineSchema({
     productId: v.optional(v.id("products")),
     uploadedAt: v.number(),
     uploadedBy: v.id("adminUsers"),
-  }).index("by_product", ["productId"]),
+  }).index("by_product", ["productId"])
+    .index("by_uploadedAt", ["uploadedAt"]),
 
   financialRecords: defineTable({
     quoteId: v.id("quoteRequests"),

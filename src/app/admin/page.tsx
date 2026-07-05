@@ -45,10 +45,8 @@ function MetricCard({ label, value, sub, color }: { label: string; value: string
 
 export default function AdminDashboard() {
   const [days] = useState(30);
-  const { now, startDate } = useMemo(() => {
-    const now = Date.now();
-    return { now, startDate: now - days * 24 * 60 * 60 * 1000 };
-  }, [days]);
+  const [now] = useState(() => Date.now());
+  const startDate = useMemo(() => now - days * 24 * 60 * 60 * 1000, [now, days]);
 
   const stats = useQuery(api.analytics.getStats, { startDate, endDate: now });
   const dailyViews = useQuery(api.analytics.getDailyPageviews, { days });

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 
 const TOKEN_KEY = "customer_session_token";
 const USER_KEY = "customer_user";
@@ -33,24 +33,15 @@ export function clearStoredSession() {
 }
 
 export function useCustomerAuth() {
-  const [token, setToken] = useState<string | null>(null);
-  const [user, setUser] = useState<{ email: string; name: string } | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const storedToken = getStoredToken();
-    const storedUser = getStoredUser();
-    if (storedToken && storedUser) {
-      setToken(storedToken);
-      setUser(storedUser);
-    } else {
-      const legacyEmail = localStorage.getItem("customer_email");
-      if (legacyEmail) {
-        localStorage.setItem("customer_email", legacyEmail);
-      }
-    }
-    setLoading(false);
-  }, []);
+  const [token, setToken] = useState<string | null>(() => getStoredToken());
+  const [user, setUser] = useState<{ email: string; name: string } | null>(() => {
+    const stored = getStoredUser();
+    if (stored) return stored;
+    const legacyEmail = typeof window !== "undefined" ? localStorage.getItem("customer_email") : null;
+    if (legacyEmail) localStorage.setItem("customer_email", legacyEmail);
+    return null;
+  });
+  const [loading] = useState(() => false);
 
   const login = useCallback((newToken: string, newUser: { email: string; name: string }) => {
     setStoredSession(newToken, newUser);
