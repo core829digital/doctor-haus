@@ -69,7 +69,7 @@ export default function Header() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
           ? "mt-1.5 mx-2 lg:mx-3 rounded-xl bg-green-500/10 backdrop-blur-2xl shadow-[0_8px_32px_rgba(107,143,78,0.15)] border border-green-500/15"
-          : "bg-transparent"
+          : "bg-background/30 backdrop-blur-sm"
       }`}
     >
       <div className="mx-auto transition-all duration-500 max-w-5xl">
@@ -92,8 +92,8 @@ export default function Header() {
                 onClick={() => trackClick("nav", item.href)}
                 className={`relative text-[11px] tracking-wide transition-colors duration-300 whitespace-nowrap px-1.5 ${
                   isActive(item.href)
-                    ? "text-text"
-                    : "text-text-muted hover:text-text"
+                    ? "text-green-700 font-semibold"
+                    : "text-green-700/70 hover:text-green-700"
                 }`}
               >
                 {t(item.labelKey)}
@@ -104,17 +104,17 @@ export default function Header() {
                 />
               </Link>
             ))}
-            <Link
-              href="/accedi"
-              onClick={() => trackClick("accedi", "header")}
-              className="inline-flex items-center gap-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-3 py-1 text-[11px] font-medium text-text transition-all duration-300 hover:bg-white/20 hover:scale-[1.02] whitespace-nowrap"
-            >
-              {t("accedi")}
-            </Link>
+              <Link
+                href="/accedi"
+                onClick={() => trackClick("accedi", "header")}
+                className="inline-flex items-center gap-1.5 rounded-full bg-green-500/10 backdrop-blur-md border border-green-500/30 px-3 py-1 text-[11px] font-medium text-green-700 transition-all duration-300 hover:bg-green-500/20 hover:scale-[1.02] whitespace-nowrap"
+              >
+                {t("accedi")}
+              </Link>
             <div ref={langRef} className="relative">
               <button
                 onClick={() => setLangOpen(!langOpen)}
-                className="flex items-center gap-1 text-[11px] font-medium text-text-muted hover:text-text transition-colors duration-300 px-2 py-1 rounded-full border border-line hover:border-text-muted"
+                className="flex items-center gap-1 text-[11px] font-medium text-green-700/70 hover:text-green-700 transition-colors duration-300 px-2 py-1 rounded-full border border-green-500/20 hover:border-green-500/40"
               >
                 <Globe size={10} />
                 {locale.toUpperCase()}
@@ -177,7 +177,7 @@ export default function Header() {
                 <Link
                   href={item.href}
                   className={`text-xl font-display ${
-                    isActive(item.href) ? "text-green-500" : "text-text"
+                    isActive(item.href) ? "text-green-700 font-semibold" : "text-green-700/70"
                   }`}
                   onClick={() => { setMobileOpen(false); trackClick("nav-mobile", item.href); }}
                 >
@@ -193,7 +193,7 @@ export default function Header() {
             >
               <Link
                 href="/accedi"
-                className="rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-5 py-2.5 text-sm font-medium text-text"
+                className="rounded-full bg-green-500/10 backdrop-blur-md border border-green-500/30 px-5 py-2.5 text-sm font-medium text-green-700"
                 onClick={() => setMobileOpen(false)}
               >
                 {t("accedi")}
@@ -205,8 +205,8 @@ export default function Header() {
                     onClick={() => { setMobileOpen(false); switchLang(l); }}
                     className={`text-sm font-medium px-3 py-2 rounded-full border transition-colors ${
                       locale === l
-                        ? "text-green-400 border-green-500/30 bg-green-500/10"
-                        : "text-text-muted border-line hover:text-text"
+                        ? "text-green-700 font-semibold border-green-500/30 bg-green-500/10"
+                        : "text-green-700/70 border-green-500/20 hover:text-green-700"
                     }`}
                   >
                     {l.toUpperCase()}

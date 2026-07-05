@@ -146,10 +146,12 @@ export default defineSchema({
     sessionId: v.string(),
     metadata: v.optional(v.string()),
     timestamp: v.number(),
+    adminId: v.optional(v.id("adminUsers")),
   }).index("by_type", ["type", "timestamp"])
     .index("by_session", ["sessionId", "timestamp"])
     .index("by_page", ["page", "timestamp"])
-    .index("by_timestamp", ["timestamp"]),
+    .index("by_timestamp", ["timestamp"])
+    .index("by_admin", ["adminId", "timestamp"]),
 
   mediaFiles: defineTable({
     filename: v.string(),

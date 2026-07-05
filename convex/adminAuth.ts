@@ -218,7 +218,7 @@ export const getCurrentUser = query({
     const user = await ctx.db.get(session.userId);
     if (!user || !user.isActive) return null;
     return {
-      id: user._id,
+      _id: user._id,
       email: user.email,
       name: user.name,
       role: user.role,

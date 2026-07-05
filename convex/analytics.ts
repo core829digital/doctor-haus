@@ -9,6 +9,7 @@ export const trackEvent = mutation({
     locale: v.optional(v.string()),
     sessionId: v.string(),
     metadata: v.optional(v.string()),
+    adminId: v.optional(v.id("adminUsers")),
   },
   handler: async (ctx, args) => {
     await ctx.db.insert("analyticsEvents", {
@@ -17,6 +18,7 @@ export const trackEvent = mutation({
       locale: args.locale,
       sessionId: args.sessionId,
       metadata: args.metadata,
+      adminId: args.adminId,
       timestamp: Date.now(),
     });
 
@@ -290,6 +292,7 @@ export const getRecentActivity = query({
       locale: e.locale ?? null,
       timestamp: e.timestamp,
       metadata: e.metadata ?? null,
+      adminId: e.adminId ?? null,
     }));
   },
 });

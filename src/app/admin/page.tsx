@@ -3,10 +3,12 @@
 import { useQuery } from "convex/react";
 import { api } from "convex/_generated/api";
 import { useMemo, useState } from "react";
+import { useAdminAuth } from "@/lib/admin/auth";
 import Link from "next/link";
+import { Smartphone, Monitor, Tablet, Globe, MapPin, User } from "lucide-react";
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  BarChart, Bar, PieChart, Pie, Cell,
+  PieChart, Pie, Cell,
 } from "recharts";
 
 const ACTIVITY_LABELS: Record<string, string> = {
@@ -44,6 +46,7 @@ function MetricCard({ label, value, sub, color }: { label: string; value: string
 }
 
 export default function AdminDashboard() {
+  const { user: adminUser } = useAdminAuth();
   const [days] = useState(30);
   const [now] = useState(() => Date.now());
   const startDate = useMemo(() => now - days * 24 * 60 * 60 * 1000, [now, days]);
@@ -73,12 +76,21 @@ export default function AdminDashboard() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
+      <div className="flex items-start justify-between gap-4">
+        <div className="flex-1">
           <h1 className="text-xl font-bold">Dashboard</h1>
           <p className="text-white/40 text-sm mt-1">Panoramica degli ultimi {days} giorni</p>
         </div>
-        <Link href="/admin/leads" className="text-sm text-green-400 hover:text-green-300 transition-colors">
+        <div className="flex items-center gap-3 bg-[#1A1A1A] border border-white/5 rounded-xl px-4 py-3 shrink-0">
+          <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
+            <User size={18} className="text-green-400" />
+          </div>
+          <div className="min-w-0">
+            <p className="text-sm font-medium text-white truncate">{adminUser?.name ?? "Admin"}</p>
+            <p className="text-xs text-white/30 truncate">{adminUser?.email ?? ""}</p>
+          </div>
+        </div>
+        <Link href="/admin/leads" className="text-sm text-green-400 hover:text-green-300 transition-colors shrink-0 mt-1">
           Vedi tutti i lead →
         </Link>
       </div>
@@ -300,15 +312,27 @@ export default function AdminDashboard() {
         <h2 className="text-sm font-medium text-white/60 mb-4">Attività recenti</h2>
         {activityItems.length > 0 ? (
           <div className="space-y-1">
-            {activityItems.map((a) => (
-              <div key={a._id} className="flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-white/[0.02] transition-colors">
-                <span className={`text-xs font-medium w-28 shrink-0 ${a.color}`}>{a.label}</span>
-                <span className="text-sm text-white/60 flex-1 truncate capitalize">{a.page ? a.page.replace(/-/g, " ") : "—"}</span>
-                <span className="text-xs text-white/20 shrink-0">
-                  {new Date(a.timestamp).toLocaleString("it-IT", { hour: "2-digit", minute: "2-digit" })}
-                </span>
-              </div>
-            ))}
+            {activityItems.map((a) => {
+              let meta: Record<string, string> = {};
+              try { if (a.metadata) meta = JSON.parse(a.metadata); } catch {}
+              const deviceIcon = meta.deviceType === "mobile" ? <Smartphone size={11} /> : meta.deviceType === "tablet" ? <Tablet size={11} /> : <Monitor size={11} />;
+              return (
+                <div key={a._id} className="flex items-center gap-2 py-2 px-3 rounded-lg hover:bg-white/[0.02] transition-colors flex-wrap">
+                  <span className={`text-xs font-medium w-24 shrink-0 ${a.color}`}>{a.label}</span>
+                  <span className="text-xs text-white/40 w-28 truncate shrink-0">{a.page ? a.page.replace(/-/g, " ").replace(/\//g, " / ") : "—"}</span>
+                  <span className="text-white/20 shrink-0">{deviceIcon}</span>
+                  {a.locale && (
+                    <span className="text-[10px] text-white/20 flex items-center gap-1 shrink-0"><Globe size={9} />{a.locale}</span>
+                  )}
+                  {a.adminId && (
+                    <span className="text-[10px] text-green-400/60 flex items-center gap-1 shrink-0"><User size={9} />Admin</span>
+                  )}
+                  <span className="text-[10px] text-white/20 ml-auto shrink-0">
+                    {new Date(a.timestamp).toLocaleString("it-IT", { hour: "2-digit", minute: "2-digit" })}
+                  </span>
+                </div>
+              );
+            })}
           </div>
         ) : (
           <p className="text-white/20 text-sm py-8 text-center">

@@ -1,11 +1,12 @@
 "use client";
 
-import { ReactNode, useState, useEffect } from "react";
+import { ReactNode, useState, useEffect, useMemo } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { ConvexProvider, ConvexReactClient } from "convex/react";
+import { ConvexProvider, ConvexReactClient, useMutation } from "convex/react";
+import { api } from "convex/_generated/api";
 import Link from "next/link";
 import {
-  LayoutDashboard, Users, Image, DollarSign, FileText, Mail, Settings, LogOut, Menu, X, Bell, ChevronDown, UserCheck,
+  LayoutDashboard, Users, Image, DollarSign, FileText, Mail, Settings, LogOut, Menu, X, Bell, ChevronDown, UserCheck, ExternalLink,
 } from "lucide-react";
 import NotificationDropdown from "@/components/admin/NotificationDropdown";
 import { useAdminAuth } from "@/lib/admin/auth";
@@ -27,12 +28,26 @@ function AdminLayoutInner({ children }: { children: ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sessionId] = useState(() => "admin_" + Math.random().toString(36).slice(2));
+  const trackEvent = useMutation(api.analytics.trackEvent);
 
   useEffect(() => {
     if (!loading && !isAuthenticated && pathname !== "/admin/login" && pathname !== "/admin/register") {
       router.push("/admin/login");
     }
   }, [loading, isAuthenticated, pathname, router]);
+
+  useEffect(() => {
+    if (!isAuthenticated || !user) return;
+    trackEvent({
+      type: "admin_pageview",
+      page: pathname,
+      locale: "it",
+      sessionId,
+      metadata: JSON.stringify({ deviceType: "desktop", userAgent: navigator.userAgent.slice(0, 200) }),
+      adminId: user._id,
+    });
+  }, [pathname, isAuthenticated, user, sessionId, trackEvent]);
 
   if (pathname === "/admin/login" || pathname === "/admin/register") {
     return <>{children}</>;
@@ -87,7 +102,15 @@ function AdminLayoutInner({ children }: { children: ReactNode }) {
           })}
         </nav>
 
-        <div className="p-4 border-t border-white/5">
+        <div className="p-3 border-t border-white/5 space-y-1">
+          <Link
+            href="/"
+            target="_blank"
+            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-white/30 hover:text-green-400 hover:bg-white/5 transition-all"
+          >
+            <ExternalLink size={18} />
+            Torna al sito
+          </Link>
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 text-xs font-bold">
               {user?.name?.charAt(0)?.toUpperCase() ?? "A"}
