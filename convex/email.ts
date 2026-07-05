@@ -1,9 +1,8 @@
 import { v } from "convex/values";
 import { internalAction, internalMutation, internalQuery, query } from "./_generated/server";
+import { internal } from "./_generated/api";
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type InternalCtx = { runQuery(name: string, args: Record<string, unknown>): Promise<any>; runMutation(name: string, args: Record<string, unknown>): Promise<any> };
 
 function buildHtml(opts: { preheader: string; title: string; body: string; cta?: { text: string; url: string } }): string {
   return `<!DOCTYPE html>
@@ -109,8 +108,7 @@ export const sendNewLeadNotification = internalAction({
     leadId: v.optional(v.id("quoteRequests")),
   },
   handler: async (ctx, args) => {
-    const c = ctx as unknown as InternalCtx;
-    const adminEmails = await c.runQuery("email:listAdminEmails", {});
+    const adminEmails = await ctx.runQuery(internal.email.listAdminEmails, {});
     if (adminEmails.length === 0) return { sent: false };
 
     const body = `<p><strong>Nome:</strong> ${args.customerName}</p>
@@ -131,7 +129,7 @@ ${args.message ? `<p><strong>Messaggio:</strong><br>${args.message}</p>` : ""}`;
       const ok = await sendViaResend(email, `[Doctor Haus] Nuovo preventivo da ${args.customerName}`, html);
       if (ok) {
         sentCount++;
-        await c.runMutation("email:logEmail", { to: email, subject: `Nuovo preventivo: ${args.customerName}`, body: html, type: "new_lead" });
+        await ctx.runMutation(internal.email.logEmail, { to: email, subject: `Nuovo preventivo: ${args.customerName}`, body: html, type: "new_lead" });
       }
     }
     return { sent: sentCount > 0, count: sentCount };
@@ -145,8 +143,7 @@ export const sendContactFormNotification = internalAction({
     message: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
-    const c = ctx as unknown as InternalCtx;
-    const adminEmails = await c.runQuery("email:listAdminEmails", {});
+    const adminEmails = await ctx.runQuery(internal.email.listAdminEmails, {});
     if (adminEmails.length === 0) return { sent: false };
 
     const body = `<p><strong>Nome:</strong> ${args.name}</p>
@@ -165,7 +162,7 @@ ${args.message ? `<p><strong>Messaggio:</strong><br>${args.message}</p>` : ""}`;
       const ok = await sendViaResend(email, `[Doctor Haus] Richiesta contatto da ${args.name}`, html);
       if (ok) {
         sentCount++;
-        await c.runMutation("email:logEmail", { to: email, subject: `Richiesta contatto: ${args.name}`, body: html, type: "contact_form" });
+        await ctx.runMutation(internal.email.logEmail, { to: email, subject: `Richiesta contatto: ${args.name}`, body: html, type: "contact_form" });
       }
     }
     return { sent: sentCount > 0, count: sentCount };
@@ -178,8 +175,7 @@ export const sendRegistrationNotification = internalAction({
     email: v.string(),
   },
   handler: async (ctx, args) => {
-    const c = ctx as unknown as InternalCtx;
-    const adminEmails = await c.runQuery("email:listAdminEmails", {});
+    const adminEmails = await ctx.runQuery(internal.email.listAdminEmails, {});
     if (adminEmails.length === 0) return { sent: false };
 
     const body = `<p><strong>Nome:</strong> ${args.name}</p>
@@ -197,7 +193,7 @@ export const sendRegistrationNotification = internalAction({
       const ok = await sendViaResend(email, `[Doctor Haus] Nuovo utente: ${args.name}`, html);
       if (ok) {
         sentCount++;
-        await c.runMutation("email:logEmail", { to: email, subject: `Nuovo utente: ${args.name}`, body: html, type: "registration" });
+        await ctx.runMutation(internal.email.logEmail, { to: email, subject: `Nuovo utente: ${args.name}`, body: html, type: "registration" });
       }
     }
     return { sent: sentCount > 0, count: sentCount };
@@ -210,7 +206,6 @@ export const sendWelcomeEmail = internalAction({
     email: v.string(),
   },
   handler: async (ctx, args) => {
-    const c = ctx as unknown as InternalCtx;
     const body = `<p>Ciao ${args.name},</p>
 <p>benvenuto su Doctor Haus. Il tuo account è stato creato con successo.</p>
 <p>Ora puoi accedere per gestire le tue preferenze e richiedere preventivi personalizzati.</p>`;
@@ -224,7 +219,7 @@ export const sendWelcomeEmail = internalAction({
 
     const ok = await sendViaResend(args.email, "Benvenuto su Doctor Haus!", html);
     if (ok) {
-      await c.runMutation("email:logEmail", { to: args.email, subject: "Benvenuto su Doctor Haus!", body: html, type: "welcome" });
+      await ctx.runMutation(internal.email.logEmail, { to: args.email, subject: "Benvenuto su Doctor Haus!", body: html, type: "welcome" });
     }
     return { sent: ok };
   },

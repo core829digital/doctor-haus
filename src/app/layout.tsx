@@ -24,9 +24,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="it" className={`${nunito.variable} ${inter.variable}`} style={{ colorScheme: "light" }}>
-      <head>
-        <meta name="color-scheme" content="light only" />
-      </head>
+
       <body className="min-h-screen flex flex-col bg-background text-text antialiased">
         {children}
       </body>

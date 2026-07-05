@@ -37,7 +37,7 @@ export default function RegisterPage() {
         email: email.trim(),
         password,
         name: name.trim(),
-        preferredLanguage: "it",
+        preferredLanguage: document.documentElement.lang || "it",
       });
       setStoredSession(result.token, result.user);
       const { trackRegistration } = await import("@/lib/analytics");

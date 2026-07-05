@@ -20,21 +20,11 @@ export function useAnalytics() {
   const trackEvent = useMutation(api.analytics.trackEvent);
   const pathname = usePathname();
   const locale = useLocale();
-  const lastPathRef = useRef<string>("");
   const sidRef = useRef<string>("");
 
   useEffect(() => {
     sidRef.current = getSessionId();
   }, []);
-
-  useEffect(() => {
-    if (!pathname || pathname === lastPathRef.current) return;
-    lastPathRef.current = pathname;
-    const timeout = setTimeout(() => {
-      trackEvent({ type: "pageview", page: pathname, locale, sessionId: sidRef.current });
-    }, 300);
-    return () => clearTimeout(timeout);
-  }, [pathname, locale, trackEvent]);
 
   const trackClick = useCallback(
     (label: string, metadata?: string) => {

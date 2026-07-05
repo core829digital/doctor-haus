@@ -50,13 +50,11 @@ export default function QuoteRequestForm({ locale, onSuccess }: Props) {
     setSubmitting(true);
 
     try {
-      // We need category/choice labels — we'll fetch them from Convex
-      // For now, use placeholder resolution via a secondary approach
       const optionDetails = selectedOptions.map((opt) => ({
         categoryId: opt.categoryId,
         choiceId: opt.choiceId,
-        categoryLabel: opt.categoryId,
-        choiceLabel: opt.choiceId,
+        categoryLabel: opt.categoryLabel,
+        choiceLabel: opt.choiceLabel,
       }));
 
       await createQuote({

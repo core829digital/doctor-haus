@@ -279,7 +279,7 @@ export default function AdminDashboard() {
 
         {/* Contact form submissions */}
         <div className="bg-[#1A1A1A] border border-white/5 rounded-xl p-5">
-          <h2 className="text-sm font-medium text-white/60 mb-4">Richiestre contatto</h2>
+          <h2 className="text-sm font-medium text-white/60 mb-4">Richieste contatto</h2>
           {contactSubmissions && contactSubmissions.length > 0 ? (
             <div className="space-y-3">
               {contactSubmissions.map((s) => {

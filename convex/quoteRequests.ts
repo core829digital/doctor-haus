@@ -76,9 +76,7 @@ export const sendEmails = internalAction({
     });
     if (!quote) return;
 
-    const product = await ctx.runQuery(api.products.getById, {
-      id: quote.productId,
-    });
+    const product = await ctx.runQuery(api.products.getById, { id: quote.productId });
 
     const resendApiKey = process.env.RESEND_API_KEY;
     if (!resendApiKey) {
@@ -86,22 +84,22 @@ export const sendEmails = internalAction({
       return;
     }
 
+    const adminEmails = await ctx.runQuery(internal.email.listAdminEmails, {});
+    const notifyEmails = [...new Set([
+      ...adminEmails,
+      "andrea@montaggisrl.it",
+      "filippo@montaggisrl.it",
+    ])];
+
     const optionsText = quote.selectedOptions
       .map((o: { categoryLabel: string; choiceLabel: string }) => `  • ${o.categoryLabel}: ${o.choiceLabel}`)
       .join("\n");
 
     const isItalian = args.preferredLanguage === "it";
 
-    const adminEmail = {
-      from: "Doctor Haus <noreply@doctor-haus.com>",
-      to: ["andrea@montaggisrl.it", "filippo@montaggisrl.it"],
-      subject: isItalian
-        ? `Nuova richiesta di preventivo: ${product?.name ?? "Prodotto"}`
-        : `New quote request: ${product?.name ?? "Product"}`,
-      text: isItalian
-        ? `Nuova richiesta di preventivo\n\nProdotto: ${product?.name}\nCliente: ${quote.customerName}\nEmail: ${quote.customerEmail}\nTelefono: ${quote.customerPhone}\n\nOpzioni selezionate:\n${optionsText}\n\nMessaggio: ${quote.customerMessage ?? "—"}\n\nData: ${new Date(quote.createdAt).toLocaleString("it-IT")}`
-        : `New quote request\n\nProduct: ${product?.name}\nCustomer: ${quote.customerName}\nEmail: ${quote.customerEmail}\nPhone: ${quote.customerPhone}\n\nSelected options:\n${optionsText}\n\nMessage: ${quote.customerMessage ?? "—"}\n\nDate: ${new Date(quote.createdAt).toLocaleString("en-GB")}`,
-    };
+    const adminBody = isItalian
+      ? `Nuova richiesta di preventivo\n\nProdotto: ${product?.name}\nCliente: ${quote.customerName}\nEmail: ${quote.customerEmail}\nTelefono: ${quote.customerPhone}\n\nOpzioni selezionate:\n${optionsText}\n\nMessaggio: ${quote.customerMessage ?? "—"}\n\nData: ${new Date(quote.createdAt).toLocaleString("it-IT")}`
+      : `New quote request\n\nProduct: ${product?.name}\nCustomer: ${quote.customerName}\nEmail: ${quote.customerEmail}\nPhone: ${quote.customerPhone}\n\nSelected options:\n${optionsText}\n\nMessage: ${quote.customerMessage ?? "—"}\n\nDate: ${new Date(quote.createdAt).toLocaleString("en-GB")}`;
 
     const customerSubject = isItalian
       ? "Abbiamo ricevuto la tua richiesta — Doctor Haus"
@@ -110,13 +108,6 @@ export const sendEmails = internalAction({
       ? `Ciao ${quote.customerName},\n\nabbiamo ricevuto la tua richiesta di preventivo per ${product?.name}. Ti ricontatteremo entro 24-48 ore lavorative con un preventivo personalizzato.\n\nEcco un riepilogo della tua configurazione:\n${optionsText}\n\nA presto,\nIl team Doctor Haus`
       : `Hi ${quote.customerName},\n\nwe've received your quote request for ${product?.name}. We'll get back to you within 24-48 business hours with a personalized quote.\n\nHere's a summary of your configuration:\n${optionsText}\n\nBest regards,\nThe Doctor Haus team`;
 
-    const customerEmail = {
-      from: "Doctor Haus <noreply@doctor-haus.com>",
-      to: [quote.customerEmail],
-      subject: customerSubject,
-      text: customerText,
-    };
-
     try {
       await fetch("https://api.resend.com/emails", {
         method: "POST",
@@ -124,7 +115,14 @@ export const sendEmails = internalAction({
           Authorization: `Bearer ${resendApiKey}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(adminEmail),
+        body: JSON.stringify({
+          from: "Doctor Haus <noreply@doctor-haus.com>",
+          to: notifyEmails,
+          subject: isItalian
+            ? `Nuova richiesta di preventivo: ${product?.name ?? "Prodotto"}`
+            : `New quote request: ${product?.name ?? "Product"}`,
+          text: adminBody,
+        }),
       });
 
       await fetch("https://api.resend.com/emails", {
@@ -133,7 +131,12 @@ export const sendEmails = internalAction({
           Authorization: `Bearer ${resendApiKey}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(customerEmail),
+        body: JSON.stringify({
+          from: "Doctor Haus <noreply@doctor-haus.com>",
+          to: [quote.customerEmail],
+          subject: customerSubject,
+          text: customerText,
+        }),
       });
     } catch (err) {
       console.error("Failed to send emails:", err);
