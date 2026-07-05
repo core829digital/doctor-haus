@@ -24,10 +24,14 @@ export const trackEvent = mutation({
 
     if (args.type === "contact_form_submit") {
       let customerName = "Anonimo";
+      let customerEmail = "";
+      let customerMessage = "";
       try {
         if (args.metadata) {
           const meta = JSON.parse(args.metadata);
           customerName = meta.name || "Anonimo";
+          customerEmail = meta.email || "";
+          customerMessage = meta.message || "";
         }
       } catch {}
       await ctx.scheduler.runAfter(0, internal.notifications.internalCreate, {
@@ -35,20 +39,35 @@ export const trackEvent = mutation({
         title: `Nuova richiesta contatto: ${customerName}`,
         link: "/admin/leads",
       });
+      await ctx.scheduler.runAfter(0, internal.email.sendContactFormNotification, {
+        name: customerName,
+        email: customerEmail,
+        message: customerMessage,
+      });
     }
 
     if (args.type === "registration") {
       let name = "Anonimo";
+      let email = "";
       try {
         if (args.metadata) {
           const meta = JSON.parse(args.metadata);
           name = meta.name || "Anonimo";
+          email = meta.email || "";
         }
       } catch {}
       await ctx.scheduler.runAfter(0, internal.notifications.internalCreate, {
         type: "new_user",
         title: `Nuovo utente registrato: ${name}`,
         link: "/admin/users",
+      });
+      await ctx.scheduler.runAfter(0, internal.email.sendRegistrationNotification, {
+        name,
+        email,
+      });
+      await ctx.scheduler.runAfter(0, internal.email.sendWelcomeEmail, {
+        name,
+        email,
       });
     }
   },

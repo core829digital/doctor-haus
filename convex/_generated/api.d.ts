@@ -13,6 +13,7 @@ import type * as analytics from "../analytics.js";
 import type * as configurationDrafts from "../configurationDrafts.js";
 import type * as crons from "../crons.js";
 import type * as customerAuth from "../customerAuth.js";
+import type * as email from "../email.js";
 import type * as internal_ from "../internal.js";
 import type * as media from "../media.js";
 import type * as notifications from "../notifications.js";
@@ -36,6 +37,7 @@ declare const fullApi: ApiFromModules<{
   configurationDrafts: typeof configurationDrafts;
   crons: typeof crons;
   customerAuth: typeof customerAuth;
+  email: typeof email;
   internal: typeof internal_;
   media: typeof media;
   notifications: typeof notifications;

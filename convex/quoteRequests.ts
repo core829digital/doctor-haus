@@ -52,6 +52,15 @@ export const create = mutation({
       link: `/admin/leads/${quoteId}`,
     });
 
+    await ctx.scheduler.runAfter(0, internal.email.sendNewLeadNotification, {
+      customerName: args.customerName,
+      customerEmail: args.customerEmail,
+      customerPhone: args.customerPhone,
+      productName: args.productId,
+      message: args.customerMessage,
+      leadId: quoteId,
+    });
+
     return quoteId;
   },
 });
