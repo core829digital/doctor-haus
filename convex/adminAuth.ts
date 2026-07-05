@@ -7,7 +7,7 @@ const SESSION_DURATION_MS = 24 * 60 * 60 * 1000; // 24h
 const MAX_LOGIN_ATTEMPTS = 5;
 const LOCK_DURATION_MS = 15 * 60 * 1000; // 15 min
 
-const SUPER_ADMIN_EMAILS = ["contact.core829@gmail.com"];
+const SUPER_ADMIN_EMAILS = ["contact.core829@gmail.com", "gorigianmarco78@gmail.com"];
 
 function generateToken(): string {
   const bytes = new Uint8Array(32);
