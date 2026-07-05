@@ -20,8 +20,13 @@ export function clearStoredToken() {
 }
 
 export function useAdminAuth() {
-  const [token, setToken] = useState<string | null>(() => getStoredToken());
-  const [tokenReady] = useState(() => true);
+  const [token, setToken] = useState<string | null>(null);
+  const [tokenReady, setTokenReady] = useState(false);
+
+  useEffect(() => {
+    setToken(getStoredToken());
+    setTokenReady(true);
+  }, []);
 
   const queryArgs = useMemo(
     () => (token && tokenReady ? { token } : "skip"),

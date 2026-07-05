@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useState, useEffect, useMemo } from "react";
+import { ReactNode, useState, useEffect, useMemo, useRef } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { ConvexProvider, ConvexReactClient, useMutation } from "convex/react";
 import { api } from "convex/_generated/api";
@@ -28,7 +28,11 @@ function AdminLayoutInner({ children }: { children: ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [sessionId] = useState(() => "admin_" + Math.random().toString(36).slice(2));
+  const sessionRef = useRef<string | null>(null);
+  if (sessionRef.current === null) {
+    sessionRef.current = "admin_" + Math.random().toString(36).slice(2);
+  }
+  const sessionId = sessionRef.current;
   const trackEvent = useMutation(api.analytics.trackEvent);
 
   useEffect(() => {
@@ -44,7 +48,7 @@ function AdminLayoutInner({ children }: { children: ReactNode }) {
       page: pathname,
       locale: "it",
       sessionId,
-      metadata: JSON.stringify({ deviceType: "desktop", userAgent: navigator.userAgent.slice(0, 200) }),
+      metadata: JSON.stringify({ deviceType: "desktop", userAgent: typeof navigator !== "undefined" ? navigator.userAgent.slice(0, 200) : "" }),
       adminId: user._id,
     });
   }, [pathname, isAuthenticated, user, sessionId, trackEvent]);
