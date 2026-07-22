@@ -15,10 +15,12 @@ export default function ProdottoTeaserSection() {
     <SectionWrapper id="prodotto">
       <SectionTitle title={t("title")} subtitle={t("description")} />
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-        <div className="relative aspect-[4/3] lg:aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-green-200/40 via-background to-orange-200/30 border border-line">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-3/4 h-3/4 rounded-3xl bg-gradient-to-b from-white/80 to-background-alt shadow-sm border border-line" />
-          </div>
+        <div className="relative aspect-[4/3] lg:aspect-square rounded-2xl overflow-hidden bg-background-alt border border-line group">
+          <img
+            src="/images/apple-cabin/webp/21.webp"
+            alt="Apple Cabin"
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
         </div>
         <div>
           <div className="grid grid-cols-2 gap-4 mb-10">
