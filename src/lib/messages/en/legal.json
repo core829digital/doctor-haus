@@ -13,13 +13,13 @@
     "garanzia": "Warranty & Returns",
     "accessibilita": "Accessibility"
   },
-  "ultimoAggiornamento": "Last updated: [DATE]",
-  "placeholder": "[TO BE COMPLETED WITH CLIENT'S LAWYER OR ACCOUNTANT]",
+  "ultimoAggiornamento": "Last updated: July 2026",
+  "placeholder": "Document under legal review. For any requests, contact us at info@doctor-haus.com.",
   "indice": "Index",
   "privacyPolicy": {
     "title": "Privacy Policy",
     "sections": [
-      { "title": "Data Controller", "content": "The data controller is Doctor Haus, with registered office at [INSERT ADDRESS], VAT [INSERT VAT NUMBER]. To exercise your rights you can write to [INSERT EMAIL]." },
+      { "title": "Data Controller", "content": "The data controller is Montaggi Srl, with registered office at Via Mario Giuntini 95, 56121 Cascina (PI), Italy, VAT 02293340507. To exercise your rights you can write to info@doctor-haus.com." },
       { "title": "Data collected", "content": "We collect personal data that you voluntarily provide through the contact form (name, email, phone, message) and technical browsing data (technical and analytics cookies)." },
       { "title": "Purpose of processing", "content": "Your data is processed for: responding to your information and quote requests; administrative and accounting purposes; compliance with legal obligations; sending marketing communications with your explicit consent." },
       { "title": "Legal basis", "content": "Processing is based on your consent (Art. 6 para. 1(a) GDPR), performance of pre-contractual measures (Art. 6 para. 1(b) GDPR), and legal obligations (Art. 6 para. 1(c) GDPR)." },

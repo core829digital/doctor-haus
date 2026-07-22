@@ -17,7 +17,7 @@ export default async function AccessibilitaPage({ params }: { params: Promise<{ 
       { title: "Il nostro impegno", content: "Doctor Haus si impegna a rendere il proprio sito web accessibile a tutti gli utenti, indipendentemente dalle loro capacità o disabilità. Lavoriamo costantemente per migliorare l'esperienza di navigazione di ogni visitatore." },
       { title: "Conformità", content: "Il nostro sito web è progettato per essere conforme alle Linee guida per l'accessibilità dei contenuti Web (WCAG) 2.1, livello AA. Queste linee guida definiscono come rendere i contenuti web più accessibili per le persone con disabilità." },
       { title: "Caratteristiche di accessibilità", content: "Il sito utilizza: un contrasto cromatico adeguato per garantire la leggibilità; una struttura semantica chiara con titoli e sottotitoli; testi alternativi per le immagini (in fase di implementazione); navigazione tramite tastiera; supporto per screen reader; layout responsive per diversi dispositivi e dimensioni dello schermo." },
-      { title: "Limitazioni", content: "Alcune sezioni del sito potrebbero non essere completamente accessibili. Stiamo lavorando per risolvere eventuali problemi e migliorare l'esperienza utente per tutti. [DA COMPILARE CON EVENTUALI LIMITAZIONI SPECIFICHE]" },
+      { title: "Limitazioni", content: "Alcune sezioni del sito potrebbero non essere completamente accessibili. In particolare, alcune immagini potrebbero non avere descrizioni testuali complete e alcuni contenuti multimediali potrebbero richiedere plugin aggiuntivi. Stiamo lavorando per risolvere eventuali problemi e migliorare l'esperienza utente per tutti." },
       { title: "Contattaci", content: "Se incontri difficoltà nell'accesso ai contenuti del sito o hai suggerimenti per migliorare l'accessibilità, ti preghiamo di contattarci all'indirizzo email info@doctor-haus.com. Faremo il possibile per fornirti le informazioni nel formato più accessibile." },
     ],
   } : {
@@ -26,7 +26,7 @@ export default async function AccessibilitaPage({ params }: { params: Promise<{ 
       { title: "Our commitment", content: "Doctor Haus is committed to making its website accessible to all users, regardless of their abilities or disabilities. We constantly work to improve the browsing experience for every visitor." },
       { title: "Conformance", content: "Our website is designed to conform to the Web Content Accessibility Guidelines (WCAG) 2.1, Level AA. These guidelines define how to make web content more accessible to people with disabilities." },
       { title: "Accessibility features", content: "The site uses: adequate color contrast to ensure readability; clear semantic structure with headings and subheadings; alternative texts for images (under implementation); keyboard navigation; screen reader support; responsive layout for different devices and screen sizes." },
-      { title: "Limitations", content: "Some sections of the site may not be fully accessible. We are working to resolve any issues and improve the user experience for everyone. [TO BE COMPLETED WITH ANY SPECIFIC LIMITATIONS]" },
+      { title: "Limitations", content: "Some sections of the site may not be fully accessible. In particular, some images may lack complete text descriptions and some multimedia content may require additional plugins. We are working to resolve any issues and improve the user experience for everyone." },
       { title: "Contact us", content: "If you encounter difficulties accessing site content or have suggestions for improving accessibility, please contact us at info@doctor-haus.com. We will do our best to provide you with the information in the most accessible format." },
     ],
   };
@@ -44,7 +44,7 @@ export default async function AccessibilitaPage({ params }: { params: Promise<{ 
           ))}
         </div>
         <p className="mt-16 text-xs text-text-muted border-t border-line pt-6">
-          [DA COMPILARE CON AVVOCATO O COMMERCIALISTA DEL CLIENTE]
+          Documento in fase di revisione legale. Per qualsiasi richiesta, contattaci a info@doctor-haus.com.
         </p>
       </div>
     </div>

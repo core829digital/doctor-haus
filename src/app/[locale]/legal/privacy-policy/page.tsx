@@ -15,7 +15,7 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
   const content = locale === "it" ? {
     title: "Privacy Policy",
     sections: [
-      { title: "Titolare del trattamento", content: "Il titolare del trattamento dei dati è Doctor Haus, con sede legale in [INSERIRE SEDE LEGALE], P.IVA [INSERIRE P.IVA]. Per esercitare i tuoi diritti puoi scrivere a [INSERIRE EMAIL]." },
+      { title: "Titolare del trattamento", content: "Il titolare del trattamento dei dati è Montaggi Srl, con sede legale in Via Mario Giuntini 95, 56121 Cascina (PI), P.IVA 02293340507. Per esercitare i tuoi diritti puoi scrivere a info@doctor-haus.com." },
       { title: "Dati raccolti", content: "Raccogliamo i dati personali che ci fornisci volontariamente tramite il form contatti (nome, email, telefono, messaggio) e dati tecnici di navigazione (cookie tecnici e analytics)." },
       { title: "Finalità del trattamento", content: "I tuoi dati vengono trattati per: rispondere alle tue richieste di informazioni e preventivi; finalità amministrative e contabili; adempimento di obblighi di legge; invio di comunicazioni marketing previo tuo consenso esplicito." },
       { title: "Base giuridica", content: "Il trattamento si basa sul tuo consenso (art. 6 par. 1 lett. a GDPR), sull'esecuzione di misure precontrattuali (art. 6 par. 1 lett. b GDPR) e sugli obblighi legali (art. 6 par. 1 lett. c GDPR)." },
@@ -27,7 +27,7 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
   } : {
     title: "Privacy Policy",
     sections: [
-      { title: "Data Controller", content: "The data controller is Doctor Haus, with registered office at [INSERT ADDRESS], VAT [INSERT VAT NUMBER]. To exercise your rights you can write to [INSERT EMAIL]." },
+      { title: "Data Controller", content: "The data controller is Montaggi Srl, with registered office at Via Mario Giuntini 95, 56121 Cascina (PI), Italy, VAT 02293340507. To exercise your rights you can write to info@doctor-haus.com." },
       { title: "Data collected", content: "We collect personal data that you voluntarily provide through the contact form (name, email, phone, message) and technical browsing data (technical and analytics cookies)." },
       { title: "Purpose of processing", content: "Your data is processed for: responding to your information and quote requests; administrative and accounting purposes; compliance with legal obligations; sending marketing communications with your explicit consent." },
       { title: "Legal basis", content: "Processing is based on your consent (Art. 6 para. 1(a) GDPR), performance of pre-contractual measures (Art. 6 para. 1(b) GDPR), and legal obligations (Art. 6 para. 1(c) GDPR)." },
@@ -51,7 +51,7 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
           ))}
         </div>
         <p className="mt-16 text-xs text-text-muted border-t border-line pt-6">
-          [DA COMPILARE CON AVVOCATO O COMMERCIALISTA DEL CLIENTE]
+          Documento in fase di revisione legale. Per qualsiasi richiesta, contattaci a info@doctor-haus.com.
         </p>
       </div>
     </div>

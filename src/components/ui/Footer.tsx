@@ -48,6 +48,12 @@ export default function Footer() {
             <p className="mt-4 text-sm text-text-muted leading-relaxed max-w-xs">
               {t("description")}
             </p>
+            <div className="mt-4 text-sm text-text-muted leading-relaxed space-y-1">
+              <p>Montaggi Srl</p>
+              <p>Via Mario Giuntini 95, 56121 Cascina (PI)</p>
+              <p>P.IVA 02293340507</p>
+              <p>Tel: +39 370 164 1622</p>
+            </div>
           </div>
 
           <div>

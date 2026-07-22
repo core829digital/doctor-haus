@@ -44,7 +44,7 @@ export default async function CookiePolicyPage({ params }: { params: Promise<{ l
           ))}
         </div>
         <p className="mt-16 text-xs text-text-muted border-t border-line pt-6">
-          [DA COMPILARE CON AVVOCATO O COMMERCIALISTA DEL CLIENTE]
+          Documento in fase di revisione legale. Per qualsiasi richiesta, contattaci a info@doctor-haus.com.
         </p>
       </div>
     </div>

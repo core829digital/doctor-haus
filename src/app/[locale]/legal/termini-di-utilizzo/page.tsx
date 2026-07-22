@@ -20,7 +20,7 @@ export default async function TerminiPage({ params }: { params: Promise<{ locale
       { title: "Limitazione di responsabilità", content: "Doctor Haus non sarà ritenuta responsabile per danni diretti o indiretti derivanti dall'utilizzo o dall'impossibilità di utilizzare il sito web." },
       { title: "Link a siti terzi", content: "Il sito può contenere link a siti web di terze parti. Doctor Haus non ha controllo su tali siti e non è responsabile per i loro contenuti o politiche sulla privacy." },
       { title: "Modifiche", content: "Doctor Haus si riserva il diritto di modificare i presenti termini in qualsiasi momento. Le modifiche saranno efficaci dalla data di pubblicazione sul sito." },
-      { title: "Legge applicabile", content: "I presenti termini sono regolati dalla legge italiana. Per qualsiasi controversia sarà competente il foro di [INSERIRE FORO COMPETENTE]." },
+      { title: "Legge applicabile", content: "I presenti termini sono regolati dalla legge italiana. Per qualsiasi controversia sarà competente il foro del luogo in cui ha sede il titolare del trattamento." },
     ],
   } : {
     title: "Terms of Use",
@@ -31,7 +31,7 @@ export default async function TerminiPage({ params }: { params: Promise<{ locale
       { title: "Limitation of liability", content: "Doctor Haus shall not be liable for any direct or indirect damages arising from the use or inability to use the website." },
       { title: "Links to third-party sites", content: "The site may contain links to third-party websites. Doctor Haus has no control over such sites and is not responsible for their content or privacy policies." },
       { title: "Changes", content: "Doctor Haus reserves the right to modify these terms at any time. Changes will be effective from the date of publication on the site." },
-      { title: "Applicable law", content: "These terms are governed by Italian law. Any dispute shall be subject to the jurisdiction of the court of [INSERT COMPETENT COURT]." },
+      { title: "Applicable law", content: "These terms are governed by Italian law. Any dispute shall be subject to the jurisdiction of the court where the data controller has its registered office." },
     ],
   };
 
@@ -48,7 +48,7 @@ export default async function TerminiPage({ params }: { params: Promise<{ locale
           ))}
         </div>
         <p className="mt-16 text-xs text-text-muted border-t border-line pt-6">
-          [DA COMPILARE CON AVVOCATO O COMMERCIALISTA DEL CLIENTE]
+          Documento in fase di revisione legale. Per qualsiasi richiesta, contattaci a info@doctor-haus.com.
         </p>
       </div>
     </div>
