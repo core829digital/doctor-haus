@@ -79,13 +79,13 @@ export default function Header() {
         }`}>
           <Link href="/" className="flex items-center gap-2 group shrink-0">
             <img
-              src="/logo-32.webp"
+              src="/logo-120.webp"
               alt="Doctor Haus"
               className={`transition-all duration-500 ${
-                scrolled ? "w-5 h-5" : "w-7 h-7"
+                scrolled ? "w-6 h-6" : "w-10 h-10"
               }`}
-              width={32}
-              height={32}
+              width={120}
+              height={120}
             />
             <span className={`font-display font-semibold tracking-tight text-text transition-all duration-500 ${
               scrolled ? "text-sm" : "text-base"

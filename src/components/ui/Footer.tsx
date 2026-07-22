@@ -34,11 +34,11 @@ export default function Footer() {
           <div>
             <Link href="/" className="flex items-center gap-3 group">
               <img
-                src="/logo-32.webp"
+                src="/logo-120.webp"
                 alt="Doctor Haus"
-                className="w-8 h-8"
-                width={32}
-                height={32}
+                className="w-12 h-12"
+                width={120}
+                height={120}
               />
               <span className="text-lg font-display font-semibold text-text">
                 Doctor Haus
