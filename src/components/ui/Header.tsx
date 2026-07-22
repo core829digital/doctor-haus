@@ -77,21 +77,16 @@ export default function Header() {
         <div className={`flex items-center justify-between transition-all duration-500 ${
           scrolled ? "h-10 px-3" : "h-14 px-4 lg:px-5"
         }`}>
-          <Link href="/" className="flex items-center gap-2 group shrink-0">
+          <Link href="/" className="flex items-center shrink-0">
             <img
-              src="/logo-120.webp"
+              src="/logo%20doctor%20haus%201.png"
               alt="Doctor Haus"
               className={`transition-all duration-500 ${
-                scrolled ? "w-6 h-6" : "w-10 h-10"
-              }`}
-              width={120}
-              height={120}
+                scrolled ? "h-8" : "h-11"
+              } w-auto`}
+              width={2560}
+              height={1439}
             />
-            <span className={`font-display font-semibold tracking-tight text-text transition-all duration-500 ${
-              scrolled ? "text-sm" : "text-base"
-            }`}>
-              Doctor Haus
-            </span>
           </Link>
 
           <nav className="hidden lg:flex items-center gap-2">
