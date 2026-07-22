@@ -171,7 +171,7 @@ export default function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-white flex flex-col items-center justify-center gap-6 lg:hidden"
+            className="fixed inset-0 z-40 bg-black/75 backdrop-blur-xl flex flex-col items-center justify-center gap-6 lg:hidden"
           >
             {navItems.map((item, i) => (
               <motion.div
@@ -183,7 +183,7 @@ export default function Header() {
                 <Link
                   href={item.href}
                   className={`text-xl font-display ${
-                    isActive(item.href) ? "text-green-700 font-semibold" : "text-green-700/70"
+                    isActive(item.href) ? "text-white font-semibold" : "text-white/70"
                   }`}
                   onClick={() => { setMobileOpen(false); trackClick("nav-mobile", item.href); }}
                 >
@@ -199,7 +199,7 @@ export default function Header() {
             >
               <Link
                 href="/accedi"
-                className="rounded-full bg-green-500/10 backdrop-blur-md border border-green-500/30 px-5 py-2.5 text-sm font-medium text-green-700"
+                className="rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-5 py-2.5 text-sm font-medium text-white"
                 onClick={() => setMobileOpen(false)}
               >
                 {t("accedi")}
@@ -211,8 +211,8 @@ export default function Header() {
                     onClick={() => { setMobileOpen(false); switchLang(l); }}
                     className={`text-sm font-medium px-3 py-2 rounded-full border transition-colors ${
                       locale === l
-                        ? "text-green-700 font-semibold border-green-500/30 bg-green-500/10"
-                        : "text-green-700/70 border-green-500/20 hover:text-green-700"
+                        ? "text-white font-semibold border-white/30 bg-white/10"
+                        : "text-white/60 border-white/20 hover:text-white"
                     }`}
                   >
                     {l.toUpperCase()}
