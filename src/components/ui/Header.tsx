@@ -82,7 +82,7 @@ export default function Header() {
               src="/doctor%20haus%20edited%20trsp.png"
               alt="Doctor Haus"
               className={`transition-all duration-500 ${
-                scrolled ? "h-8" : "h-11"
+                scrolled ? "h-10" : "h-16"
               } w-auto`}
               width={2000}
               height={2000}

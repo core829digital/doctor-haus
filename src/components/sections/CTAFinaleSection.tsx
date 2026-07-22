@@ -11,6 +11,16 @@ export default function CTAFinaleSection() {
   return (
     <section className="relative py-24 lg:py-32 bg-background-alt overflow-hidden">
       <div className="mx-auto max-w-3xl px-6 lg:px-8 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+          className="flex items-center justify-center gap-3 mb-6"
+        >
+          <img src="/doctorhauslogo.png" alt="Doctor Haus" className="w-10 h-10" width={1350} height={1350} />
+          <span className="text-xl font-display font-bold text-text">Doctor Haus</span>
+        </motion.div>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { ArrowRight, Ruler, Package, Wrench, Layout as LayoutIcon, Sparkles, Check } from "lucide-react";
+import { ArrowRight, Ruler, Package, Wrench, Layout as LayoutIcon, Check } from "lucide-react";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import SectionTitle from "@/components/ui/SectionTitle";
 
@@ -162,7 +162,10 @@ export default function ProdottoContent({ locale }: { locale: string }) {
           transition={{ duration: 0.6 }}
           className="max-w-3xl mx-auto text-center bg-gradient-to-b from-green-50/50 to-transparent rounded-3xl p-12 lg:p-16 border border-line"
         >
-          <Sparkles size={32} className="text-green-500 mx-auto mb-6" />
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <img src="/doctorhauslogo.png" alt="Doctor Haus" className="w-10 h-10" width={1350} height={1350} />
+            <span className="text-xl font-display font-bold text-text">Doctor Haus</span>
+          </div>
           <h2 className="text-2xl lg:text-3xl font-display font-semibold text-text mb-4">
             {t("cta.title")}
           </h2>
