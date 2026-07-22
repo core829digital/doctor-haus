@@ -28,8 +28,8 @@ const content = {
     info: {
       title: "Informazioni",
       email: "info@doctor-haus.com",
-      phone: "[DA INSERIRE]",
-      address: "[DA INSERIRE]",
+      phone: "+39 370 164 1622",
+      address: "Italia",
     },
   },
   en: {
@@ -54,8 +54,8 @@ const content = {
     info: {
       title: "Information",
       email: "info@doctor-haus.com",
-      phone: "[TO BE ADDED]",
-      address: "[TO BE ADDED]",
+      phone: "+39 370 164 1622",
+      address: "Italy",
     },
   },
 };

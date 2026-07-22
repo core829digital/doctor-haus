@@ -105,11 +105,12 @@ export default function CatalogoContent({ locale }: { locale: string }) {
               href: "#expandable",
             },
             {
-              title: isIt ? "Tutti i prodotti" : "All products",
-              desc: isIt ? "Catalogo generale della gamma completa" : "Full range general catalog",
+              title: isIt ? "Catalogo PDF" : "PDF Catalog",
+              desc: isIt ? "Scarica il catalogo completo Doctor Haus" : "Download the complete Doctor Haus catalog",
               gradient: "from-orange-400 to-amber-600",
-              icon: "DH",
-              href: "#all",
+              icon: "PDF",
+              href: "/catalogs/DoctorHaus2.pdf",
+              download: true,
             },
             {
               title: isIt ? "Richiedi catalogo" : "Request catalog",
@@ -122,6 +123,7 @@ export default function CatalogoContent({ locale }: { locale: string }) {
             <motion.a
               key={i}
               href={cat.href}
+              {...("download" in cat && cat.download ? { download: "DoctorHaus-Catalogo.pdf" } : {})}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -136,7 +138,9 @@ export default function CatalogoContent({ locale }: { locale: string }) {
                 <p className="text-xs text-white/70 mt-1">{cat.desc}</p>
               </div>
               <div className="relative z-10 mt-4 flex items-center gap-1.5 text-xs font-medium text-white/80 group-hover:text-white transition-colors">
-                {cat.href.startsWith("http") || cat.href.startsWith("/contatti") ? (
+                {"download" in cat && cat.download ? (
+                  <><Download size={12} /> {isIt ? "Scarica PDF" : "Download PDF"}</>
+                ) : cat.href.startsWith("http") || cat.href.startsWith("/contatti") ? (
                   <><ArrowRight size={12} /> {isIt ? "Vai" : "Go"}</>
                 ) : (
                   <><Download size={12} /> {isIt ? "Sfoglia" : "Browse"}</>
