@@ -121,54 +121,58 @@ export default function QuoteRequestForm({ locale, onSuccess }: Props) {
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         <div>
-          <label className="block text-sm font-medium text-text mb-1.5">
+          <label htmlFor="name" className="block text-sm font-medium text-text mb-1.5">
             {locale === "it" ? "Nome e cognome" : "Full name"} *
           </label>
           <input
+            id="name"
             {...register("name")}
             className="w-full rounded-xl border border-line bg-background px-4 py-3 text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500 transition-colors"
             placeholder={locale === "it" ? "Mario Rossi" : "John Doe"}
           />
           {errors.name && (
-            <p className="mt-1 text-xs text-red-500">{errors.name.message}</p>
+            <p className="mt-1 text-xs text-red-500" role="alert">{errors.name.message}</p>
           )}
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-text mb-1.5">
+          <label htmlFor="email" className="block text-sm font-medium text-text mb-1.5">
             Email *
           </label>
           <input
+            id="email"
             {...register("email")}
             type="email"
             className="w-full rounded-xl border border-line bg-background px-4 py-3 text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500 transition-colors"
             placeholder="mario@example.com"
           />
           {errors.email && (
-            <p className="mt-1 text-xs text-red-500">{errors.email.message}</p>
+            <p className="mt-1 text-xs text-red-500" role="alert">{errors.email.message}</p>
           )}
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-text mb-1.5">
+          <label htmlFor="phone" className="block text-sm font-medium text-text mb-1.5">
             {locale === "it" ? "Telefono" : "Phone"} *
           </label>
           <input
+            id="phone"
             {...register("phone")}
             type="tel"
             className="w-full rounded-xl border border-line bg-background px-4 py-3 text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500 transition-colors"
             placeholder="+39 333 1234567"
           />
           {errors.phone && (
-            <p className="mt-1 text-xs text-red-500">{errors.phone.message}</p>
+            <p className="mt-1 text-xs text-red-500" role="alert">{errors.phone.message}</p>
           )}
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-text mb-1.5">
+          <label htmlFor="message" className="block text-sm font-medium text-text mb-1.5">
             {locale === "it" ? "Messaggio (opzionale)" : "Message (optional)"}
           </label>
           <textarea
+            id="message"
             {...register("message")}
             rows={3}
             className="w-full rounded-xl border border-line bg-background px-4 py-3 text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500 transition-colors resize-none"
@@ -180,14 +184,18 @@ export default function QuoteRequestForm({ locale, onSuccess }: Props) {
           />
         </div>
 
-        <div className="flex items-start gap-3">
-          <input
-            {...register("gdprConsent")}
-            type="checkbox"
-            id="gdpr"
-            className="mt-1 rounded border-line text-green-500 focus:ring-green-500"
-          />
-          <label htmlFor="gdpr" className="text-xs text-text-muted leading-relaxed">
+        <fieldset className="border-0 p-0 m-0">
+          <legend className="sr-only">
+            {locale === "it" ? "Consenso al trattamento dati" : "Data processing consent"}
+          </legend>
+          <div className="flex items-start gap-3">
+            <input
+              {...register("gdprConsent")}
+              type="checkbox"
+              id="gdpr"
+              className="mt-1 rounded border-line text-green-500 focus:ring-green-500"
+            />
+            <label htmlFor="gdpr" className="text-xs text-text-muted leading-relaxed">
             {locale === "it" ? (
               <>
                 Ho preso visione dell&apos;{" "}
@@ -206,10 +214,11 @@ export default function QuoteRequestForm({ locale, onSuccess }: Props) {
               </>
             )}
           </label>
-        </div>
-        {errors.gdprConsent && (
-          <p className="text-xs text-red-500">{errors.gdprConsent.message}</p>
-        )}
+          </div>
+          {errors.gdprConsent && (
+            <p className="text-xs text-red-500" role="alert">{errors.gdprConsent.message}</p>
+          )}
+        </fieldset>
 
         {error && (
           <p className="text-sm text-red-500 bg-red-50 rounded-xl px-4 py-3">{error}</p>

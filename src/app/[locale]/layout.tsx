@@ -26,7 +26,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       : "Apple Cabin: prefabricated modular mini house with rounded design and full-height windows. Discover prices, sizes and customizations for your garden mini home.",
     metadataBase: new URL("https://doctor-haus.com"),
     alternates: {
-      canonical: "/",
       languages: {
         it: "/it",
         en: "/en",
@@ -42,6 +41,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: locale === "it"
         ? "Apple Cabin: mini casa modulare prefabbricata dal design arrotondato. Scopri prezzi e personalizzazioni per la tua mini casa da giardino."
         : "Apple Cabin: prefabricated modular mini house with rounded design. Discover prices and customizations for your garden mini home.",
+      images: [
+        {
+          url: "/og-image.webp",
+          width: 1200,
+          height: 630,
+          alt: "Doctor Haus",
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
@@ -51,6 +58,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: locale === "it"
         ? "Apple Cabin: mini casa modulare prefabbricata di design. Richiedi un preventivo gratuito."
         : "Apple Cabin: designer prefabricated modular mini house. Request a free quote.",
+      images: ["/og-image.webp"],
     },
     robots: {
       index: true,
@@ -60,6 +68,56 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       google: "[INSERIRE CODICE VERIFICA GOOGLE SEARCH CONSOLE]",
     },
   };
+}
+
+function StructuredData({ locale }: { locale: string }) {
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Doctor Haus",
+    alternateName: "Montaggi Srl",
+    url: "https://doctor-haus.com",
+    logo: "https://doctor-haus.com/doctorhauslogo.webp",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Via Mario Giuntini 95",
+      addressLocality: "Cascina",
+      addressRegion: "PI",
+      postalCode: "56121",
+      addressCountry: "IT",
+    },
+    vatID: "02293340507",
+    email: "info@doctor-haus.com",
+    telephone: "+39-370-164-1622",
+  };
+
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: "Apple Cabin",
+    description: locale === "it"
+      ? "Mini casa modulare prefabbricata di 12,5 m² dal design arrotondato con vetrate a tutta altezza"
+      : "Prefabricated modular mini house of 12.5 m² with rounded design and full-height windows",
+    brand: {
+      "@type": "Brand",
+      name: "Doctor Haus",
+    },
+    offers: {
+      "@type": "Offer",
+      availability: "https://schema.org/InStock",
+      priceCurrency: "EUR",
+      price: "15000",
+    },
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify([organizationSchema, productSchema]),
+      }}
+    />
+  );
 }
 
 export default async function LocaleLayout({
@@ -82,8 +140,15 @@ export default async function LocaleLayout({
     <NextIntlClientProvider messages={messages}>
       <ConvexClientProvider>
         <AnalyticsTracker locale={locale} />
+        <StructuredData locale={locale} />
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:text-green-700 focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg focus:outline-2 focus:outline-green-500"
+        >
+          {locale === "it" ? "Vai al contenuto principale" : "Skip to main content"}
+        </a>
         <Header />
-        <main className="flex-1">{children}</main>
+        <main id="main-content" className="flex-1">{children}</main>
         <Footer />
       </ConvexClientProvider>
     </NextIntlClientProvider>

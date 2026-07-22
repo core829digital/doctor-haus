@@ -14,7 +14,7 @@ export default async function NoteLegaliPage({ params }: { params: Promise<{ loc
   const content = locale === "it" ? {
     title: "Note Legali",
     sections: [
-      { title: "Identificazione del Titolare", content: "Montaggi Srl\nSede legale: Via Mario Giuntini 95, 56121 Cascina (PI)\nPartita IVA: 02293340507\nCodice Fiscale: 02293340507\nREA: [da verificare]\nPEC: montaggisrl@pec.it\nEmail: info@doctor-haus.com" },
+      { title: "Identificazione del Titolare", content: "Montaggi Srl\nSede legale: Via Mario Giuntini 95, 56121 Cascina (PI)\nPartita IVA: 02293340507\nCodice Fiscale: 02293340507\nREA: 196218\nPEC: montaggisrl@pec.it\nEmail: info@doctor-haus.com" },
       { title: "Proprietà intellettuale", content: "Tutti i contenuti del sito (testi, immagini, loghi, marchi, design) sono di proprietà esclusiva di Doctor Haus e sono protetti dalle norme sul diritto d'autore e proprietà industriale." },
       { title: "Responsabilità", content: "Doctor Haus non è responsabile per eventuali danni derivanti dall'utilizzo del sito o dall'affidamento sulle informazioni in esso contenute. Le informazioni sono fornite a scopo informativo e possono essere soggette a modifiche senza preavviso." },
       { title: "Privacy", content: "Il trattamento dei dati personali è effettuato in conformità con il GDPR 2016/679 e la normativa nazionale applicabile. Per maggiori informazioni consulta la nostra Privacy Policy." },
@@ -24,7 +24,7 @@ export default async function NoteLegaliPage({ params }: { params: Promise<{ loc
   } : {
     title: "Legal Notes",
     sections: [
-      { title: "Company Information", content: "Montaggi Srl\nRegistered office: Via Mario Giuntini 95, 56121 Cascina (PI), Italy\nVAT Number: 02293340507\nTax Code: 02293340507\nREA: [to be verified]\nPEC: montaggisrl@pec.it\nEmail: info@doctor-haus.com" },
+      { title: "Company Information", content: "Montaggi Srl\nRegistered office: Via Mario Giuntini 95, 56121 Cascina (PI), Italy\nVAT Number: 02293340507\nTax Code: 02293340507\nREA: 196218\nPEC: montaggisrl@pec.it\nEmail: info@doctor-haus.com" },
       { title: "Intellectual Property", content: "All content on this site (texts, images, logos, trademarks, designs) is the exclusive property of Doctor Haus and is protected by copyright and industrial property laws." },
       { title: "Liability", content: "Doctor Haus is not liable for any damages arising from the use of the site or reliance on the information contained therein. Information is provided for informational purposes and may be subject to change without notice." },
       { title: "Privacy", content: "The processing of personal data is carried out in accordance with GDPR 2016/679 and applicable national legislation. For more information see our Privacy Policy." },

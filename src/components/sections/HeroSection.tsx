@@ -17,6 +17,8 @@ export default function HeroSection() {
         <img
           src="/hero-main.webp"
           alt="Doctor Haus Apple Cabin"
+          width={1376}
+          height={768}
           className="w-full h-full object-cover pointer-events-none select-none"
           style={{ objectPosition: "50% 50%" }}
           draggable={false}
