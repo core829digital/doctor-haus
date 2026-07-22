@@ -19,7 +19,8 @@ export default function ProdottoTeaserSection() {
           <img
             src="/images/apple-cabin/webp/21.webp"
             alt="Apple Cabin"
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none select-none"
+            draggable={false}
           />
         </div>
         <div>

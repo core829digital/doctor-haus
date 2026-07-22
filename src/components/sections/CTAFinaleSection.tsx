@@ -18,7 +18,7 @@ export default function CTAFinaleSection() {
           transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
           className="flex items-center justify-center gap-3 mb-6"
         >
-          <img src="/doctorhauslogo.png" alt="Doctor Haus" className="w-10 h-10" width={1350} height={1350} />
+          <img src="/doctorhauslogo.webp" alt="Doctor Haus" className="w-10 h-10 pointer-events-none select-none" width={1350} height={1350} draggable={false} />
           <span className="text-xl font-display font-bold text-text">Doctor Haus</span>
         </motion.div>
         <motion.h2

@@ -16,12 +16,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   
   return {
     title: {
-      default: "Doctor Haus — Apple Cabin",
+      default: locale === "it"
+        ? "Doctor Haus — Mini Casa Modulare Prefabbricata e Apple Cabin"
+        : "Doctor Haus — Prefabricated Modular Mini House & Apple Cabin",
       template: "%s | Doctor Haus",
     },
     description: locale === "it"
-      ? "Apple Cabin: mini casa modulare prefabbricata dal design arrotondato, vetrate a tutta altezza e materiali sostenibili."
-      : "Apple Cabin: prefabricated modular mini house with rounded design, full-height windows and sustainable materials.",
+      ? "Apple Cabin: mini casa modulare prefabbricata dal design arrotondato con vetrate a tutta altezza. Scopri prezzi, misure e personalizzazioni per la tua mini casa da giardino."
+      : "Apple Cabin: prefabricated modular mini house with rounded design and full-height windows. Discover prices, sizes and customizations for your garden mini home.",
     metadataBase: new URL("https://doctor-haus.com"),
     alternates: {
       canonical: "/",
@@ -34,17 +36,21 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       type: "website",
       locale: locale === "it" ? "it_IT" : "en_US",
       siteName: "Doctor Haus",
-      title: "Doctor Haus — Apple Cabin",
+      title: locale === "it"
+        ? "Doctor Haus — Mini Casa Modulare Prefabbricata e Apple Cabin"
+        : "Doctor Haus — Prefabricated Modular Mini House & Apple Cabin",
       description: locale === "it"
-        ? "Apple Cabin: mini casa modulare prefabbricata dal design arrotondato."
-        : "Apple Cabin: prefabricated modular mini house with rounded design.",
+        ? "Apple Cabin: mini casa modulare prefabbricata dal design arrotondato. Scopri prezzi e personalizzazioni per la tua mini casa da giardino."
+        : "Apple Cabin: prefabricated modular mini house with rounded design. Discover prices and customizations for your garden mini home.",
     },
     twitter: {
       card: "summary_large_image",
-      title: "Doctor Haus — Apple Cabin",
+      title: locale === "it"
+        ? "Doctor Haus — Mini Casa Modulare Prefabbricata"
+        : "Doctor Haus — Prefabricated Modular Mini House",
       description: locale === "it"
-        ? "Apple Cabin: mini casa modulare prefabbricata."
-        : "Apple Cabin: prefabricated modular mini house.",
+        ? "Apple Cabin: mini casa modulare prefabbricata di design. Richiedi un preventivo gratuito."
+        : "Apple Cabin: designer prefabricated modular mini house. Request a free quote.",
     },
     robots: {
       index: true,

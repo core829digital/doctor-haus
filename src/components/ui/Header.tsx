@@ -79,13 +79,14 @@ export default function Header() {
         }`}>
           <Link href="/" className="flex items-center shrink-0">
             <img
-              src="/doctor%20haus%20edited%20trsp.png"
+              src="/doctor-haus-edited-trsp.webp"
               alt="Doctor Haus"
               className={`transition-all duration-500 ${
                 scrolled ? "h-20" : "h-32"
-              } w-auto`}
+              } w-auto pointer-events-none select-none`}
               width={2000}
               height={2000}
+              draggable={false}
             />
           </Link>
 

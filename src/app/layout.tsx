@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Nunito, Inter } from "next/font/google";
 import "@/app/globals.css";
+import ImageProtection from "@/components/ImageProtection";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -18,8 +19,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://doctor-haus.com"),
-  title: "Doctor Haus — Apple Cabin",
-  description: "Apple Cabin: mini casa modulare prefabbricata dal design arrotondato.",
+  title: "Doctor Haus — Mini Casa Modulare Prefabbricata e Apple Cabin",
+  description: "Apple Cabin: mini casa modulare prefabbricata dal design arrotondato. Scopri prezzi, misure e personalizzazioni per la tua mini casa da giardino.",
   icons: {
     icon: [
       { url: "/favicon-16.png", sizes: "16x16", type: "image/png" },
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="it" className={`${nunito.variable} ${inter.variable}`} style={{ colorScheme: "light" }}>
 
       <body className="min-h-screen flex flex-col bg-background text-text antialiased">
+        <ImageProtection />
         {children}
       </body>
     </html>

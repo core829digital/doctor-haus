@@ -5,12 +5,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const title =
     locale === "it"
-      ? "Altre Soluzioni Modulari | Box Container, Cabina Spaziale, Modulo Abitativo — Doctor Haus"
-      : "Other Modular Solutions | Container Box, Space Cabin, Living Module — Doctor Haus";
+      ? "Box Espandibili, Container e Moduli Abitativi | Doctor Haus"
+      : "Expandable Boxes, Containers & Living Modules | Doctor Haus";
   const description =
     locale === "it"
-      ? "Oltre alla Apple Cabin, Doctor Haus seleziona, fornisce e installa box espandibili, box container, moduli abitativi e cabine spaziali per cantiere, ufficio e ricettività."
-      : "Beyond the Apple Cabin, Doctor Haus selects, supplies and installs expandable boxes, container boxes, living modules and space cabins for construction sites, offices and hospitality.";
+      ? "Box espandibili 20FT e 40FT, box container per cantiere, moduli abitativi due piani e cabine spaziali. Soluzioni modulari per ufficio prefabbricato, ricettività e abitazione. Richiedi un preventivo."
+      : "20FT and 40FT expandable boxes, container boxes for construction sites, two-story living modules and space cabins. Modular solutions for prefab office, hospitality and housing. Request a quote.";
   return { title, description };
 }
 

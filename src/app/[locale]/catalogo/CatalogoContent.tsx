@@ -137,8 +137,9 @@ export default function CatalogoContent({ locale }: { locale: string }) {
                   <img
                     src={photo.src}
                     alt={`${isIt ? cat.label.it : cat.label.en} ${photo.id}`}
-                    className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none select-none"
                     loading="lazy"
+                    draggable={false}
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
                     <Eye size={24} className="text-white/0 group-hover:text-white/80 transition-all duration-300" />
@@ -159,7 +160,7 @@ export default function CatalogoContent({ locale }: { locale: string }) {
           className="max-w-3xl mx-auto text-center bg-gradient-to-b from-green-50/50 to-transparent rounded-3xl p-12 lg:p-16 border border-line"
         >
           <div className="flex items-center justify-center gap-3 mb-6">
-            <img src="/doctorhauslogo.png" alt="Doctor Haus" className="w-10 h-10" width={1350} height={1350} />
+            <img src="/doctorhauslogo.webp" alt="Doctor Haus" className="w-10 h-10 pointer-events-none select-none" width={1350} height={1350} draggable={false} />
             <span className="text-xl font-display font-bold text-text">Doctor Haus</span>
           </div>
           <h2 className="text-2xl lg:text-3xl font-display font-semibold text-text mb-4">
@@ -231,8 +232,9 @@ export default function CatalogoContent({ locale }: { locale: string }) {
             transition={{ duration: 0.2 }}
             src={allPhotos[lightboxIndex]?.src ?? ""}
             alt={`Photo ${lightboxIndex + 1}`}
-            className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg"
+            className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg pointer-events-none select-none"
             onClick={(e) => e.stopPropagation()}
+            draggable={false}
           />
 
           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/60 text-sm bg-black/40 px-4 py-2 rounded-full">

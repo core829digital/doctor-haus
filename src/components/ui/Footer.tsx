@@ -34,11 +34,12 @@ export default function Footer() {
           <div>
             <Link href="/" className="flex items-center gap-4 group">
               <img
-                src="/doctorhauslogo.png"
+                src="/doctorhauslogo.webp"
                 alt="Doctor Haus"
-                className="w-52 h-52"
+                className="w-52 h-52 pointer-events-none select-none"
                 width={1350}
                 height={1350}
+                draggable={false}
               />
               <span className="text-4xl font-display font-bold text-text">
                 Doctor Haus

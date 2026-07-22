@@ -666,8 +666,9 @@ export default function AltreSoluzioniContent({ locale }: { locale: string }) {
                   <img
                     src={`/images/expandable/webp/${id}.webp`}
                     alt={`Expandable box ${id}`}
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105 pointer-events-none select-none"
                     loading="lazy"
+                    draggable={false}
                   />
                 </motion.div>
               ))}
@@ -798,7 +799,7 @@ export default function AltreSoluzioniContent({ locale }: { locale: string }) {
           className="max-w-3xl mx-auto text-center bg-gradient-to-b from-green-50/50 to-transparent rounded-3xl p-12 lg:p-16 border border-line"
         >
           <div className="flex items-center justify-center gap-3 mb-6">
-            <img src="/doctorhauslogo.png" alt="Doctor Haus" className="w-10 h-10" width={1350} height={1350} />
+            <img src="/doctorhauslogo.webp" alt="Doctor Haus" className="w-10 h-10 pointer-events-none select-none" width={1350} height={1350} draggable={false} />
             <span className="text-xl font-display font-bold text-text">Doctor Haus</span>
           </div>
           <h2 className="text-2xl lg:text-3xl font-display font-semibold text-text mb-4">

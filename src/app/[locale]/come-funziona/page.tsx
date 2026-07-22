@@ -5,11 +5,11 @@ import ComeFunzionaContent from "./ComeFunzionaContent";
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   return {
-    title: locale === "it" ? "Come Funziona | Doctor Haus" : "How It Works | Doctor Haus",
+    title: locale === "it" ? "Acquisto e Installazione Mini Casa Modulare | Doctor Haus" : "Modular Mini House Purchase & Installation | Doctor Haus",
     description:
       locale === "it"
-        ? "Scopri il processo di acquisto e installazione della Apple Cabin in 4 semplici passi."
-        : "Discover the Apple Cabin purchase and installation process in 4 simple steps.",
+        ? "Scopri come acquistare e installare una Apple Cabin: preventivo gratuito, produzione, trasporto e montaggio. Tempi di consegna e permessi necessari per la tua mini casa modulare da giardino."
+        : "Discover how to buy and install an Apple Cabin: free quote, production, transport and assembly. Delivery times and permits needed for your modular garden mini home.",
   };
 }
 
