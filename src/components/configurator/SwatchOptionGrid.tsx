@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import type { Id } from "convex/_generated/dataModel";
@@ -17,6 +18,29 @@ type Props = {
   onSelect: (id: Id<"optionChoices">) => void;
 };
 
+function swatchColor(label: string): string {
+  const lower = label.toLowerCase();
+  if (/legno|wood|noce|rovere|teak|wenge/.test(lower)) return "bg-amber-700";
+  if (/bianco|white|avorio|ivory/.test(lower)) return "bg-stone-100";
+  if (/nero|black|scuro|dark/.test(lower)) return "bg-neutral-900";
+  if (/grigio|gray|grey|stone/.test(lower)) return "bg-stone-400";
+  if (/beige/.test(lower)) return "bg-stone-200";
+  if (/mattone|brick|rosso|red|terracotta/.test(lower)) return "bg-red-600";
+  if (/pietra|stone/.test(lower)) return "bg-stone-500";
+  if (/metallo|metal|alluminio|aluminum|acciaio|steel/.test(lower)) return "bg-slate-400";
+  if (/verde|green/.test(lower)) return "bg-emerald-600";
+  if (/blu|blue/.test(lower)) return "bg-blue-600";
+  if (/crema|cream/.test(lower)) return "bg-yellow-50";
+  if (/antracite|anthracite/.test(lower)) return "bg-zinc-800";
+  return "bg-amber-600";
+}
+
+function borderStyle(label: string): string {
+  const lower = label.toLowerCase();
+  if (/bianco|white|avorio|ivory|crema|cream|beige/.test(lower)) return "border-stone-300";
+  return "";
+}
+
 export default function SwatchOptionGrid({ title, choices, selectedId, onSelect }: Props) {
   return (
     <div>
@@ -24,6 +48,8 @@ export default function SwatchOptionGrid({ title, choices, selectedId, onSelect 
       <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3">
         {choices.map((choice, i) => {
           const isSelected = choice._id === selectedId;
+          const color = swatchColor(choice.label);
+          const border = borderStyle(choice.label);
           return (
             <motion.button
               key={choice._id}
@@ -37,12 +63,8 @@ export default function SwatchOptionGrid({ title, choices, selectedId, onSelect 
                   : "border-line bg-background hover:border-text-muted"
               }`}
             >
-              <div className="aspect-square rounded-lg bg-gradient-to-br from-stone-100 to-stone-200 mb-2 flex items-center justify-center">
-                <span className="text-[10px] text-stone-400 leading-tight text-center px-1">
-                  {(choice.label.split(" — ").pop() ?? "").length > 12
-                    ? (choice.label.split(" — ").pop() ?? "").substring(0, 10) + "…"
-                    : choice.label.split(" — ").pop() ?? ""}
-                </span>
+              <div className={`aspect-square rounded-lg mb-2 ${color} ${border} border flex items-center justify-center`}>
+                {isSelected && <Check size={18} className="text-white drop-shadow" />}
               </div>
               <span className="text-[11px] font-medium text-text leading-tight block">
                 {choice.label}

@@ -171,7 +171,7 @@ export default function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-background flex flex-col items-center justify-center gap-6 lg:hidden"
+            className="fixed inset-0 z-40 bg-white flex flex-col items-center justify-center gap-6 lg:hidden"
           >
             {navItems.map((item, i) => (
               <motion.div

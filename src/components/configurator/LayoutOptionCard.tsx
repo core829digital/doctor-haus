@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-
 import type { Id } from "convex/_generated/dataModel";
 
 type Layout = {
@@ -34,8 +33,14 @@ export default function LayoutOptionCard({ layouts, selectedId, onSelect }: Prop
                 : "border-line bg-background hover:border-text-muted"
             }`}
           >
-            <div className="aspect-[4/3] rounded-lg bg-gradient-to-br from-stone-100 to-stone-200 mb-3 flex items-center justify-center">
-              <span className="text-xs text-stone-400">Layout</span>
+            <div className="aspect-[4/3] rounded-lg overflow-hidden bg-stone-100 mb-3">
+              <img
+                src={`/images/apple-cabin/webp/${(i % 53) + 1}.webp`}
+                alt={layout.name}
+                className="w-full h-full object-cover pointer-events-none select-none"
+                loading="lazy"
+                draggable={false}
+              />
             </div>
             <p className="text-sm font-medium text-text">{layout.name}</p>
             {layout.bedrooms !== undefined && (
