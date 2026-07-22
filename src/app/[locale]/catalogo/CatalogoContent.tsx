@@ -85,69 +85,30 @@ export default function CatalogoContent({ locale }: { locale: string }) {
 
       <SectionWrapper alt>
         <SectionTitle
-          title={isIt ? "Cataloghi disponibili" : "Available catalogs"}
-          subtitle={isIt ? "Scarica i cataloghi in formato PDF" : "Download catalogs in PDF format"}
+          title={isIt ? "Catalogo scaricabile" : "Downloadable catalog"}
+          subtitle={isIt ? "Scarica il catalogo completo in formato PDF" : "Download the complete catalog in PDF format"}
         />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-          {[
-            {
-              title: isIt ? "Apple Cabin" : "Apple Cabin",
-              desc: isIt ? "Catalogo completo della mini casa modulare" : "Complete modular mini house catalog",
-              gradient: "from-green-400 to-emerald-600",
-              icon: "AC",
-              href: "#apple-cabin",
-            },
-            {
-              title: isIt ? "Box Espandibili" : "Expandable Boxes",
-              desc: isIt ? "Box espandibili 20FT e 40FT" : "20FT and 40FT expandable boxes",
-              gradient: "from-blue-400 to-indigo-600",
-              icon: "BE",
-              href: "#expandable",
-            },
-            {
-              title: isIt ? "Catalogo PDF" : "PDF Catalog",
-              desc: isIt ? "Scarica il catalogo completo Doctor Haus" : "Download the complete Doctor Haus catalog",
-              gradient: "from-orange-400 to-amber-600",
-              icon: "PDF",
-              href: "/catalogs/DoctorHaus2.pdf",
-              download: true,
-            },
-            {
-              title: isIt ? "Richiedi catalogo" : "Request catalog",
-              desc: isIt ? "Catalogo personalizzato per il tuo progetto" : "Personalized catalog for your project",
-              gradient: "from-stone-400 to-stone-600",
-              icon: "PDF",
-              href: "/contatti",
-            },
-          ].map((cat, i) => (
-            <motion.a
-              key={i}
-              href={cat.href}
-              {...("download" in cat && cat.download ? { download: "DoctorHaus-Catalogo.pdf" } : {})}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group relative overflow-hidden rounded-2xl bg-gradient-to-br aspect-[4/3] flex flex-col items-center justify-center text-white p-6 cursor-pointer hover:scale-[1.02] transition-all duration-300"
-              style={{ backgroundImage: `linear-gradient(135deg, var(--tw-gradient-stops))` }}
-            >
-              <div className={`absolute inset-0 bg-gradient-to-br ${cat.gradient} opacity-90`} />
-              <div className="relative z-10 text-center">
-                <div className="text-2xl font-bold mb-2">{cat.icon}</div>
-                <h3 className="text-base font-semibold">{cat.title}</h3>
-                <p className="text-xs text-white/70 mt-1">{cat.desc}</p>
-              </div>
-              <div className="relative z-10 mt-4 flex items-center gap-1.5 text-xs font-medium text-white/80 group-hover:text-white transition-colors">
-                {"download" in cat && cat.download ? (
-                  <><Download size={12} /> {isIt ? "Scarica PDF" : "Download PDF"}</>
-                ) : cat.href.startsWith("http") || cat.href.startsWith("/contatti") ? (
-                  <><ArrowRight size={12} /> {isIt ? "Vai" : "Go"}</>
-                ) : (
-                  <><Download size={12} /> {isIt ? "Sfoglia" : "Browse"}</>
-                )}
-              </div>
-            </motion.a>
-          ))}
+        <div className="max-w-sm mx-auto">
+          <motion.a
+            href="/catalogs/DoctorHaus2.pdf"
+            download="DoctorHaus-Catalogo.pdf"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="group relative overflow-hidden rounded-2xl bg-gradient-to-br aspect-[4/3] flex flex-col items-center justify-center text-white p-6 cursor-pointer hover:scale-[1.02] transition-all duration-300"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-orange-400 to-amber-600 opacity-90" />
+            <div className="relative z-10 text-center">
+              <div className="text-3xl font-bold mb-3">PDF</div>
+              <h3 className="text-lg font-semibold">{isIt ? "Catalogo Doctor Haus" : "Doctor Haus Catalog"}</h3>
+              <p className="text-sm text-white/70 mt-2">{isIt ? "Catalogo completo della gamma" : "Complete product catalog"}</p>
+            </div>
+            <div className="relative z-10 mt-4 flex items-center gap-2 text-sm font-medium text-white/80 group-hover:text-white transition-colors">
+              <Download size={16} />
+              {isIt ? "Scarica PDF" : "Download PDF"}
+            </div>
+          </motion.a>
         </div>
       </SectionWrapper>
 
