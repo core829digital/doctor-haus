@@ -9,13 +9,13 @@ import { useAnalytics } from "@/lib/use-analytics";
 
 const navItems = [
   { href: "/" as const, labelKey: "home" },
-  { href: "/chi-siamo" as const, labelKey: "chiSiamo" },
-  { href: "/come-funziona" as const, labelKey: "comeFunziona" },
   { href: "/prodotto" as const, labelKey: "prodotto" },
-  { href: "/contatti" as const, labelKey: "contatti" },
-  { href: "/configuratore" as const, labelKey: "configuratore" },
   { href: "/altre-soluzioni" as const, labelKey: "altreSoluzioni" },
   { href: "/catalogo" as const, labelKey: "catalogo" },
+  { href: "/come-funziona" as const, labelKey: "comeFunziona" },
+  { href: "/chi-siamo" as const, labelKey: "chiSiamo" },
+  { href: "/contatti" as const, labelKey: "contatti" },
+  { href: "/configuratore" as const, labelKey: "configuratore" },
 ];
 
 export default function Header() {
