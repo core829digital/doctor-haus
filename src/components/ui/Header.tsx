@@ -79,13 +79,13 @@ export default function Header() {
         }`}>
           <Link href="/" className="flex items-center shrink-0">
             <img
-              src="/logo%20doctor%20haus%201.png"
+              src="/doctor%20haus%20edited%20trsp.png"
               alt="Doctor Haus"
               className={`transition-all duration-500 ${
                 scrolled ? "h-8" : "h-11"
               } w-auto`}
-              width={2560}
-              height={1439}
+              width={2000}
+              height={2000}
             />
           </Link>
 
