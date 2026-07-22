@@ -17,8 +17,22 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://doctor-haus.com"),
   title: "Doctor Haus — Apple Cabin",
   description: "Apple Cabin: mini casa modulare prefabbricata dal design arrotondato.",
+  icons: {
+    icon: [
+      { url: "/favicon-16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-48.png", sizes: "48x48", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
+  openGraph: {
+    images: [{ url: "/og-image.webp", width: 1200, height: 630 }],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -32,8 +32,17 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8 py-16 lg:py-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
           <div>
-            <Link href="/" className="text-lg font-display font-semibold text-text">
-              Doctor Haus
+            <Link href="/" className="flex items-center gap-3 group">
+              <img
+                src="/logo-32.webp"
+                alt="Doctor Haus"
+                className="w-8 h-8"
+                width={32}
+                height={32}
+              />
+              <span className="text-lg font-display font-semibold text-text">
+                Doctor Haus
+              </span>
             </Link>
             <p className="mt-4 text-sm text-text-muted leading-relaxed max-w-xs">
               {t("description")}
