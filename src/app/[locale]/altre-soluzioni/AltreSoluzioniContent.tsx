@@ -653,6 +653,27 @@ export default function AltreSoluzioniContent({ locale }: { locale: string }) {
               {section.intro}
             </motion.p>
           )}
+          {sIdx === 0 && (
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 max-w-5xl mb-12">
+              {["1", "2", "7", "25"].map((id, i) => (
+                <motion.div
+                  key={id}
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.08 }}
+                  className="overflow-hidden rounded-xl bg-background-alt border border-line aspect-[4/3]"
+                >
+                  <img
+                    src={`/images/expandable/webp/${id}.webp`}
+                    alt={`Expandable box ${id}`}
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                    loading="lazy"
+                  />
+                </motion.div>
+              ))}
+            </div>
+          )}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 max-w-5xl">
             {section.products.map((product, pIdx) => (
               <motion.div

@@ -15,6 +15,7 @@ const navItems = [
   { href: "/contatti" as const, labelKey: "contatti" },
   { href: "/configuratore" as const, labelKey: "configuratore" },
   { href: "/altre-soluzioni" as const, labelKey: "altreSoluzioni" },
+  { href: "/catalogo" as const, labelKey: "catalogo" },
 ];
 
 export default function Header() {

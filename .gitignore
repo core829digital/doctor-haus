@@ -36,6 +36,14 @@ yarn-error.log*
 # vercel
 .vercel
 
+# source photo files (keep only optimized WebP)
+/public/Apple cabin photos/
+/public/Expandable photos/
+/public/images/apple-cabin/*.png
+/public/images/apple-cabin/*.jpg
+/public/images/expandable/*.png
+/public/images/expandable/*.jpg
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

@@ -7,11 +7,19 @@ import { ArrowRight, Ruler, Package, Wrench, Layout as LayoutIcon, Sparkles, Che
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import SectionTitle from "@/components/ui/SectionTitle";
 
-const galleryGradients = [
-  "from-green-400 to-emerald-600",
-  "from-orange-400 to-amber-600",
-  "from-blue-400 to-indigo-600",
-  "from-stone-400 to-stone-600",
+const galleryPhotos = [
+  "/images/apple-cabin/webp/1.webp",
+  "/images/apple-cabin/webp/2.webp",
+  "/images/apple-cabin/webp/21.webp",
+  "/images/apple-cabin/webp/22.webp",
+  "/images/apple-cabin/webp/15.webp",
+  "/images/apple-cabin/webp/16.webp",
+  "/images/apple-cabin/webp/23.webp",
+  "/images/apple-cabin/webp/24.webp",
+  "/images/apple-cabin/webp/25.webp",
+  "/images/apple-cabin/webp/29.webp",
+  "/images/apple-cabin/webp/40.webp",
+  "/images/apple-cabin/webp/45.webp",
 ];
 
 export default function ProdottoContent({ locale }: { locale: string }) {
@@ -125,25 +133,25 @@ export default function ProdottoContent({ locale }: { locale: string }) {
 
       <SectionWrapper alt>
         <SectionTitle title={galleryTitle} />
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {galleryGradients.map((gradient, i) => (
+        <div className="columns-1 sm:columns-2 gap-4 max-w-5xl mx-auto space-y-4">
+          {galleryPhotos.map((src, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`aspect-[4/3] rounded-2xl bg-gradient-to-br ${gradient} flex items-center justify-center`}
+              transition={{ duration: 0.5, delay: Math.min(i * 0.05, 0.3) }}
+              className="break-inside-avoid overflow-hidden rounded-2xl bg-background-alt border border-line group cursor-pointer"
             >
-              <span className="text-white/60 text-sm font-medium">
-                {locale === "it" ? `Immagine ${i + 1}` : `Image ${i + 1}`}
-              </span>
+              <img
+                src={src}
+                alt={`Apple Cabin ${i + 1}`}
+                className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
             </motion.div>
           ))}
         </div>
-        <p className="text-center text-xs text-text-muted mt-6">
-          {locale === "it" ? "Galleria fotografica in arrivo" : "Photo gallery coming soon"}
-        </p>
       </SectionWrapper>
 
       <SectionWrapper>
