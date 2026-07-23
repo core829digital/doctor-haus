@@ -65,7 +65,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       follow: true,
     },
     verification: {
-      google: "[INSERIRE CODICE VERIFICA GOOGLE SEARCH CONSOLE]",
+      google: "google7bf4ad3cb7b6d1a5",
     },
   };
 }
