@@ -76,6 +76,44 @@ export default function Footer() {
 
           <div>
             <h3 className="text-sm font-medium text-text uppercase tracking-widest mb-4">
+              {t("seguici")}
+            </h3>
+            <ul className="space-y-3">
+              <li>
+                <a
+                  href="https://www.instagram.com/doctorhaus_official/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-text-muted hover:text-text transition-colors duration-200"
+                >
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/company/doctor-haus"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-text-muted hover:text-text transition-colors duration-200"
+                >
+                  LinkedIn
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.facebook.com/doctorhaus"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-text-muted hover:text-text transition-colors duration-200"
+                >
+                  Facebook
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-sm font-medium text-text uppercase tracking-widest mb-4">
               Legal
             </h3>
             <ul className="space-y-3">

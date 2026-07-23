@@ -136,7 +136,7 @@ export default function CatalogoContent({ locale }: { locale: string }) {
                 <div className="relative">
                   <img
                     src={photo.src}
-                    alt={`${isIt ? cat.label.it : cat.label.en} ${photo.id}`}
+                    alt={isIt ? `Foto ${cat.label.it} ${photo.id} — Doctor Haus catalogo modulari prefabbricati` : `${cat.label.en} photo ${photo.id} — Doctor Haus prefabricated modular catalog`}
                     className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none select-none"
                     loading="lazy"
                     draggable={false}
@@ -231,7 +231,7 @@ export default function CatalogoContent({ locale }: { locale: string }) {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.2 }}
             src={allPhotos[lightboxIndex]?.src ?? ""}
-            alt={`Photo ${lightboxIndex + 1}`}
+            alt={isIt ? `Doctor Haus catalogo foto ${lightboxIndex + 1}` : `Doctor Haus catalog photo ${lightboxIndex + 1}`}
             className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg pointer-events-none select-none"
             onClick={(e) => e.stopPropagation()}
             draggable={false}

@@ -27,7 +27,8 @@
     "cookiePreferences": "Cookie Preferences",
     "trattamentoDati": "Data Processing",
     "accedi": "Login",
-    "tuttiDiritti": "© {year} Doctor Haus. All rights reserved."
+    "tuttiDiritti": "© {year} Doctor Haus. All rights reserved.",
+    "seguici": "Follow us"
   },
   "language": {
     "switchTo": "Passa all'italiano",

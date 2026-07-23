@@ -1,4 +1,34 @@
+# Allow all search engines
 User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /it/admin/
+Disallow: /en/admin/
+Disallow: /accedi
+Disallow: /it/accedi
+Disallow: /en/accedi
+Disallow: /registrati
+Disallow: /it/registrati
+Disallow: /en/registrati
+Disallow: /dashboard
+Disallow: /it/dashboard
+Disallow: /en/dashboard
+Disallow: /api/
+
+# AI crawlers - allow indexing
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: CCBot
 Allow: /
 
 Sitemap: https://doctor-haus.com/sitemap.xml

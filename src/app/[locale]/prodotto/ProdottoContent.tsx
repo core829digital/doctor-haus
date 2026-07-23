@@ -145,7 +145,7 @@ export default function ProdottoContent({ locale }: { locale: string }) {
             >
               <img
                 src={src}
-                alt={`Apple Cabin ${i + 1}`}
+                alt={locale === "it" ? `Apple Cabin foto ${i + 1} — mini casa modulare prefabbricata Doctor Haus` : `Apple Cabin photo ${i + 1} — prefabricated modular mini home Doctor Haus`}
                 className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none select-none"
                 loading="lazy"
                 draggable={false}

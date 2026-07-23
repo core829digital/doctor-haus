@@ -64,10 +64,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
         alternates[altLocale === "it" ? "it" : "en"] = altPath;
       }
 
+      const isContent = path !== "" && !path.startsWith("legal/") && path !== "cookie-preferences" && path !== "accedi" && path !== "registrati" && path !== "dashboard";
+
       entries.push({
         url,
         lastModified: new Date(),
-        changeFrequency: path === "" ? "monthly" : "monthly",
+        changeFrequency: isContent ? "weekly" as const : "monthly" as const,
         priority,
         alternates: {
           languages: alternates,

@@ -665,7 +665,7 @@ export default function AltreSoluzioniContent({ locale }: { locale: string }) {
                 >
                   <img
                     src={`/images/expandable/webp/${id}.webp`}
-                    alt={`Expandable box ${id}`}
+                    alt={`Box espandibile Doctor Haus ${id} — modulo prefabbricato espandibile`}
                     className="w-full h-full object-cover transition-transform duration-500 hover:scale-105 pointer-events-none select-none"
                     loading="lazy"
                     draggable={false}
