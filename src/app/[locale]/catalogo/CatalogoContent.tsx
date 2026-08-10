@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { ArrowRight, Download, Eye, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
@@ -38,7 +37,6 @@ const categories = [
 export default function CatalogoContent({ locale }: { locale: string }) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [allPhotos, setAllPhotos] = useState<{ src: string; id: string }[]>([]);
 
   const openLightbox = (photos: { src: string; id: string }[], index: number) => {

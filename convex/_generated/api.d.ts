@@ -15,6 +15,7 @@ import type * as crons from "../crons.js";
 import type * as customerAuth from "../customerAuth.js";
 import type * as email from "../email.js";
 import type * as internal_ from "../internal.js";
+import type * as lib_requireAdmin from "../lib/requireAdmin.js";
 import type * as media from "../media.js";
 import type * as notifications from "../notifications.js";
 import type * as optionCategories from "../optionCategories.js";
@@ -39,6 +40,7 @@ declare const fullApi: ApiFromModules<{
   customerAuth: typeof customerAuth;
   email: typeof email;
   internal: typeof internal_;
+  "lib/requireAdmin": typeof lib_requireAdmin;
   media: typeof media;
   notifications: typeof notifications;
   optionCategories: typeof optionCategories;

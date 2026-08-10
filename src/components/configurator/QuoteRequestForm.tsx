@@ -29,7 +29,7 @@ type Props = {
 };
 
 export default function QuoteRequestForm({ locale, onSuccess }: Props) {
-  const { selectedProductId, selectedOptions, sessionId } = useConfiguratorStore();
+  const { selectedProductId, selectedOptions } = useConfiguratorStore();
   const createQuote = useMutation(api.quoteRequests.create);
   const { trackClick } = useAnalytics();
   const [error, setError] = useState<string | null>(null);

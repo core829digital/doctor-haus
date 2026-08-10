@@ -3,11 +3,13 @@
 import { useQuery } from "convex/react";
 import { api } from "convex/_generated/api";
 import { useState } from "react";
-import { Search, User, Mail, Calendar, Clock } from "lucide-react";
+import { Search, User } from "lucide-react";
+import { useAdminAuth } from "@/lib/admin/auth";
 
 export default function AdminUsers() {
+  const { token } = useAdminAuth();
   const [search, setSearch] = useState("");
-  const users = useQuery(api.customerAuth.listAll, { limit: 200 });
+  const users = useQuery(api.customerAuth.listAll, token ? { adminToken: token, limit: 200 } : "skip");
 
   const filtered = users
     ?.filter((u) => !search || u.name.toLowerCase().includes(search.toLowerCase()) || u.email.toLowerCase().includes(search.toLowerCase()))

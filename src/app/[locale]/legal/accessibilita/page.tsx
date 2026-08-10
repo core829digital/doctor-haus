@@ -1,9 +1,12 @@
 import { setRequestLocale } from "next-intl/server";
+import { buildAlternates } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   return {
     title: locale === "it" ? "Accessibilità | Doctor Haus" : "Accessibility | Doctor Haus",
+    alternates: buildAlternates(locale, "legal/accessibilita"),
+    robots: { index: false, follow: true },
   };
 }
 

@@ -1,5 +1,6 @@
 import { setRequestLocale } from "next-intl/server";
 import ConfiguratoreClientWrapper from "./ConfiguratoreClientWrapper";
+import { buildAlternates } from "@/lib/seo";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -19,6 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title,
     description,
+    alternates: buildAlternates(locale, "configuratore"),
     robots: { index: false, follow: true },
   };
 }

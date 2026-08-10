@@ -2,7 +2,7 @@
 
 import { useMutation, useQuery } from "convex/react";
 import { api } from "convex/_generated/api";
-import { useEffect, useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo } from "react";
 
 const TOKEN_KEY = "admin_session_token";
 
@@ -20,22 +20,15 @@ export function clearStoredToken() {
 }
 
 export function useAdminAuth() {
-  const [token, setToken] = useState<string | null>(null);
-  const [tokenReady, setTokenReady] = useState(false);
-
-  useEffect(() => {
-    setToken(getStoredToken());
-    setTokenReady(true);
-  }, []);
+  const [token, setToken] = useState<string | null>(() => getStoredToken());
 
   const queryArgs = useMemo(
-    () => (token && tokenReady ? { token } : "skip"),
-    [token, tokenReady],
+    () => (token ? { token } : "skip"),
+    [token],
   );
   const user = useQuery(api.adminAuth.getCurrentUser, queryArgs);
 
-  const queryReady = !token || user !== undefined;
-  const loading = !tokenReady || !queryReady;
+  const loading = !!token && user === undefined;
 
   const loginMutation = useMutation(api.adminAuth.login);
   const logoutMutation = useMutation(api.adminAuth.logout);

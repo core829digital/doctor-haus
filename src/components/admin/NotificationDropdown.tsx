@@ -3,8 +3,9 @@
 import { useState, useRef, useEffect } from "react";
 import { useQuery, useMutation } from "convex/react";
 import { api } from "convex/_generated/api";
-import { Bell, Check, CheckCheck, ExternalLink } from "lucide-react";
+import { Bell, CheckCheck, ExternalLink } from "lucide-react";
 import Link from "next/link";
+import { useAdminAuth } from "@/lib/admin/auth";
 
 const TYPE_ICONS: Record<string, string> = {
   new_lead: "bg-green-500/10 text-green-400",
@@ -21,10 +22,11 @@ const TYPE_LABELS: Record<string, string> = {
 };
 
 export default function NotificationDropdown() {
+  const { token } = useAdminAuth();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  const notifications = useQuery(api.notifications.list, { limit: 10 });
-  const unreadCount = useQuery(api.notifications.getUnreadCount);
+  const notifications = useQuery(api.notifications.list, token ? { adminToken: token, limit: 10 } : "skip");
+  const unreadCount = useQuery(api.notifications.getUnreadCount, token ? { adminToken: token } : "skip");
   const markAllRead = useMutation(api.notifications.markAllRead);
   const markRead = useMutation(api.notifications.markRead);
 
@@ -61,7 +63,7 @@ export default function NotificationDropdown() {
             <h3 className="text-sm font-medium text-white">Notifiche</h3>
             {unread > 0 && (
               <button
-                onClick={async () => { await markAllRead(); }}
+                onClick={async () => { if (token) await markAllRead({ adminToken: token }); }}
                 className="text-xs text-green-400 hover:text-green-300 flex items-center gap-1"
               >
                 <CheckCheck size={12} /> Leggi tutte
@@ -80,7 +82,7 @@ export default function NotificationDropdown() {
                   key={n._id}
                   href={n.link ?? "#"}
                   onClick={() => {
-                    if (!n.read) markRead({ id: n._id });
+                    if (!n.read && token) markRead({ adminToken: token, id: n._id });
                     setOpen(false);
                   }}
                   className={`flex items-start gap-3 px-4 py-3 transition-colors hover:bg-white/[0.03] ${

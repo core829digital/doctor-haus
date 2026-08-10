@@ -1,15 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { useQuery, useMutation } from "convex/react";
+import { useQuery } from "convex/react";
 import { api } from "convex/_generated/api";
 import { useAdminAuth } from "@/lib/admin/auth";
-import { Send, Loader2, Mail, Check, X, AlertCircle, History } from "lucide-react";
+import { Send, Loader2, Mail, Check, AlertCircle, History } from "lucide-react";
 
 export default function AdminEmails() {
   const { token } = useAdminAuth();
-  const leads = useQuery(api.analytics.getLeads, { status: undefined, limit: 50 });
-  const emailLogs = useQuery(api.email.getEmailLogs, { limit: 50 });
+  const leads = useQuery(api.analytics.getLeads, token ? { adminToken: token, status: undefined, limit: 50 } : "skip");
+  const emailLogs = useQuery(api.email.getEmailLogs, token ? { adminToken: token, limit: 50 } : "skip");
   const [selectedLead, setSelectedLead] = useState<string | null>(null);
   const [subject, setSubject] = useState("");
   const [body, setBody] = useState("");

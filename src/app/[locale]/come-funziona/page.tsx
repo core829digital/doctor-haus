@@ -1,6 +1,6 @@
 import { setRequestLocale } from "next-intl/server";
-import { getTranslations } from "next-intl/server";
 import ComeFunzionaContent from "./ComeFunzionaContent";
+import { buildAlternates, buildBreadcrumbList } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -10,11 +10,20 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       locale === "it"
         ? "Scopri come acquistare e installare una Apple Cabin: preventivo gratuito, produzione, trasporto e montaggio. Tempi di consegna e permessi necessari per la tua mini casa modulare da giardino."
         : "Discover how to buy and install an Apple Cabin: free quote, production, transport and assembly. Delivery times and permits needed for your modular garden mini home.",
+    alternates: buildAlternates(locale, "come-funziona"),
   };
 }
 
 export default async function ComeFunzionaPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <ComeFunzionaContent locale={locale} />;
+  const breadcrumb = buildBreadcrumbList(locale, [
+    { name: locale === "it" ? "Come Funziona" : "How It Works", path: "come-funziona" },
+  ]);
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <ComeFunzionaContent locale={locale} />
+    </>
+  );
 }

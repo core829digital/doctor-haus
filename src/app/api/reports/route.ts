@@ -14,7 +14,7 @@ type ReportLead = {
 
 export async function POST(req: NextRequest) {
   try {
-    const { type, periodDays, data, adminToken } = await req.json();
+    const { periodDays, data, adminToken } = await req.json();
 
     if (!adminToken || !(await verifyAdminToken(adminToken))) {
       return NextResponse.json({ error: "Non autorizzato" }, { status: 401 });

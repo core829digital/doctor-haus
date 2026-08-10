@@ -7,6 +7,7 @@ import Footer from "@/components/ui/Footer";
 import StickyQuoteButton from "@/components/ui/StickyQuoteButton";
 import ConvexClientProvider from "@/providers/ConvexClientProvider";
 import AnalyticsTracker from "@/components/AnalyticsTracker";
+import { buildAlternates } from "@/lib/seo";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -26,12 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       ? "Apple Cabin: mini casa modulare prefabbricata dal design arrotondato con vetrate a tutta altezza. Scopri prezzi, misure e personalizzazioni per la tua mini casa da giardino."
       : "Apple Cabin: prefabricated modular mini house with rounded design and full-height windows. Discover prices, sizes and customizations for your garden mini home.",
     metadataBase: new URL("https://doctor-haus.com"),
-    alternates: {
-      languages: {
-        it: "/it",
-        en: "/en",
-      },
-    },
+    alternates: buildAlternates(locale),
     openGraph: {
       type: "website",
       locale: locale === "it" ? "it_IT" : "en_US",

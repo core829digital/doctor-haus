@@ -4,6 +4,7 @@ import { useQuery } from "convex/react";
 import { api } from "convex/_generated/api";
 import { useState } from "react";
 import { RefreshCw, Send, CheckCircle, Clock, Star } from "lucide-react";
+import { useAdminAuth } from "@/lib/admin/auth";
 
 const STATUS_BADGES: Record<string, { label: string; color: string; icon: React.ElementType }> = {
   pending: { label: "In attesa", color: "text-orange-400 bg-orange-500/10", icon: Clock },
@@ -13,10 +14,11 @@ const STATUS_BADGES: Record<string, { label: string; color: string; icon: React.
 };
 
 export default function AdminAutomation() {
+  const { token } = useAdminAuth();
   const [enabled, setEnabled] = useState(false);
-  const stats = useQuery(api.reviewRequests.getReviewStats);
-  const reviews = useQuery(api.reviewRequests.getReviews);
-  const leads = useQuery(api.analytics.getLeads, { status: "evaso", limit: 100 });
+  const stats = useQuery(api.reviewRequests.getReviewStats, token ? { adminToken: token } : "skip");
+  const reviews = useQuery(api.reviewRequests.getReviews, token ? { adminToken: token } : "skip");
+  const leads = useQuery(api.analytics.getLeads, token ? { adminToken: token, status: "evaso", limit: 100 } : "skip");
 
   return (
     <div className="space-y-6 max-w-4xl">

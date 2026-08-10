@@ -33,16 +33,6 @@ const STEP_TO_CATEGORY_SLUG: Record<string, string> = {
   bagno: "bagno",
 };
 
-// Per-product-family slug overrides for rivestimento-esterno
-const FAMILY_EXTERNAL_FINISH_SLUGS: Record<string, string> = {
-  "Apple Cabin": "rivestimento-esterno",
-  "Box Espandibile": "rivestimento-esterno",
-  "Box Container": "rivestimento-esterno",
-  "Modulo Abitativo": "rivestimento-esterno",
-  "Cabina Spaziale": "rivestimento-esterno",
-  "Food Trailer Mobile": "rivestimento-esterno",
-};
-
 // Which families have multiple models (need step 1)
 const FAMILIES_WITH_MULTIPLE_MODELS = new Set([
   "Box Espandibile",

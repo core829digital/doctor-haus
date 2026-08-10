@@ -5,7 +5,7 @@ import { api } from "convex/_generated/api";
 import { useMemo, useState } from "react";
 import { useAdminAuth } from "@/lib/admin/auth";
 import Link from "next/link";
-import { Smartphone, Monitor, Tablet, Globe, MapPin, User } from "lucide-react";
+import { Smartphone, Monitor, Tablet, Globe, User } from "lucide-react";
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   PieChart, Pie, Cell,
@@ -46,21 +46,21 @@ function MetricCard({ label, value, sub, color }: { label: string; value: string
 }
 
 export default function AdminDashboard() {
-  const { user: adminUser } = useAdminAuth();
+  const { user: adminUser, token } = useAdminAuth();
   const [days] = useState(30);
   const [now] = useState(() => Date.now());
   const startDate = useMemo(() => now - days * 24 * 60 * 60 * 1000, [now, days]);
 
-  const stats = useQuery(api.analytics.getStats, { startDate, endDate: now });
-  const dailyViews = useQuery(api.analytics.getDailyPageviews, { days });
-  const topPages = useQuery(api.analytics.getTopPages, { startDate, endDate: now, limit: 5 });
-  const recentLeads = useQuery(api.analytics.getLeads, { limit: 5 });
-  const registrations = useQuery(api.analytics.getRegistrationCount, { startDate, endDate: now });
-  const totalRegistrations = useQuery(api.analytics.getTotalRegistrations);
-  const recentActivity = useQuery(api.analytics.getRecentActivity, { limit: 10 });
-  const deviceBreakdown = useQuery(api.analytics.getDeviceBreakdown, { startDate, endDate: now });
-  const funnel = useQuery(api.analytics.getConversionFunnel, { startDate, endDate: now });
-  const contactSubmissions = useQuery(api.analytics.getContactFormSubmissions, { limit: 5 });
+  const stats = useQuery(api.analytics.getStats, token ? { adminToken: token, startDate, endDate: now } : "skip");
+  const dailyViews = useQuery(api.analytics.getDailyPageviews, token ? { adminToken: token, days } : "skip");
+  const topPages = useQuery(api.analytics.getTopPages, token ? { adminToken: token, startDate, endDate: now, limit: 5 } : "skip");
+  const recentLeads = useQuery(api.analytics.getLeads, token ? { adminToken: token, limit: 5 } : "skip");
+  const registrations = useQuery(api.analytics.getRegistrationCount, token ? { adminToken: token, startDate, endDate: now } : "skip");
+  const totalRegistrations = useQuery(api.analytics.getTotalRegistrations, token ? { adminToken: token } : "skip");
+  const recentActivity = useQuery(api.analytics.getRecentActivity, token ? { adminToken: token, limit: 10 } : "skip");
+  const deviceBreakdown = useQuery(api.analytics.getDeviceBreakdown, token ? { adminToken: token, startDate, endDate: now } : "skip");
+  const funnel = useQuery(api.analytics.getConversionFunnel, token ? { adminToken: token, startDate, endDate: now } : "skip");
+  const contactSubmissions = useQuery(api.analytics.getContactFormSubmissions, token ? { adminToken: token, limit: 5 } : "skip");
 
   const activityItems = useMemo(() => {
     if (!recentActivity) return [];

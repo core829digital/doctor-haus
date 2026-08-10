@@ -2,8 +2,9 @@
 
 import { useQuery, useMutation } from "convex/react";
 import { api } from "convex/_generated/api";
-import { Check, CheckCheck, Bell, ExternalLink, Trash2 } from "lucide-react";
+import { Check, CheckCheck, Bell, ExternalLink } from "lucide-react";
 import Link from "next/link";
+import { useAdminAuth } from "@/lib/admin/auth";
 
 const TYPE_STYLES: Record<string, { label: string; color: string; bg: string }> = {
   new_lead: { label: "Nuovo lead", color: "text-green-400", bg: "bg-green-500/10" },
@@ -13,8 +14,9 @@ const TYPE_STYLES: Record<string, { label: string; color: string; bg: string }> 
 };
 
 export default function AdminNotifications() {
-  const notifications = useQuery(api.notifications.list, { limit: 100 });
-  const unreadCount = useQuery(api.notifications.getUnreadCount);
+  const { token } = useAdminAuth();
+  const notifications = useQuery(api.notifications.list, token ? { adminToken: token, limit: 100 } : "skip");
+  const unreadCount = useQuery(api.notifications.getUnreadCount, token ? { adminToken: token } : "skip");
   const markAllRead = useMutation(api.notifications.markAllRead);
   const markRead = useMutation(api.notifications.markRead);
 
@@ -32,7 +34,7 @@ export default function AdminNotifications() {
         </div>
         {unread > 0 && (
           <button
-            onClick={() => markAllRead()}
+            onClick={() => token && markAllRead({ adminToken: token })}
             className="flex items-center gap-1.5 text-sm text-green-400 hover:text-green-300 transition-colors"
           >
             <CheckCheck size={16} /> Segna tutte come lette
@@ -89,7 +91,7 @@ export default function AdminNotifications() {
                         )}
                         {!n.read && (
                           <button
-                            onClick={() => markRead({ id: n._id })}
+                            onClick={() => token && markRead({ adminToken: token, id: n._id })}
                             className="p-2 rounded-lg text-white/20 hover:text-white hover:bg-white/5 transition-colors"
                             title="Segna come letta"
                           >

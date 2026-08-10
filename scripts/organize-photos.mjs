@@ -1,5 +1,5 @@
 import sharp from "sharp";
-import { readFileSync, writeFileSync, readdirSync, mkdirSync, copyFileSync, existsSync, statSync } from "fs";
+import { writeFileSync, readdirSync, mkdirSync, copyFileSync, existsSync } from "fs";
 import { join, extname, parse } from "path";
 import { fileURLToPath } from "url";
 

@@ -7,16 +7,11 @@ import { Id } from "convex/_generated/dataModel";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Mail, Phone, MessageSquare, Save } from "lucide-react";
+import { useAdminAuth } from "@/lib/admin/auth";
 
 type SelectedOption = {
   categoryLabel: string;
   choiceLabel: string;
-};
-
-const STATUS_LABELS: Record<string, string> = {
-  nuovo: "Nuovo",
-  in_lavorazione: "In lavorazione",
-  evaso: "Evaso",
 };
 
 const STATUS_COLORS: Record<string, string> = {
@@ -26,9 +21,10 @@ const STATUS_COLORS: Record<string, string> = {
 };
 
 export default function LeadDetailPage() {
+  const { token } = useAdminAuth();
   const params = useParams();
   const leadId = params.id as Id<"quoteRequests">;
-  const lead = useQuery(api.analytics.getLeadDetail, { leadId });
+  const lead = useQuery(api.analytics.getLeadDetail, token ? { adminToken: token, leadId } : "skip");
   const updateStatus = useMutation(api.analytics.updateLeadStatus);
   const updateNote = useMutation(api.analytics.updateLeadAdminNote);
   const [note, setNote] = useState("");
@@ -40,7 +36,8 @@ export default function LeadDetailPage() {
   }, [lead, startTransition]);
 
   const saveNote = async () => {
-    await updateNote({ leadId: lead!._id, adminNote: note });
+    if (!token) return;
+    await updateNote({ adminToken: token, leadId: lead!._id, adminNote: note });
     setNoteSaved(true);
     setTimeout(() => setNoteSaved(false), 2000);
   };
@@ -67,7 +64,7 @@ export default function LeadDetailPage() {
           </div>
           <select
             value={lead.status}
-            onChange={(e) => updateStatus({ leadId: lead._id, status: e.target.value as "nuovo" | "in_lavorazione" | "evaso" })}
+            onChange={(e) => token && updateStatus({ adminToken: token, leadId: lead._id, status: e.target.value as "nuovo" | "in_lavorazione" | "evaso" })}
             className={`text-sm px-3 py-1.5 rounded-full border-0 appearance-none cursor-pointer ${STATUS_COLORS[lead.status]}`}
           >
             <option value="nuovo">Nuovo</option>

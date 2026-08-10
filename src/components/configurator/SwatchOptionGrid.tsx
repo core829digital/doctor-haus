@@ -1,6 +1,5 @@
 "use client";
 
-import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import type { Id } from "convex/_generated/dataModel";

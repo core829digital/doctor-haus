@@ -1,6 +1,7 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 import { internal } from "./_generated/api";
+import { requireAdmin } from "./lib/requireAdmin";
 
 export const trackEvent = mutation({
   args: {
@@ -75,10 +76,12 @@ export const trackEvent = mutation({
 
 export const getPageviews = query({
   args: {
+    adminToken: v.string(),
     startDate: v.optional(v.number()),
     endDate: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
+    await requireAdmin(ctx, args.adminToken);
     const start = args.startDate ?? Date.now() - 30 * 24 * 60 * 60 * 1000;
     const end = args.endDate ?? Date.now();
     const events = await ctx.db
@@ -91,10 +94,12 @@ export const getPageviews = query({
 
 export const getStats = query({
   args: {
+    adminToken: v.string(),
     startDate: v.optional(v.number()),
     endDate: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
+    await requireAdmin(ctx, args.adminToken);
     const start = args.startDate ?? Date.now() - 30 * 24 * 60 * 60 * 1000;
     const end = args.endDate ?? Date.now();
 
@@ -131,10 +136,12 @@ export const getStats = query({
 
 export const getLeads = query({
   args: {
+    adminToken: v.string(),
     status: v.optional(v.string()),
     limit: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
+    await requireAdmin(ctx, args.adminToken);
     const limit = args.limit ?? 50;
     let leads;
     if (args.status) {
@@ -161,12 +168,22 @@ export const getLeads = query({
   },
 });
 
+// Used by the logged-in customer dashboard to list the caller's own leads.
+// Identity comes from the customer session token, never from a client-supplied email.
 export const getLeadsByEmail = query({
-  args: { email: v.string() },
+  args: { token: v.string() },
   handler: async (ctx, args) => {
+    const session = await ctx.db
+      .query("customerSessions")
+      .withIndex("by_token", (q) => q.eq("token", args.token))
+      .first();
+    if (!session || session.expiresAt < Date.now()) return [];
+    const user = await ctx.db.get(session.userId);
+    if (!user) return [];
+
     const leads = await ctx.db
       .query("quoteRequests")
-      .withIndex("by_email", (q) => q.eq("customerEmail", args.email.toLowerCase().trim()))
+      .withIndex("by_email", (q) => q.eq("customerEmail", user.email))
       .collect();
     const enriched = await Promise.all(
       leads.map(async (lead) => {
@@ -193,16 +210,19 @@ export const getLeadsByEmail = query({
 
 export const updateLeadAdminNote = mutation({
   args: {
+    adminToken: v.string(),
     leadId: v.id("quoteRequests"),
     adminNote: v.string(),
   },
   handler: async (ctx, args) => {
+    await requireAdmin(ctx, args.adminToken);
     await ctx.db.patch(args.leadId, { adminNote: args.adminNote });
   },
 });
 
 export const updateLeadStatus = mutation({
   args: {
+    adminToken: v.string(),
     leadId: v.id("quoteRequests"),
     status: v.union(
       v.literal("nuovo"),
@@ -211,13 +231,18 @@ export const updateLeadStatus = mutation({
     ),
   },
   handler: async (ctx, args) => {
+    await requireAdmin(ctx, args.adminToken);
     await ctx.db.patch(args.leadId, { status: args.status });
   },
 });
 
 export const getLeadDetail = query({
-  args: { leadId: v.id("quoteRequests") },
+  args: {
+    adminToken: v.string(),
+    leadId: v.id("quoteRequests"),
+  },
   handler: async (ctx, args) => {
+    await requireAdmin(ctx, args.adminToken);
     const lead = await ctx.db.get(args.leadId);
     if (!lead) return null;
     const product = await ctx.db.get(lead.productId);
@@ -232,11 +257,13 @@ export const getLeadDetail = query({
 
 export const getTopPages = query({
   args: {
+    adminToken: v.string(),
     startDate: v.optional(v.number()),
     endDate: v.optional(v.number()),
     limit: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
+    await requireAdmin(ctx, args.adminToken);
     const start = args.startDate ?? Date.now() - 30 * 24 * 60 * 60 * 1000;
     const end = args.endDate ?? Date.now();
     const limit = args.limit ?? 10;
@@ -258,9 +285,11 @@ export const getTopPages = query({
 
 export const getDailyPageviews = query({
   args: {
+    adminToken: v.string(),
     days: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
+    await requireAdmin(ctx, args.adminToken);
     const days = args.days ?? 30;
     const now = Date.now();
     const start = now - days * 24 * 60 * 60 * 1000;
@@ -285,10 +314,12 @@ export const getDailyPageviews = query({
 
 export const getRegistrationCount = query({
   args: {
+    adminToken: v.string(),
     startDate: v.optional(v.number()),
     endDate: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
+    await requireAdmin(ctx, args.adminToken);
     const start = args.startDate ?? Date.now() - 30 * 24 * 60 * 60 * 1000;
     const end = args.endDate ?? Date.now();
     const users = await ctx.db.query("customerUsers").collect();
@@ -298,9 +329,11 @@ export const getRegistrationCount = query({
 
 export const getRecentActivity = query({
   args: {
+    adminToken: v.string(),
     limit: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
+    await requireAdmin(ctx, args.adminToken);
     const limit = args.limit ?? 20;
     const events = await ctx.db.query("analyticsEvents").collect();
     const sorted = events.sort((a, b) => b.timestamp - a.timestamp).slice(0, limit);
@@ -318,10 +351,12 @@ export const getRecentActivity = query({
 
 export const getDeviceBreakdown = query({
   args: {
+    adminToken: v.string(),
     startDate: v.optional(v.number()),
     endDate: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
+    await requireAdmin(ctx, args.adminToken);
     const start = args.startDate ?? Date.now() - 30 * 24 * 60 * 60 * 1000;
     const end = args.endDate ?? Date.now();
     const events = await ctx.db.query("analyticsEvents").collect();
@@ -345,10 +380,12 @@ export const getDeviceBreakdown = query({
 
 export const getConversionFunnel = query({
   args: {
+    adminToken: v.string(),
     startDate: v.optional(v.number()),
     endDate: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
+    await requireAdmin(ctx, args.adminToken);
     const start = args.startDate ?? Date.now() - 30 * 24 * 60 * 60 * 1000;
     const end = args.endDate ?? Date.now();
 
@@ -385,9 +422,11 @@ export const getConversionFunnel = query({
 
 export const getContactFormSubmissions = query({
   args: {
+    adminToken: v.string(),
     limit: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
+    await requireAdmin(ctx, args.adminToken);
     const limit = args.limit ?? 20;
     const events = await ctx.db.query("analyticsEvents").collect();
     const formEvents = events
@@ -405,7 +444,9 @@ export const getContactFormSubmissions = query({
 });
 
 export const getTotalRegistrations = query({
-  handler: async (ctx) => {
+  args: { adminToken: v.string() },
+  handler: async (ctx, args) => {
+    await requireAdmin(ctx, args.adminToken);
     const users = await ctx.db.query("customerUsers").collect();
     return users.length;
   },

@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { useQuery } from "convex/react";
 import { api } from "convex/_generated/api";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { useAdminAuth } from "@/lib/admin/auth";
 
 type Period = "daily" | "weekly" | "monthly" | "quarterly" | "3days";
 
@@ -16,8 +17,9 @@ const PERIODS: { key: Period; label: string }[] = [
 ];
 
 export default function AdminFinances() {
+  const { token } = useAdminAuth();
   const [period, setPeriod] = useState<Period>("monthly");
-  const leads = useQuery(api.analytics.getLeads, { status: undefined, limit: 500 });
+  const leads = useQuery(api.analytics.getLeads, token ? { adminToken: token, status: undefined, limit: 500 } : "skip");
 
   const periodTotals = aggregateByPeriod(leads ?? [], period);
 

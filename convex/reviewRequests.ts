@@ -1,10 +1,13 @@
 import { v } from "convex/values";
 import { query, internalMutation, internalQuery, internalAction } from "./_generated/server";
+import { requireAdmin } from "./lib/requireAdmin";
 
 // ── Public queries (admin dashboard) ─────────────
 
 export const getReviewStats = query({
-  handler: async (ctx) => {
+  args: { adminToken: v.string() },
+  handler: async (ctx, args) => {
+    await requireAdmin(ctx, args.adminToken);
     const reviews = await ctx.db.query("reviewRequests").collect();
     const pending = reviews.filter((r) => r.status === "pending").length;
     const sent = reviews.filter((r) => r.status === "sent").length;
@@ -23,7 +26,9 @@ export const getReviewStats = query({
 });
 
 export const getReviews = query({
-  handler: async (ctx) => {
+  args: { adminToken: v.string() },
+  handler: async (ctx, args) => {
+    await requireAdmin(ctx, args.adminToken);
     const reviews = await ctx.db.query("reviewRequests").order("desc").collect();
     return reviews.map((r) => ({
       _id: r._id,

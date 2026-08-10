@@ -4,8 +4,8 @@ import { useMemo, useState } from "react";
 import { useQuery } from "convex/react";
 import { api } from "convex/_generated/api";
 import { useAdminAuth } from "@/lib/admin/auth";
-import { FileText, Download, Loader2, BarChart3, Users, MousePointer, Mail, Activity, Smartphone } from "lucide-react";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { Download, Loader2, BarChart3, Users, Activity, Smartphone } from "lucide-react";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 
 const DEVICE_COLORS = ["#22c55e", "#3b82f6", "#f59e0b", "#6b7280"];
 
@@ -15,18 +15,18 @@ export default function AdminReports() {
   const [reportType, setReportType] = useState("leads");
   const [periodDays, setPeriodDays] = useState(30);
   const [now] = useState(() => Date.now());
-  const leads = useQuery(api.analytics.getLeads, { status: undefined, limit: 500 });
+  const leads = useQuery(api.analytics.getLeads, token ? { adminToken: token, status: undefined, limit: 500 } : "skip");
   const statsArgs = useMemo(
     () => ({ startDate: now - periodDays * 24 * 60 * 60 * 1000, endDate: now }),
     [now, periodDays],
   );
-  const stats = useQuery(api.analytics.getStats, statsArgs);
-  const dailyViews = useQuery(api.analytics.getDailyPageviews, { days: periodDays });
-  const deviceBreakdown = useQuery(api.analytics.getDeviceBreakdown, statsArgs);
-  const funnel = useQuery(api.analytics.getConversionFunnel, statsArgs);
-  const topPages = useQuery(api.analytics.getTopPages, { ...statsArgs, limit: 10 });
-  const registrations = useQuery(api.analytics.getRegistrationCount, statsArgs);
-  const totalRegistrations = useQuery(api.analytics.getTotalRegistrations);
+  const stats = useQuery(api.analytics.getStats, token ? { adminToken: token, ...statsArgs } : "skip");
+  const dailyViews = useQuery(api.analytics.getDailyPageviews, token ? { adminToken: token, days: periodDays } : "skip");
+  const deviceBreakdown = useQuery(api.analytics.getDeviceBreakdown, token ? { adminToken: token, ...statsArgs } : "skip");
+  const funnel = useQuery(api.analytics.getConversionFunnel, token ? { adminToken: token, ...statsArgs } : "skip");
+  const topPages = useQuery(api.analytics.getTopPages, token ? { adminToken: token, ...statsArgs, limit: 10 } : "skip");
+  const registrations = useQuery(api.analytics.getRegistrationCount, token ? { adminToken: token, ...statsArgs } : "skip");
+  const totalRegistrations = useQuery(api.analytics.getTotalRegistrations, token ? { adminToken: token } : "skip");
 
   const generatePDF = async () => {
     setGenerating(true);

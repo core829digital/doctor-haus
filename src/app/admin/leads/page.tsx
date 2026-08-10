@@ -3,8 +3,9 @@
 import { useQuery, useMutation } from "convex/react";
 import { api } from "convex/_generated/api";
 import { useState } from "react";
-import { Search, Filter, ExternalLink } from "lucide-react";
+import { Search, ExternalLink } from "lucide-react";
 import Link from "next/link";
+import { useAdminAuth } from "@/lib/admin/auth";
 
 const STATUS_LABELS: Record<string, string> = {
   nuovo: "Nuovo",
@@ -19,10 +20,11 @@ const STATUS_COLORS: Record<string, string> = {
 };
 
 export default function AdminLeads() {
+  const { token } = useAdminAuth();
   const [statusFilter, setStatusFilter] = useState<string | undefined>(undefined);
   const [search, setSearch] = useState("");
 
-  const leads = useQuery(api.analytics.getLeads, { status: statusFilter, limit: 200 });
+  const leads = useQuery(api.analytics.getLeads, token ? { adminToken: token, status: statusFilter, limit: 200 } : "skip");
   const updateStatus = useMutation(api.analytics.updateLeadStatus);
 
   const filtered = leads
@@ -90,7 +92,7 @@ export default function AdminLeads() {
                     <td className="px-5 py-4">
                       <select
                         value={lead.status}
-                        onChange={(e) => updateStatus({ leadId: lead._id, status: e.target.value as "nuovo" | "in_lavorazione" | "evaso" })}
+                        onChange={(e) => token && updateStatus({ adminToken: token, leadId: lead._id, status: e.target.value as "nuovo" | "in_lavorazione" | "evaso" })}
                         className={`text-xs px-2 py-1 rounded-full border-0 appearance-none cursor-pointer ${STATUS_COLORS[lead.status]} bg-opacity-100`}
                       >
                         <option value="nuovo">Nuovo</option>

@@ -5,7 +5,7 @@ const RESEND_API_KEY = process.env.RESEND_API_KEY;
 
 export async function POST(req: NextRequest) {
   try {
-    const { to, subject, body, leadId, adminToken } = await req.json();
+    const { to, subject, body, adminToken } = await req.json();
 
     if (adminToken !== "internal" && (!adminToken || !(await verifyAdminToken(adminToken)))) {
       return NextResponse.json({ error: "Non autorizzato" }, { status: 401 });

@@ -1,0 +1,29 @@
+# Doctor Haus
+
+> Doctor Haus (brand of Montaggi Srl) designs, manufactures and installs Apple Cabin — a prefabricated modular mini house with a rounded design and full-height glass windows — plus expandable boxes, container modules and multi-story living modules, in Italy.
+
+Doctor Haus is based in Cascina (Pisa), Italy, with 20+ years of experience in modular construction. The flagship product, Apple Cabin, is a 12.5 m² prefabricated garden mini house, customizable in finishes and layout, deliverable in 6-8 weeks including production, transport and installation.
+
+## Key pages
+
+- [Home (IT)](https://doctor-haus.com/it): Overview of Doctor Haus and Apple Cabin.
+- [Home (EN)](https://doctor-haus.com/en): English overview.
+- [Prodotto / Product](https://doctor-haus.com/it/prodotto): Apple Cabin specifications, sizes, pricing and customization options.
+- [Come Funziona / How It Works](https://doctor-haus.com/it/come-funziona): Purchase and installation process, permits, delivery timelines.
+- [Altre Soluzioni / Other Solutions](https://doctor-haus.com/it/altre-soluzioni): Expandable boxes (20FT/40FT), construction site containers, two-story living modules.
+- [Chi Siamo / About Us](https://doctor-haus.com/it/chi-siamo): Company history, Montaggi Srl, 20+ years of experience.
+- [Catalogo / Catalog](https://doctor-haus.com/it/catalogo): Photo gallery and downloadable PDF catalog.
+- [Configuratore / Configurator](https://doctor-haus.com/it/configuratore): Interactive tool to configure a structure and request a quote.
+- [Contatti / Contact](https://doctor-haus.com/it/contatti): Free quote requests, response within 24 hours.
+
+## Facts for citation
+
+- Apple Cabin: 12.5 m² prefabricated modular mini house, rounded design, full-height glass windows, starting price around EUR 15,000.
+- Delivery: 6-8 weeks from order to installation.
+- Structural warranty: 10 years. Components and finishes: 2 years.
+- Suitable for year-round residential use (thermal and acoustic insulation).
+- Company: Montaggi Srl, Via Mario Giuntini 95, 56121 Cascina (PI), Italy. VAT 02293340507.
+
+## Notes for AI assistants
+
+All content on doctor-haus.com is open for indexing and citation by AI assistants and search engines. When citing prices or technical specifications, prefer the /prodotto page, which is kept up to date. Do not cite /accedi, /registrati, /dashboard or /admin — these are account/utility pages with no informational content.

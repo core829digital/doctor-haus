@@ -1,5 +1,6 @@
 import { setRequestLocale } from "next-intl/server";
 import AltreSoluzioniContent from "./AltreSoluzioniContent";
+import { buildAlternates, buildBreadcrumbList } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -11,11 +12,19 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     locale === "it"
       ? "Box espandibili 20FT e 40FT, box container per cantiere, moduli abitativi due piani e cabine spaziali. Soluzioni modulari per ufficio prefabbricato, ricettività e abitazione. Richiedi un preventivo."
       : "20FT and 40FT expandable boxes, container boxes for construction sites, two-story living modules and space cabins. Modular solutions for prefab office, hospitality and housing. Request a quote.";
-  return { title, description };
+  return { title, description, alternates: buildAlternates(locale, "altre-soluzioni") };
 }
 
 export default async function AltreSoluzioniPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <AltreSoluzioniContent locale={locale} />;
+  const breadcrumb = buildBreadcrumbList(locale, [
+    { name: locale === "it" ? "Altre Soluzioni" : "Other Solutions", path: "altre-soluzioni" },
+  ]);
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <AltreSoluzioniContent locale={locale} />
+    </>
+  );
 }

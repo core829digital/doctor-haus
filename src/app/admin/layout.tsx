@@ -1,12 +1,12 @@
 "use client";
 
-import { ReactNode, useState, useEffect, useMemo, useRef } from "react";
+import { ReactNode, useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { ConvexProvider, ConvexReactClient, useMutation } from "convex/react";
 import { api } from "convex/_generated/api";
 import Link from "next/link";
 import {
-  LayoutDashboard, Users, Image, DollarSign, FileText, Mail, Settings, LogOut, Menu, X, Bell, ChevronDown, UserCheck, ExternalLink,
+  LayoutDashboard, Users, Image, DollarSign, FileText, Mail, Settings, LogOut, Menu, X, Bell, UserCheck, ExternalLink,
 } from "lucide-react";
 import NotificationDropdown from "@/components/admin/NotificationDropdown";
 import { useAdminAuth } from "@/lib/admin/auth";
@@ -28,11 +28,7 @@ function AdminLayoutInner({ children }: { children: ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const sessionRef = useRef<string | null>(null);
-  if (sessionRef.current === null) {
-    sessionRef.current = "admin_" + Math.random().toString(36).slice(2);
-  }
-  const sessionId = sessionRef.current;
+  const [sessionId] = useState(() => "admin_" + Math.random().toString(36).slice(2));
   const trackEvent = useMutation(api.analytics.trackEvent);
 
   useEffect(() => {

@@ -52,7 +52,6 @@ export default function ConfiguratoreContent({ locale, preselectedSlug }: Props)
 
   const {
     currentStep,
-    totalSteps,
     selectedProductId,
     selectedLayoutId,
     selectedOptions,
@@ -105,11 +104,6 @@ export default function ConfiguratoreContent({ locale, preselectedSlug }: Props)
   useEffect(() => {
     setTotalSteps(steps.length);
   }, [steps.length, setTotalSteps]);
-
-  // Get models for the same family
-  const familyModels = products?.filter(
-    (p) => p.family === productFamily && p._id !== selectedProductId
-  );
 
   // Get option categories for this step
   const currentStepDef = steps[currentStep];

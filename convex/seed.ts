@@ -7,7 +7,7 @@ export const seed = internalMutation({
 
     // ── Products ──────────────────────────────────────────
 
-    const appleCabin = await ctx.db.insert("products", {
+    await ctx.db.insert("products", {
       slug: "apple-cabin",
       family: "Apple Cabin",
       name: "Apple Cabin",
@@ -54,7 +54,7 @@ export const seed = internalMutation({
       active: true,
     });
 
-    const boxKit = await ctx.db.insert("products", {
+    await ctx.db.insert("products", {
       slug: "box-kit-fai-da-te",
       family: "Box Container",
       name: "Box in Kit Fai Da Te",
@@ -67,7 +67,7 @@ export const seed = internalMutation({
       active: true,
     });
 
-    const boxSmontabile = await ctx.db.insert("products", {
+    await ctx.db.insert("products", {
       slug: "box-smontabile",
       family: "Box Container",
       name: "Box Smontabile",
@@ -80,7 +80,7 @@ export const seed = internalMutation({
       active: true,
     });
 
-    const boxPieghevole = await ctx.db.insert("products", {
+    await ctx.db.insert("products", {
       slug: "box-pieghevole-z-folding",
       family: "Box Container",
       name: "Box Pieghevole (Z-Folding)",
@@ -93,7 +93,7 @@ export const seed = internalMutation({
       active: true,
     });
 
-    const moduloAbitativo = await ctx.db.insert("products", {
+    await ctx.db.insert("products", {
       slug: "modulo-abitativo-2-piani",
       family: "Modulo Abitativo",
       name: "Modulo Abitativo a Due Piani",
@@ -106,7 +106,7 @@ export const seed = internalMutation({
       active: true,
     });
 
-    const cabinG5 = await ctx.db.insert("products", {
+    await ctx.db.insert("products", {
       slug: "cabina-spaziale-g5",
       family: "Cabina Spaziale",
       name: "Capsula Spaziale G5",
@@ -121,7 +121,7 @@ export const seed = internalMutation({
       active: true,
     });
 
-    const cabinG7 = await ctx.db.insert("products", {
+    await ctx.db.insert("products", {
       slug: "cabina-spaziale-g7",
       family: "Cabina Spaziale",
       name: "Cabina Spaziale G7",
@@ -136,7 +136,7 @@ export const seed = internalMutation({
       active: true,
     });
 
-    const foodTrailer = await ctx.db.insert("products", {
+    await ctx.db.insert("products", {
       slug: "food-trailer-mobile",
       family: "Food Trailer Mobile",
       name: "Food Trailer Mobile",

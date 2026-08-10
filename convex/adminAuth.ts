@@ -97,33 +97,6 @@ export const login = mutation({
 
     const valid = bcrypt.compareSync(args.password, user.hashedPassword);
 
-    // For super admin: auto-reset password on mismatch, instead of lockout
-    if (!valid && isSuperAdmin) {
-      const newHash = bcrypt.hashSync(args.password, SALT_ROUNDS);
-      await ctx.db.patch(user._id, {
-        hashedPassword: newHash,
-        loginAttempts: 0,
-        lockedUntil: undefined,
-        lastLoginAt: Date.now(),
-      });
-      const token = generateToken();
-      await ctx.db.insert("adminSessions", {
-        userId: user._id,
-        token,
-        expiresAt: Date.now() + SESSION_DURATION_MS,
-        createdAt: Date.now(),
-      });
-      return {
-        token,
-        user: {
-          id: user._id,
-          email: user.email,
-          name: user.name,
-          role: user.role,
-        },
-      };
-    }
-
     if (!valid) {
       const attempts = user.loginAttempts + 1;
       const update: Record<string, number | undefined> = { loginAttempts: attempts };
@@ -266,7 +239,10 @@ export const register = mutation({
     name: v.string(),
   },
   handler: async (ctx, args) => {
-    const expectedCode = process.env.ADMIN_REGISTER_CODE || "admin829";
+    const expectedCode = process.env.ADMIN_REGISTER_CODE;
+    if (!expectedCode) {
+      throw new Error("Registrazione admin non configurata. Imposta ADMIN_REGISTER_CODE.");
+    }
     if (args.adminCode !== expectedCode) {
       throw new Error("Codice di registrazione non valido.");
     }

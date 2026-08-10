@@ -1,6 +1,7 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 import bcrypt from "bcryptjs";
+import { requireAdmin } from "./lib/requireAdmin";
 
 const SALT_ROUNDS = 12;
 const SESSION_DURATION_MS = 30 * 24 * 60 * 60 * 1000; // 30 days
@@ -84,49 +85,6 @@ export const login = mutation({
   },
 });
 
-export const loginWithoutPassword = mutation({
-  args: {
-    email: v.string(),
-  },
-  handler: async (ctx, args) => {
-    const normalizedEmail = args.email.toLowerCase().trim();
-    let user = await ctx.db
-      .query("customerUsers")
-      .withIndex("by_email", (q) => q.eq("email", normalizedEmail))
-      .first();
-    if (!user) {
-      const lead = await ctx.db
-        .query("quoteRequests")
-        .withIndex("by_email", (q) => q.eq("customerEmail", normalizedEmail))
-        .first();
-      if (!lead) {
-        throw new Error("Nessun account trovato con questa email");
-      }
-      const hashedPassword = bcrypt.hashSync("temporary", SALT_ROUNDS);
-      const userId = await ctx.db.insert("customerUsers", {
-        email: normalizedEmail,
-        hashedPassword,
-        name: lead.customerName,
-        createdAt: Date.now(),
-      });
-      user = await ctx.db.get(userId);
-      if (!user) throw new Error("Errore durante la creazione dell'account");
-    }
-    const token = generateToken();
-    await ctx.db.insert("customerSessions", {
-      userId: user._id,
-      token,
-      expiresAt: Date.now() + SESSION_DURATION_MS,
-      createdAt: Date.now(),
-    });
-    await ctx.db.patch(user._id, { lastLoginAt: Date.now() });
-    return {
-      token,
-      user: { id: user._id, email: user.email, name: user.name },
-    };
-  },
-});
-
 export const logout = mutation({
   args: { token: v.string() },
   handler: async (ctx, args) => {
@@ -190,8 +148,9 @@ export const checkEmailExists = query({
 });
 
 export const listAll = query({
-  args: { limit: v.optional(v.number()) },
+  args: { adminToken: v.string(), limit: v.optional(v.number()) },
   handler: async (ctx, args) => {
+    await requireAdmin(ctx, args.adminToken);
     const limit = args.limit ?? 100;
     const users = await ctx.db.query("customerUsers").collect();
     const sorted = users.sort((a, b) => b.createdAt - a.createdAt).slice(0, limit);

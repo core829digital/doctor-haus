@@ -1,6 +1,7 @@
 import { v } from "convex/values";
 import { internalAction, internalMutation, internalQuery, query } from "./_generated/server";
 import { internal } from "./_generated/api";
+import { requireAdmin } from "./lib/requireAdmin";
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 
@@ -82,8 +83,9 @@ export const logEmail = internalMutation({
 });
 
 export const getEmailLogs = query({
-  args: { limit: v.optional(v.number()) },
+  args: { adminToken: v.string(), limit: v.optional(v.number()) },
   handler: async (ctx, args) => {
+    await requireAdmin(ctx, args.adminToken);
     const limit = args.limit ?? 50;
     return await ctx.db.query("emailLogs").order("desc").take(limit);
   },

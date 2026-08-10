@@ -18,8 +18,8 @@ export default function AdminMedia() {
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const mediaList = useQuery(api.media.list, { limit: 100 });
-  const totalCount = useQuery(api.media.getCount);
+  const mediaList = useQuery(api.media.list, token ? { adminToken: token, limit: 100 } : "skip");
+  const totalCount = useQuery(api.media.getCount, token ? { adminToken: token } : "skip");
   const removeMedia = useMutation(api.media.remove);
 
   const filtered = mediaList?.filter((m) =>
@@ -78,7 +78,8 @@ export default function AdminMedia() {
   };
 
   const handleDelete = async (mediaId: Id<"mediaFiles">, filename: string) => {
-    await removeMedia({ mediaId });
+    if (!token) return;
+    await removeMedia({ adminToken: token, mediaId });
     try {
       await fetch(`/api/upload/delete?filename=${filename}`, { method: "DELETE" });
     } catch {}

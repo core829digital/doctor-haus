@@ -1,9 +1,9 @@
 import type { MetadataRoute } from "next";
 
 const locales = ["it", "en"] as const;
-const defaultLocale = "it";
+const BASE = "https://doctor-haus.com";
 
-const routes = {
+const routes: Record<(typeof locales)[number], Record<string, number>> = {
   it: {
     "": 1,
     "chi-siamo": 0.8,
@@ -12,9 +12,6 @@ const routes = {
     "configuratore": 0.8,
     "catalogo": 0.8,
     "altre-soluzioni": 0.7,
-    "accedi": 0.6,
-    "registrati": 0.6,
-    "dashboard": 0.5,
     "contatti": 0.7,
     "legal/privacy-policy": 0.4,
     "legal/cookie-policy": 0.3,
@@ -24,7 +21,6 @@ const routes = {
     "legal/note-legali": 0.3,
     "legal/garanzia-e-recesso": 0.3,
     "legal/accessibilita": 0.2,
-    "cookie-preferences": 0.2,
   },
   en: {
     "": 1,
@@ -34,9 +30,6 @@ const routes = {
     "configuratore": 0.8,
     "catalogo": 0.8,
     "altre-soluzioni": 0.7,
-    "accedi": 0.6,
-    "registrati": 0.6,
-    "dashboard": 0.5,
     "contatti": 0.7,
     "legal/privacy-policy": 0.4,
     "legal/cookie-policy": 0.3,
@@ -46,7 +39,6 @@ const routes = {
     "legal/note-legali": 0.3,
     "legal/garanzia-e-recesso": 0.3,
     "legal/accessibilita": 0.2,
-    "cookie-preferences": 0.2,
   },
 };
 
@@ -56,23 +48,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const locale of locales) {
     const localeRoutes = routes[locale];
     for (const [path, priority] of Object.entries(localeRoutes)) {
-      const url = locale === defaultLocale ? `https://doctor-haus.com/${path}` : `https://doctor-haus.com/${locale}/${path}`;
+      const url = `${BASE}/${locale}${path ? `/${path}` : ""}`;
 
       const alternates: Record<string, string> = {};
       for (const altLocale of locales) {
-        const altPath = altLocale === defaultLocale ? `https://doctor-haus.com/${path}` : `https://doctor-haus.com/${altLocale}/${path}`;
-        alternates[altLocale === "it" ? "it" : "en"] = altPath;
+        alternates[altLocale] = `${BASE}/${altLocale}${path ? `/${path}` : ""}`;
       }
 
-      const isContent = path !== "" && !path.startsWith("legal/") && path !== "cookie-preferences" && path !== "accedi" && path !== "registrati" && path !== "dashboard";
+      const isContent = path !== "" && !path.startsWith("legal/");
 
       entries.push({
         url,
         lastModified: new Date(),
-        changeFrequency: isContent ? "weekly" as const : "monthly" as const,
+        changeFrequency: isContent ? ("weekly" as const) : ("monthly" as const),
         priority,
         alternates: {
-          languages: alternates,
+          languages: {
+            ...alternates,
+            "x-default": `${BASE}/it${path ? `/${path}` : ""}`,
+          },
         },
       });
     }

@@ -3,7 +3,6 @@ import { Link } from "@/i18n/navigation";
 
 export default function Footer() {
   const t = useTranslations("footer");
-  const tc = useTranslations("common");
   const tn = useTranslations("nav");
 
   const currentYear = new Date().getFullYear();

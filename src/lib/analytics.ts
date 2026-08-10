@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 
 const SESSION_KEY = "analytics_session_id";
-const TRACKING_ENABLED_KEY = "analytics_enabled";
 
 function generateSessionId(): string {
   const bytes = new Uint8Array(16);

@@ -8,19 +8,6 @@ type OptionSelection = {
   choiceLabel: string;
 };
 
-type StepName =
-  | "prodotto"
-  | "modello"
-  | "planimetria"
-  | "rivestimento-esterno"
-  | "pannello-parete"
-  | "rivestimento-pareti"
-  | "finestre"
-  | "porte"
-  | "pavimentazione"
-  | "bagno"
-  | "riepilogo";
-
 type Store = {
   currentStep: number;
   totalSteps: number;

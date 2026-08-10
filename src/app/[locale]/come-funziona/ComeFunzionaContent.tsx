@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { MessageSquareText, FilePenLine, Factory, Truck } from "lucide-react";
 import SectionWrapper from "@/components/ui/SectionWrapper";
-import SectionTitle from "@/components/ui/SectionTitle";
 
 const steps = [
   { icon: MessageSquareText, key: "consulenza" },

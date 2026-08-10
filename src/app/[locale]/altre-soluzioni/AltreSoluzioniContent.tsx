@@ -1,19 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  ArrowRight,
-  Expand,
-  Container,
-  Building2,
-  Satellite,
-  Truck,
-  Shield,
-  Ruler,
-  Weight,
-  Layout,
-  Check,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import SectionTitle from "@/components/ui/SectionTitle";

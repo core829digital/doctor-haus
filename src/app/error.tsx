@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 export default function Error({
   error,
   reset,
@@ -17,12 +19,12 @@ export default function Error({
           Si è verificato un errore imprevisto. Riprova o torna alla home.
         </p>
         <div className="flex items-center justify-center gap-4">
-          <a
+          <Link
             href="/"
             className="inline-flex items-center gap-2 rounded-full bg-green-600 px-6 py-3 text-sm font-medium text-white transition-all hover:bg-green-700"
           >
             Torna alla home
-          </a>
+          </Link>
           <button
             onClick={reset}
             className="inline-flex items-center gap-2 rounded-full border border-line px-6 py-3 text-sm font-medium text-text transition-all hover:bg-white/5"
