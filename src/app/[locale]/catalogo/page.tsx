@@ -4,11 +4,17 @@ import { buildAlternates, buildBreadcrumbList } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  const title = locale === "it" ? "Catalogo | Doctor Haus" : "Catalog | Doctor Haus";
+  const description = locale === "it"
+    ? "Scarica il catalogo PDF Doctor Haus con tutte le foto della Apple Cabin, box espandibili e soluzioni modulari. Galleria completa e richiesta catalogo personalizzato. Apple Cabin prezzi misure modelli disponibili."
+    : "Download the Doctor Haus PDF catalog with all photos of Apple Cabin, expandable boxes and modular solutions. Complete gallery and request a personalized catalog. Apple Cabin prices sizes available models.";
+  const keywordsIt = "catalogo doctor haus, scarica catalogo apple cabin, pdf catalogo modulare, galleria foto apple cabin, modelli casa prefabbricata, catalogo prezzi misure".trim();
+  const keywordsEn = "doctor haus catalog, download apple cabin catalog, modular house gallery, prefabricated house models, catalog prices sizes, apple cabin photos".trim();
+  const keywords = locale === "it" ? keywordsIt : keywordsEn;
   return {
-    title: locale === "it" ? "Catalogo | Doctor Haus" : "Catalog | Doctor Haus",
-    description: locale === "it"
-      ? "Scarica il catalogo PDF Doctor Haus con tutte le foto della Apple Cabin, box espandibili e soluzioni modulari. Galleria completa e richiesta catalogo personalizzato."
-      : "Download the Doctor Haus PDF catalog with all photos of Apple Cabin, expandable boxes and modular solutions. Complete gallery and request a personalized catalog.",
+    title,
+    description,
+    keywords,
     alternates: buildAlternates(locale, "catalogo"),
   };
 }

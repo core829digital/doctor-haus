@@ -16,6 +16,11 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<import("next").Metadata> {
   const { locale } = await params;
   
+  const keywordsIt = "apple cabin, doctor haus, mini case modulari, case prefabbricate di design, case modulari prefabbricate, design arrotondato, vetrate a tutta altezza, isolamento lana di roccia, pannelli eps isolanti, efficienza energetica, abitare sostenibile, chiavi in mano, preventivo, configuratore, glamping, resort, mini case giardino, moduli abitativi, strutture abitative portatili, architettura modulare moderna, design abitativo innovativo, case eco-friendly, produttori apple cabin italia".trim();
+  const keywordsEn = "apple cabin, doctor haus, modular modular mini houses, design prefabricated houses, modular prefabricated houses, rounded design, full-height windows, rock wool insulation, EPS panels, energy efficiency, sustainable living, turnkey, quote, configurator, glamping, resort, garden mini homes, modular units, portable habitation structures, modern modular architecture, innovative home design, eco-friendly houses, apple cabin italy producers".trim();
+  
+  const keywords = locale === "it" ? keywordsIt : keywordsEn;
+  
   return {
     title: {
       default: locale === "it"
@@ -26,6 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: locale === "it"
       ? "Apple Cabin: mini casa modulare prefabbricata dal design arrotondato con vetrate a tutta altezza. Scopri prezzi, misure e personalizzazioni per la tua mini casa da giardino."
       : "Apple Cabin: prefabricated modular mini house with rounded design and full-height windows. Discover prices, sizes and customizations for your garden mini home.",
+    keywords,
     metadataBase: new URL("https://doctor-haus.com"),
     alternates: buildAlternates(locale),
     openGraph: {
