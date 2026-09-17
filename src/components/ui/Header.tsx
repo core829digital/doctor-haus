@@ -73,7 +73,7 @@ export default function Header() {
           : "bg-background/30 backdrop-blur-sm"
       }`}
     >
-      <div className="mx-auto transition-all duration-500 max-w-5xl">
+      <div className="mx-auto transition-all duration-500 max-w-7xl">
         <div className={`flex items-center justify-between transition-all duration-500 ${
           scrolled ? "h-10 px-3" : "h-14 px-4 lg:px-5"
         }`}>

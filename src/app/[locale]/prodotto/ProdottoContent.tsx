@@ -45,7 +45,7 @@ export default function ProdottoContent({ locale }: { locale: string }) {
     <>
       <section className="relative pt-40 pb-24 lg:pb-32 bg-background overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-green-50/30 to-transparent pointer-events-none" />
-        <div className="mx-auto max-w-5xl px-6 lg:px-8 text-center relative">
+        <div className="w-full px-6 sm:px-8 lg:px-12 xl:px-16 text-center relative">
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -75,7 +75,7 @@ export default function ProdottoContent({ locale }: { locale: string }) {
 
       <SectionWrapper alt>
         <SectionTitle title={t("specifiche.title")} />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 2xl:gap-12">
           {specs.map((section, i) => {
             const Icon = section.Icon;
             return (
@@ -133,7 +133,7 @@ export default function ProdottoContent({ locale }: { locale: string }) {
 
       <SectionWrapper alt>
         <SectionTitle title={galleryTitle} />
-        <div className="columns-1 sm:columns-2 gap-4 max-w-5xl mx-auto space-y-4">
+        <div className="columns-1 sm:columns-2 xl:columns-3 gap-4 lg:gap-6 space-y-4 lg:space-y-6">
           {galleryPhotos.map((src, i) => (
             <motion.div
               key={i}

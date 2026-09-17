@@ -28,7 +28,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-background-alt border-t border-line">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 py-16 lg:py-20">
+      <div className="w-full px-6 sm:px-8 lg:px-12 xl:px-16 py-16 lg:py-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
           <div>
             <Link href="/" className="flex items-center gap-4 group">
@@ -132,7 +132,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-line">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="w-full px-6 sm:px-8 lg:px-12 xl:px-16 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-text-muted">
             {t("tuttiDiritti", { year: currentYear })}
           </p>

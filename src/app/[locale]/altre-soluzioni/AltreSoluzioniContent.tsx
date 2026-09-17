@@ -577,7 +577,7 @@ export default function AltreSoluzioniContent({ locale }: { locale: string }) {
     <>
       <section className="relative pt-40 pb-24 lg:pb-32 bg-background overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-green-50/30 to-transparent pointer-events-none" />
-        <div className="mx-auto max-w-5xl px-6 lg:px-8 text-center relative">
+        <div className="w-full px-6 sm:px-8 lg:px-12 xl:px-16 text-center relative">
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -641,7 +641,7 @@ export default function AltreSoluzioniContent({ locale }: { locale: string }) {
             </motion.p>
           )}
           {sIdx === 0 && (
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 max-w-5xl mb-12">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 lg:gap-4 mb-12">
               {["1", "2", "7", "25"].map((id, i) => (
                 <motion.div
                   key={id}
@@ -662,7 +662,7 @@ export default function AltreSoluzioniContent({ locale }: { locale: string }) {
               ))}
             </div>
           )}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 max-w-5xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 xl:gap-12">
             {section.products.map((product, pIdx) => (
               <motion.div
                 key={pIdx}
@@ -748,7 +748,7 @@ export default function AltreSoluzioniContent({ locale }: { locale: string }) {
         <Badge label={locale === "it" ? "La stessa qualità costruttiva su tutta la gamma" : "The same build quality across the range"} />
         <SectionTitle title={c.materialsTitle} subtitle={c.materialsIntro} />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 xl:gap-12">
           {c.materialCategories.map((cat, i) => (
             <motion.div
               key={i}

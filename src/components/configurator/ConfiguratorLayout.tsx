@@ -20,7 +20,7 @@ export default function ConfiguratorLayout({ steps, children, locale }: Props) {
     <div className="min-h-screen bg-background pt-20">
       {/* Progress bar */}
       <div className="sticky top-20 z-30 bg-background/95 backdrop-blur-md border-b border-line">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="w-full px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="flex items-center gap-2 py-4 overflow-x-auto">
             {steps.map((step, i) => {
               const isActive = i === currentStep;
@@ -69,7 +69,7 @@ export default function ConfiguratorLayout({ steps, children, locale }: Props) {
         </div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 py-8 lg:py-12">
+      <div className="w-full px-6 sm:px-8 lg:px-12 xl:px-16 py-8 lg:py-12">
         <div className="flex gap-8 lg:gap-12">
           <div className="flex-1 min-w-0">
             <AnimatePresence mode="wait">

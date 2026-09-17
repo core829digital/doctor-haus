@@ -19,7 +19,7 @@ export default function SectionWrapper({ children, className = "", id, alt }: Pr
       ref={ref}
       className={`relative py-24 lg:py-32 ${alt ? "bg-background-alt" : "bg-background"} ${className}`}
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="w-full px-6 sm:px-8 lg:px-12 xl:px-16">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}

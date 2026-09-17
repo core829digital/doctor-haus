@@ -63,7 +63,7 @@ export default function CatalogoContent({ locale }: { locale: string }) {
     <>
       <section className="relative pt-40 pb-24 lg:pb-32 bg-background overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-green-50/30 to-transparent pointer-events-none" />
-        <div className="mx-auto max-w-5xl px-6 lg:px-8 text-center relative">
+        <div className="w-full px-6 sm:px-8 lg:px-12 xl:px-16 text-center relative">
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -132,7 +132,7 @@ export default function CatalogoContent({ locale }: { locale: string }) {
                 : `Click a photo to enlarge — ${cat.photos.length} photos available`}
             />
           </div>
-          <div className="columns-1 sm:columns-2 lg:columns-3 gap-3 max-w-6xl mx-auto space-y-3">
+          <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-3 lg:gap-4 space-y-3 lg:space-y-4">
             {cat.photos.map((photo, i) => (
               <motion.button
                 key={photo.id}

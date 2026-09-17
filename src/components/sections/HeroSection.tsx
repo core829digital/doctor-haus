@@ -54,7 +54,7 @@ export default function HeroSection() {
       {/* Bottom fade for smooth transition */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-background pointer-events-none" />
       {/* Content */}
-      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 w-full">
+      <div className="relative z-10 w-full px-6 sm:px-8 lg:px-12 xl:px-16">
         <div className="flex justify-end min-h-screen items-center py-32 pb-64 lg:py-0">
           <motion.div
             initial={{ opacity: 0, x: 40 }}
@@ -197,7 +197,7 @@ export default function HeroSection() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 12 }}
               transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-              className="relative w-full max-w-4xl rounded-2xl bg-background shadow-2xl p-5 sm:p-8 max-h-[92vh] overflow-y-auto"
+              className="relative w-full max-w-5xl rounded-2xl bg-background shadow-2xl p-5 sm:p-8 max-h-[92vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
               <button

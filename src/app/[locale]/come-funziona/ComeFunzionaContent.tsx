@@ -72,7 +72,7 @@ export default function ComeFunzionaContent({ locale }: { locale: string }) {
   return (
     <>
       <section className="relative pt-40 pb-24 lg:pb-32 bg-background">
-        <div className="mx-auto max-w-5xl px-6 lg:px-8 text-center">
+        <div className="w-full px-6 sm:px-8 lg:px-12 xl:px-16 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
