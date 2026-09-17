@@ -55,7 +55,7 @@ export default function HeroSection() {
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-background pointer-events-none" />
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 w-full">
-        <div className="flex justify-end min-h-screen items-center py-32 pb-48 lg:py-0">
+        <div className="flex justify-end min-h-screen items-center py-32 pb-64 lg:py-0">
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
@@ -125,20 +125,20 @@ export default function HeroSection() {
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
-        className="absolute bottom-6 left-6 lg:bottom-10 lg:left-10 z-10"
+        className="absolute bottom-6 left-6 right-6 lg:right-auto lg:bottom-10 lg:left-10 z-10"
       >
         <button
           type="button"
           onClick={openWorks}
-          className="inline-flex items-center gap-2 rounded-full bg-white/15 border border-white/30 px-4 py-2 text-xs sm:text-sm font-medium text-white backdrop-blur-md transition-all duration-300 hover:bg-white/25 hover:border-white/50 shadow-lg"
+          className="inline-flex items-center gap-2.5 rounded-full bg-white px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base lg:text-lg font-semibold text-text shadow-xl transition-all duration-300 hover:bg-green-50 hover:scale-[1.03]"
         >
-          <BadgeCheck size={16} className="text-green-200 shrink-0" />
+          <BadgeCheck size={20} className="text-green-500 shrink-0" />
           {t("ctaWorks")}
         </button>
-        <div className="marquee-hover-pause marquee-mask mt-3 overflow-hidden w-[68vw] sm:w-[340px] lg:w-[420px]">
+        <div className="marquee-hover-pause marquee-mask mt-3 sm:mt-4 overflow-hidden w-full lg:w-[520px] xl:w-[640px] 2xl:w-[720px]">
           <div
-            className="animate-marquee-right flex w-max gap-3"
-            style={{ "--marquee-duration": "38s" } as React.CSSProperties}
+            className="animate-marquee-right flex w-max gap-3 sm:gap-4"
+            style={{ "--marquee-duration": "45s" } as React.CSSProperties}
           >
             {[...WORKS_PHOTOS, ...WORKS_PHOTOS].map((src, i) => (
               <img
@@ -146,21 +146,21 @@ export default function HeroSection() {
                 src={src}
                 alt={i < WORKS_PHOTOS.length ? t("worksAlt", { n: i + 1 }) : ""}
                 aria-hidden={i >= WORKS_PHOTOS.length}
-                width={112}
-                height={80}
+                width={240}
+                height={160}
                 loading="lazy"
                 draggable={false}
-                className="h-16 w-24 lg:h-20 lg:w-28 object-cover rounded-lg border border-white/20 shadow-md pointer-events-none select-none shrink-0"
+                className="h-24 w-36 sm:h-28 sm:w-44 lg:h-36 lg:w-56 xl:h-40 xl:w-60 object-cover rounded-xl border border-white/30 shadow-lg pointer-events-none select-none shrink-0"
               />
             ))}
           </div>
         </div>
         <Link
           href="/catalogo"
-          className="mt-3 inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-white/80 hover:text-white transition-colors drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]"
+          className="mt-3 sm:mt-4 inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-white/15 border border-white/40 px-5 py-2.5 text-sm sm:text-base font-medium text-white backdrop-blur-md transition-all duration-300 hover:bg-white/25 hover:border-white/60 shadow-lg"
         >
           {t("requestProjectCta")}
-          <ArrowRight size={14} />
+          <ArrowRight size={16} />
         </Link>
       </motion.div>
 
