@@ -3,7 +3,13 @@
     "headline": "La tua casa, ovunque tu voglia metterla.",
     "subheadline": "Apple Cabin è una mini casa modulare prefabbricata dal design arrotondato, interamente vetrata, costruita con materiali sostenibili e pronta per essere collocata nel tuo spazio verde.",
     "cta": "Scopri Apple Cabin",
-    "ctaSecondary": "Richiedi preventivo"
+    "ctaSecondary": "Richiedi preventivo",
+    "ctaWorks": "Uno dei nostri lavori fatti",
+    "worksTitle": "Uno dei nostri lavori fatti",
+    "worksSubtitle": "Box prefabbricati coibentati realizzati e installati dal nostro team: produzione in stabilimento, trasporto e posa in opera chiavi in mano.",
+    "requestProjectCta": "Richiedi il tuo progetto dal nostro catalogo dei prodotti",
+    "worksAlt": "Lavoro eseguito da Doctor Haus — box prefabbricata coibentata, foto {n}",
+    "closeLabel": "Chiudi"
   },
   "problemi": {
     "title": "Costruire una casa oggi è ancora troppo complicato.",
@@ -73,7 +79,11 @@
       { "title": "Produzione", "description": "La tua Apple Cabin viene costruita a regola d'arte nel nostro stabilimento con materiali certificati." },
       { "title": "Installazione", "description": "Trasporto, montaggio e consegna chiavi in mano. In 6-8 settimane la tua casa è pronta." }
     ],
-    "cta": "Scopri come funziona nel dettaglio"
+    "cta": "Scopri come funziona nel dettaglio",
+    "galleryTitle": "Come lavoriamo, dai cantieri reali.",
+    "gallerySubtitle": "Foto e video dei lavori eseguiti: box prefabbricati coibentati prodotti in stabilimento, trasportati e installati in tutta Italia.",
+    "galleryAlt": "Cantiere Doctor Haus — box prefabbricati coibentati, foto {n}",
+    "videoLabel": "Guarda come lavoriamo: video di un lavoro eseguito"
   },
   "sostenibilita": {
     "title": "Costruita per durare, pensata per il pianeta.",

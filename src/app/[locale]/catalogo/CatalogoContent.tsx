@@ -21,6 +21,13 @@ const expandablePhotos = Array.from({ length: 40 }, (_, i) => ({
   category: "expandable",
 }));
 
+const worksPhotos = Array.from({ length: 6 }, (_, i) => ({
+  id: String(i + 1),
+  src: `/doctorhaus-lavori-fatti/${i + 1}.jpeg`,
+  thumb: `/doctorhaus-lavori-fatti/${i + 1}.jpeg`,
+  category: "lavori",
+}));
+
 const categories = [
   {
     id: "apple-cabin",
@@ -31,6 +38,11 @@ const categories = [
     id: "expandable",
     label: { it: "Box Espandibili", en: "Expandable Boxes" },
     photos: expandablePhotos,
+  },
+  {
+    id: "lavori",
+    label: { it: "Lavori realizzati", en: "Completed Works" },
+    photos: worksPhotos,
   },
 ];
 
@@ -134,7 +146,15 @@ export default function CatalogoContent({ locale }: { locale: string }) {
                 <div className="relative">
                   <img
                     src={photo.src}
-                    alt={isIt ? `Foto ${cat.label.it} ${photo.id} — Doctor Haus catalogo modulari prefabbricati` : `${cat.label.en} photo ${photo.id} — Doctor Haus prefabricated modular catalog`}
+                    alt={
+                      cat.id === "lavori"
+                        ? isIt
+                          ? `Lavoro eseguito ${photo.id} — box prefabbricata coibentata realizzata da Doctor Haus`
+                          : `Completed project ${photo.id} — insulated prefabricated box built by Doctor Haus`
+                        : isIt
+                          ? `Foto ${cat.label.it} ${photo.id} — Doctor Haus catalogo modulari prefabbricati`
+                          : `${cat.label.en} photo ${photo.id} — Doctor Haus prefabricated modular catalog`
+                    }
                     className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none select-none"
                     loading="lazy"
                     draggable={false}
@@ -171,18 +191,17 @@ export default function CatalogoContent({ locale }: { locale: string }) {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              href="/contatti"
-              className="inline-flex items-center gap-2 rounded-full bg-orange-500 px-8 py-3.5 text-sm font-medium text-white transition-all duration-300 hover:bg-orange-600 hover:scale-[1.02]"
+              href="/configuratore"
+              className="inline-flex items-center gap-2 rounded-full bg-orange-500 px-8 py-3.5 text-sm font-medium text-white transition-all duration-300 hover:bg-orange-600 hover:scale-[1.02] shadow-lg shadow-orange-500/20"
             >
-              {isIt ? "Richiedi catalogo personalizzato" : "Request personalized catalog"}
+              {isIt ? "Configura il tuo prodotto" : "Configure your product"}
               <ArrowRight size={16} />
             </Link>
             <Link
-              href="/configuratore"
-              className="inline-flex items-center gap-2 text-sm font-medium text-text-muted hover:text-text transition-colors"
+              href="/contatti"
+              className="inline-flex items-center gap-2 rounded-full border border-line px-8 py-3.5 text-sm font-medium text-text transition-all duration-300 hover:border-text-muted hover:bg-background-alt"
             >
-              {isIt ? "Configura il tuo prodotto" : "Configure your product"}
-              <ArrowRight size={14} />
+              {isIt ? "Richiedi catalogo personalizzato" : "Request personalized catalog"}
             </Link>
           </div>
         </motion.div>

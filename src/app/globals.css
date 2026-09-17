@@ -52,3 +52,34 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* Infinite marquee carousels (works proof galleries) */
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-marquee-right {
+  animation: marquee-right var(--marquee-duration, 45s) linear infinite;
+}
+
+.animate-marquee-left {
+  animation: marquee-left var(--marquee-duration, 45s) linear infinite;
+}
+
+.marquee-hover-pause:hover .animate-marquee-right,
+.marquee-hover-pause:focus-within .animate-marquee-right,
+.marquee-hover-pause:hover .animate-marquee-left,
+.marquee-hover-pause:focus-within .animate-marquee-left {
+  animation-play-state: paused;
+}
+
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}

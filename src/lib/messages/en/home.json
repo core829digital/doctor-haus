@@ -3,7 +3,13 @@
     "headline": "Your home, wherever you want it.",
     "subheadline": "Apple Cabin is a prefabricated modular mini house with rounded design, full-height glass windows, built with sustainable materials and ready to be placed in your green space.",
     "cta": "Discover Apple Cabin",
-    "ctaSecondary": "Get a quote"
+    "ctaSecondary": "Get a quote",
+    "ctaWorks": "One of our completed projects",
+    "worksTitle": "One of our completed projects",
+    "worksSubtitle": "Insulated prefabricated boxes built and installed by our team: factory production, transport and turnkey installation.",
+    "requestProjectCta": "Request your project from our product catalog",
+    "worksAlt": "Completed project by Doctor Haus — insulated prefabricated box, photo {n}",
+    "closeLabel": "Close"
   },
   "problemi": {
     "title": "Building a home today is still too complicated.",
@@ -73,7 +79,11 @@
       { "title": "Production", "description": "Your Apple Cabin is expertly built in our factory using certified materials." },
       { "title": "Installation", "description": "Transport, assembly and turnkey delivery. In 6-8 weeks your home is ready." }
     ],
-    "cta": "Discover how it works in detail"
+    "cta": "Discover how it works in detail",
+    "galleryTitle": "How we work, from real job sites.",
+    "gallerySubtitle": "Photos and videos of completed works: insulated prefabricated boxes produced in our factory, transported and installed across Italy.",
+    "galleryAlt": "Doctor Haus job site — insulated prefabricated boxes, photo {n}",
+    "videoLabel": "Watch how we work: video of a completed project"
   },
   "sostenibilita": {
     "title": "Built to last, designed for the planet.",
